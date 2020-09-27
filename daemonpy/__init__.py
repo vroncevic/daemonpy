@@ -143,15 +143,15 @@ class Daemon(object):
                 sys.exit(1)
             sys.stdout.flush()
             sys.stderr.flush()
-            stdin_file = file(self.__stdin, 'r')
-            stdout_file = file(self.__stdout, 'a+')
-            stderr_file = file(self.__stderr, 'a+', 0)
+            stdin_file = open(self.__stdin, 'r')
+            stdout_file = open(self.__stdout, 'a+')
+            stderr_file = open(self.__stderr, 'a+', 0)
             dup2(stdin_file.fileno(), sys.stdin.fileno())
             dup2(stdout_file.fileno(), sys.stdout.fileno())
             dup2(stderr_file.fileno(), sys.stderr.fileno())
             register(self.delpid)
             pid = str(getpid())
-            with file(self.__pid_file, 'w+') as pid_file:
+            with open(self.__pid_file, 'w+') as pid_file:
                 pid_file.write('{0}\n'.format(pid))
 
     def delpid(self, verbose=False):
@@ -180,7 +180,7 @@ class Daemon(object):
         verbose_message(Daemon.VERBOSE, verbose, 'Start Daemon process')
         if self.__active:
             try:
-                with file(self.__pid_file, 'r') as pid_file:
+                with open(self.__pid_file, 'r') as pid_file:
                     pid = int(pid_file.read().strip())
             except IOError:
                 verbose_message(Daemon.VERBOSE, verbose, "{0}".format(
@@ -209,7 +209,7 @@ class Daemon(object):
         verbose_message(Daemon.VERBOSE, verbose, 'Stop Daemon process')
         if self.__active:
             try:
-                with file(self.__pid_file, 'r') as pid_file:
+                with open(self.__pid_file, 'r') as pid_file:
                     pid = int(pid_file.read().strip())
             except IOError as err:
                 error_message(Daemon.VERBOSE, "{0}".format(str(err)))
