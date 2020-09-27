@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>daemonpy &mdash; daemonpy https://github.com/vroncevic/daemonpy/releases documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> daemonpy
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Creating Daemon process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">daemonpy</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">daemonpy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>daemonpy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for daemonpy</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: UTF-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"> Module</span>
+<span class="sd">     __init__.py</span>
+<span class="sd"> Copyright</span>
+<span class="sd">     Copyright (C) 2020 Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;</span>
+<span class="sd">     daemonpy is free software: you can redistribute it and/or modify it</span>
+<span class="sd">     under the terms of the GNU General Public License as published by the</span>
+<span class="sd">     Free Software Foundation, either version 3 of the License, or</span>
+<span class="sd">     (at your option) any later version.</span>
+<span class="sd">     daemonpy is distributed in the hope that it will be useful, but</span>
+<span class="sd">     WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="sd">     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="sd">     See the GNU General Public License for more details.</span>
+<span class="sd">     You should have received a copy of the GNU General Public License along</span>
+<span class="sd">     with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="sd"> Info</span>
+<span class="sd">     Define class Daemon with attribute(s) and method(s).</span>
+<span class="sd">     Load a settings and setup operations.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">fork</span><span class="p">,</span> <span class="n">chdir</span><span class="p">,</span> <span class="n">setsid</span><span class="p">,</span> <span class="n">umask</span><span class="p">,</span> <span class="n">dup2</span><span class="p">,</span> <span class="n">getpid</span><span class="p">,</span> <span class="n">remove</span><span class="p">,</span> <span class="n">kill</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">exists</span>
+<span class="kn">from</span> <span class="nn">atexit</span> <span class="kn">import</span> <span class="n">register</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">stack</span>
+<span class="kn">from</span> <span class="nn">signal</span> <span class="kn">import</span> <span class="n">SIGTERM</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.abstract</span> <span class="kn">import</span> <span class="n">abstract_method</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.console_io.verbose</span> <span class="kn">import</span> <span class="n">verbose_message</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.console_io.error</span> <span class="kn">import</span> <span class="n">error_message</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_type_error</span> <span class="kn">import</span> <span class="n">ATSTypeError</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_bad_call_error</span> <span class="kn">import</span> <span class="n">ATSBadCallError</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="n">MESSAGE</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="si">{0}</span><span class="se">\n</span><span class="si">{1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">MESSAGE</span><span class="p">)</span>  <span class="c1"># Force close python ATS ##############################</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2020, Free software to use and distributed it.&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;GNU General Public License (GPL)&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.0.0&#39;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
+
+
+<div class="viewcode-block" id="Daemon"><a class="viewcode-back" href="../daemonpy.html#daemonpy.Daemon">[docs]</a><span class="k">class</span> <span class="nc">Daemon</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Define class Daemon with attribute(s) and method(s).</span>
+<span class="sd">        Load a settings and setup operations.</span>
+<span class="sd">        It defines:</span>
+
+<span class="sd">            :attributes:</span>
+<span class="sd">                | __slots__ - Setting class slots</span>
+<span class="sd">                | VERBOSE - Console text indicator for current process-phase</span>
+<span class="sd">                | __DAEMON_OPERATIONS - Supported Daemon operations</span>
+<span class="sd">                | __active - Control operations of Daemon process</span>
+<span class="sd">                | __pid_file - PID file for Daemon process</span>
+<span class="sd">                | __stdin - Standard input stream file path</span>
+<span class="sd">                | __stdout - Standard output stream file path</span>
+<span class="sd">                | __stderr - Standard error stream file path</span>
+<span class="sd">            :methods:</span>
+<span class="sd">                | __init__ - Initial constructor</span>
+<span class="sd">                | daemonize - Create Daemon process</span>
+<span class="sd">                | delpid - Delete PID file</span>
+<span class="sd">                | start - Start Daemon process</span>
+<span class="sd">                | stop - Stop Daemon process</span>
+<span class="sd">                | restart - Restart Daemon process</span>
+<span class="sd">                | usage - Checking usage of Daemon process</span>
+<span class="sd">                | run - Run Daemon process (abstract method)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;__DAEMON_OPERATIONS&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;__active&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;__pid_file&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;__stdin&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;__stdout&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;__stderr&#39;</span>
+    <span class="p">)</span>
+    <span class="n">VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DAEMONPY&#39;</span>
+    <span class="n">__DAEMON_OPERATIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="s1">&#39;restart&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pf</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Initial constructor.</span>
+
+<span class="sd">            :param pf: PID file path</span>
+<span class="sd">            :type pf: &lt;str&gt;</span>
+<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :type verbose: &lt;bool&gt;</span>
+<span class="sd">            :exceptions: ATSBadCallError | ATSTypeError</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="n">stack</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">pf_txt</span> <span class="o">=</span> <span class="s1">&#39;Argument: expected PID file path &lt;str&gt; object&#39;</span>
+        <span class="n">pf_msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> </span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">pf_txt</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pf</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">pf</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ATSBadCallError</span><span class="p">(</span><span class="n">pf_msg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pf</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ATSTypeError</span><span class="p">(</span><span class="n">pf_msg</span><span class="p">)</span>
+        <span class="n">verbose_message</span><span class="p">(</span><span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;Initial Daemon process&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__stdin</span> <span class="o">=</span> <span class="s1">&#39;/dev/null&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__stdout</span> <span class="o">=</span> <span class="s1">&#39;/dev/null&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__stderr</span> <span class="o">=</span> <span class="s1">&#39;/dev/null&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span> <span class="o">=</span> <span class="n">pf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__active</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="Daemon.daemonize"><a class="viewcode-back" href="../daemonpy.html#daemonpy.Daemon.daemonize">[docs]</a>    <span class="k">def</span> <span class="nf">daemonize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Create daemon process.</span>
+
+<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :type verbose: &lt;bool&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">verbose_message</span><span class="p">(</span><span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;Create Daemon process&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__active</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">pid</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                    <span class="s1">&#39;fork #1 failed: </span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">errno</span><span class="p">,</span> <span class="n">err</span><span class="o">.</span><span class="n">strerror</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+            <span class="n">setsid</span><span class="p">()</span>
+            <span class="n">umask</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">pid</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                    <span class="s1">&#39;fork #2 failed: </span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">errno</span><span class="p">,</span> <span class="n">err</span><span class="o">.</span><span class="n">strerror</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="n">stdin_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__stdin</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+            <span class="n">stdout_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__stdout</span><span class="p">,</span> <span class="s1">&#39;a+&#39;</span><span class="p">)</span>
+            <span class="n">stderr_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__stderr</span><span class="p">,</span> <span class="s1">&#39;a+&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">dup2</span><span class="p">(</span><span class="n">stdin_file</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>
+            <span class="n">dup2</span><span class="p">(</span><span class="n">stdout_file</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>
+            <span class="n">dup2</span><span class="p">(</span><span class="n">stderr_file</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>
+            <span class="n">register</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delpid</span><span class="p">)</span>
+            <span class="n">pid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">getpid</span><span class="p">())</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pid_file</span><span class="p">:</span>
+                <span class="n">pid_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pid</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Daemon.delpid"><a class="viewcode-back" href="../daemonpy.html#daemonpy.Daemon.delpid">[docs]</a>    <span class="k">def</span> <span class="nf">delpid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Remove PID file.</span>
+
+<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :type verbose: &lt;bool&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">verbose_message</span><span class="p">(</span>
+            <span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;Remove PID file&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__active</span><span class="p">:</span>
+            <span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Daemon.start"><a class="viewcode-back" href="../daemonpy.html#daemonpy.Daemon.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Start Daemon process.</span>
+
+<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :type verbose: &lt;bool&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pid</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">verbose_message</span><span class="p">(</span><span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;Start Daemon process&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__active</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pid_file</span><span class="p">:</span>
+                    <span class="n">pid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pid_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+                <span class="n">verbose_message</span><span class="p">(</span><span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="s1">&#39;No such file or directory&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">pid</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                    <span class="s1">&#39;File </span><span class="si">{0}</span><span class="s1"> already exist, Daemon already running?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">daemonize</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Daemon.stop"><a class="viewcode-back" href="../daemonpy.html#daemonpy.Daemon.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Stop Daemon process.</span>
+
+<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :type verbose: &lt;bool&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pid</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">verbose_message</span><span class="p">(</span><span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;Stop Daemon process&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__active</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pid_file</span><span class="p">:</span>
+                    <span class="n">pid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pid_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">error_message</span><span class="p">(</span><span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">pid</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Daemon process running?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">kill</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">SIGTERM</span><span class="p">)</span>
+                    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">err</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;No such process&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span><span class="p">):</span>
+                        <span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">error_message</span><span class="p">(</span><span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Daemon.restart"><a class="viewcode-back" href="../daemonpy.html#daemonpy.Daemon.restart">[docs]</a>    <span class="k">def</span> <span class="nf">restart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Restart Daemon process.</span>
+
+<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :type verbose: &lt;bool&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">verbose_message</span><span class="p">(</span><span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;Restart Daemon process&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__active</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Daemon.usage"><a class="viewcode-back" href="../daemonpy.html#daemonpy.Daemon.usage">[docs]</a>    <span class="k">def</span> <span class="nf">usage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Checking usage of Daemon process.</span>
+
+<span class="sd">            :param arguments: List of arguments</span>
+<span class="sd">            :type arguments: &lt;list&gt;</span>
+<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :type verbose: &lt;bool&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">verbose_message</span><span class="p">(</span><span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;Checking usage&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__DAEMON_OPERATIONS</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__DAEMON_OPERATIONS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__DAEMON_OPERATIONS</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">restart</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">error_message</span><span class="p">(</span>
+                    <span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="s1">&#39;usage: </span><span class="si">{0}</span><span class="s1"> start|stop|restart&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">error_message</span><span class="p">(</span>
+                <span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="s1">&#39;usage: </span><span class="si">{0}</span><span class="s1"> start|stop|restart&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span></div>
+
+    <span class="nd">@abstract_method</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Run Daemon process.</span>
+<span class="sd">            Override this method when subclass Daemon.</span>
+<span class="sd">            It will be called after the process has been</span>
+<span class="sd">            daemonized by start() or restart().</span>
+
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
