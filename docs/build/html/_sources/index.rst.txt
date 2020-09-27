@@ -11,7 +11,7 @@ other information that should be provided before the modules are installed.
 
 |Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
 
-.. |Python package| image:: https://github.com/vroncevic/daemonpy/workflows/Python%20package/badge.svg
+.. |Python package| image:: https://github.com/vroncevic/daemonpy/workflows/Python%20package%20daemonpy/badge.svg
    :target: https://github.com/vroncevic/daemonpy/workflows/Python%20package/badge.svg?branch=master
 
 .. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/daemonpy.svg
