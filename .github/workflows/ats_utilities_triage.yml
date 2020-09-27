@@ -1,0 +1,16 @@
+name: Triage daemonpy
+on:
+  issues:
+    types: [opened]
+jobs:
+  commentOnNewIssues:
+    name: Comment On New Issues
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Comment On New Issues
+        uses: actions/github@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: comment "[daemonpy] should be supported for Python 2.7, 3.5, 3.6, 3.7, 3.8"
