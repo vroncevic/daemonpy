@@ -124,7 +124,7 @@ class Daemon(object):
                 pid = fork()
                 if pid > 0:
                     sys.exit(0)
-            except OSError, err:
+            except OSError as err:
                 sys.stderr.write(
                     'fork #1 failed: {0} {1}\n'.format(err.errno, err.strerror)
                 )
@@ -136,7 +136,7 @@ class Daemon(object):
                 pid = fork()
                 if pid > 0:
                     sys.exit(0)
-            except OSError, err:
+            except OSError as err:
                 sys.stderr.write(
                     'fork #2 failed: {0} {1}\n'.format(err.errno, err.strerror)
                 )
@@ -211,7 +211,7 @@ class Daemon(object):
             try:
                 with file(self.__pid_file, 'r') as pid_file:
                     pid = int(pid_file.read().strip())
-            except IOError, err:
+            except IOError as err:
                 error_message(Daemon.VERBOSE, "{0}".format(str(err)))
             if not pid:
                 sys.stderr.write('Daemon process running?\n')
@@ -220,7 +220,7 @@ class Daemon(object):
                 while 1:
                     kill(pid, SIGTERM)
                     sleep(0.1)
-            except OSError, err:
+            except OSError as err:
                 err = str(err)
                 if err.find('No such process') > 0:
                     if exists(self.__pid_file):
