@@ -68,6 +68,8 @@ Copying daemonpy.egg-info to /usr/local/lib/python2.7/dist-packages/daemonpy-1.0
 
 Or You can use docker to create image/container.
 
+[![daemonpy docker checker](https://github.com/vroncevic/daemonpy/workflows/daemonpy%20docker%20checker/badge.svg)](https://github.com/vroncevic/daemonpy/actions?query=workflow%3A%22daemonpy+docker+checker%22)
+
 ### Usage
 
 Create short example:
