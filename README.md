@@ -2,7 +2,7 @@
 
 **daemonpy** is package for creating Daemon processes.
 
-Developed in [python](https://www.python.org/) code: **100%**.
+Developed in **[python](https://www.python.org/)** code: **100%**.
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
@@ -160,6 +160,6 @@ More documentation and info at:
 
 Copyright (C) 2020 by [vroncevic.github.io/daemonpy](https://vroncevic.github.io/daemonpy/)
 
-This tool is free software; you can redistribute it and/or modify
+**daemonpy** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 2.x/3.x or,
 at your option, any later version of Python 3 you may have available.
