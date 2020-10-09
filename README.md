@@ -165,3 +165,9 @@ Copyright (C) 2020 by [vroncevic.github.io/daemonpy](https://vroncevic.github.io
 **daemonpy** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 2.x/3.x or,
 at your option, any later version of Python 3 you may have available.
+
+Lets help and support PSF.
+
+[![Python Software Foundation](https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/psf-logo-alpha.png)](https://www.python.org/psf/)
+
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2)
