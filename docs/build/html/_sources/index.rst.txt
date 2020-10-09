@@ -47,6 +47,13 @@ To install this set of modules type the following:
     python setup.py install_lib
     python setup.py install_egg_info
 
+You can use Docker to create image/container.
+
+|GitHub docker checker|
+
+.. |GitHub docker checker| image:: https://github.com/vroncevic/daemonpy/workflows/daemonpy%20docker%20checker/badge.svg
+   :target: https://github.com/vroncevic/daemonpy/actions?query=workflow%3A%22daemonpy+docker+checker%22
+
 Usage
 -----
 
@@ -147,6 +154,18 @@ Copyright (C) 2020 by `vroncevic.github.io/daemonpy <https://vroncevic.github.io
 **daemonpy** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 2.x/3.x or,
 at your option, any later version of Python 3 you may have available.
+
+Lets help and support PSF.
+
+|Python Software Foundation|
+
+.. |Python Software Foundation| IMAGE:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/psf-logo-alpha.png
+   :target: https://www.python.org/psf/
+
+|Donate|
+
+.. |Donate| image:: https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif
+   :target: https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2
 
 Indices and tables
 ------------------
