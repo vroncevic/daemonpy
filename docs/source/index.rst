@@ -33,6 +33,14 @@ other information that should be provided before the modules are installed.
 Installation
 -------------
 
+|Install Python2 Package| |Install Python3 Package|
+
+.. |Install Python2 Package| image:: https://github.com/vroncevic/daemonpy/workflows/Install%20Python2%20Package%20daemonpy/badge.svg
+   :target: https://github.com/vroncevic/daemonpy/workflows/Install%20Python2%20Package%20daemonpy/badge.svg?branch=master
+
+.. |Install Python3 Package| image:: https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg
+   :target: https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg?branch=master
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/daemonpy/releases
@@ -159,7 +167,7 @@ Lets help and support PSF.
 
 |Python Software Foundation|
 
-.. |Python Software Foundation| IMAGE:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/psf-logo-alpha.png
+.. |Python Software Foundation| image:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/psf-logo-alpha.png
    :target: https://www.python.org/psf/
 
 |Donate|
