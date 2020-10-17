@@ -27,6 +27,7 @@ RUN pip install --upgrade setuptools
 RUN mkdir /daemonpy/
 COPY daemonpy /daemonpy/
 COPY setup.py /
+COPY README.md /
 COPY requirements.txt /
 RUN pip install -r requirements.txt
 RUN rm -f requirements.txt
@@ -35,5 +36,6 @@ RUN python setup.py install_lib
 RUN python setup.py install_egg_info
 RUN rm -rf /daemonpy/
 RUN rm -f setup.py
+RUN rm -f README.md
 RUN chmod -R 755 /usr/local/lib/python2.7/dist-packages/daemonpy/
 RUN tree /usr/local/lib/python2.7/dist-packages/daemonpy/
