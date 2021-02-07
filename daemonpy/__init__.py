@@ -25,24 +25,24 @@ from os import fork, chdir, setsid, umask, dup2, getpid, remove, kill
 from os.path import exists
 from atexit import register
 from time import sleep
-from inspect import stack
 from signal import SIGTERM
 
 try:
+    from ats_utilities.checker import ATSChecker
     from ats_utilities.abstract import abstract_method
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.console_io.error import error_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-except ImportError as error:
-    MESSAGE = "\n{0}\n{1}\n".format(__file__, error)
+except ImportError as error_message:
+    MESSAGE = "\n{0}\n{1}\n".format(__file__, error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.0.0'
+__version__ = '1.2.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -58,6 +58,7 @@ class Daemon(object):
                 | __slots__ - Setting class slots
                 | VERBOSE - Console text indicator for current process-phase
                 | __DAEMON_OPERATIONS - Supported Daemon operations
+                | __checker - ATS checker for parameters
                 | __active - Control operations of Daemon process
                 | __pid_file - PID file for Daemon process
                 | __stdin - Standard input stream file path
@@ -77,6 +78,7 @@ class Daemon(object):
     __slots__ = (
         'VERBOSE',
         '__DAEMON_OPERATIONS',
+        '__checker',
         '__active',
         '__pid_file',
         '__stdin',
@@ -94,15 +96,12 @@ class Daemon(object):
             :type pf: <str>
             :param verbose: Enable/disable verbose option
             :type verbose: <bool>
-            :exceptions: ATSBadCallError | ATSTypeError
+            :exceptions: ATSTypeError | ATSBadCallError
         """
-        func = stack()[0][3]
-        pf_txt = 'Argument: expected PID file path <str> object'
-        pf_msg = "{0} {1} {2}".format('def', func, pf_txt)
-        if pf is None or not pf:
-            raise ATSBadCallError(pf_msg)
-        if not isinstance(pf, str):
-            raise ATSTypeError(pf_msg)
+        self.__checker = ATSChecker()
+        error, status = self.__checker.check_params([('str:pf', pf)])
+        if status == ATSChecker.TYPE_ERROR: raise ATSTypeError(error)
+        if status == ATSChecker.VALUE_ERROR: raise ATSBadCallError(error)
         verbose_message(Daemon.VERBOSE, verbose, 'Initial Daemon process')
         self.__stdin = '/dev/null'
         self.__stdout = '/dev/null'

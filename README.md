@@ -53,7 +53,6 @@ byte-compiling /usr/local/lib/python2.7/dist-packages/daemonpy/__init__.py to __
 Install lib egg info
 ```
 python setup.py install_egg_info
-running install_egg_info
 running egg_info
 creating daemonpy.egg-info
 writing requirements to daemonpy.egg-info/requires.txt
@@ -63,7 +62,7 @@ writing dependency_links to daemonpy.egg-info/dependency_links.txt
 writing manifest file 'daemonpy.egg-info/SOURCES.txt'
 reading manifest file 'daemonpy.egg-info/SOURCES.txt'
 writing manifest file 'daemonpy.egg-info/SOURCES.txt'
-Copying daemonpy.egg-info to /usr/local/lib/python2.7/dist-packages/daemonpy-1.0.0.egg-info
+Copying daemonpy.egg-info to /usr/local/lib/python2.7/dist-packages/daemonpy-1.2.0.egg-info
 ```
 
 Or You can use docker to create image/container.
@@ -142,10 +141,8 @@ These modules requires other modules and libraries (Python 2.x/3.x):
 
 Library structure:
 ```
-.
-├── daemonpy/
-│   └── __init__.py
-└── setup.py
+daemonpy/
+└── __init__.py
 ```
 
 ### Docs

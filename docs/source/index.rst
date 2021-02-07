@@ -141,10 +141,8 @@ Code structure:
 
 .. code-block:: bash
 
-    .
-    ├── daemonpy/
-    │   └── __init__.py
-    └── setup.py
+    daemonpy/
+    └── __init__.py
 
 Copyright and licence
 ----------------------

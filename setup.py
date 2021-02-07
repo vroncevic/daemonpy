@@ -27,7 +27,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.1.0'
+__version__ = '1.2.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -38,7 +38,7 @@ with open(join(THIS_DIR, 'README.md')) as readme:
 
 setup(
     name='daemonpy',
-    version='1.1.0',
+    version='1.2.0',
     description='Creating Daemon process',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
