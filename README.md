@@ -1,3 +1,5 @@
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/daemonpy_logo.png" width="25%">
+
 # Creating Daemon process
 
 **daemonpy** is package for creating Daemon processes.
