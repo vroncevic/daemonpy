@@ -15,6 +15,9 @@ other information that should be provided before the modules are installed.
 **Table of Contents**
 
 - [Installation](#installation)
+    - [Install using pip](#install-using-pip)
+    - [Install using setuptools](#install-using-setuptools)
+    - [Install using docker](#install-using-docker)
 - [Usage](#usage)
 - [Dependencies](#dependencies)
 - [Library structure](#library-structure)
@@ -27,45 +30,36 @@ other information that should be provided before the modules are installed.
 
 ![Install Python2 Package](https://github.com/vroncevic/daemonpy/workflows/Install%20Python2%20Package%20daemonpy/badge.svg?branch=master) ![Install Python3 Package](https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg?branch=master)
 
+Currently there are three ways to install framework:
+* Install process based on using pip
+* Install process based on setup.py (setuptools)
+* Install process based on docker mechanism
+
+##### Install using pip
+
+Python package is located at **[pypi.org](https://pypi.org/project/daemonpy/)**.
+
+You can install by using pip
+```
+pip install daemonpy
+```
+
+##### Install using setuptools
+
 Navigate to **[release page](https://github.com/vroncevic/daemonpy/releases)** download and extract release archive.
 
-To install modules, locate and run setup.py, type the following:
+To install modules, locate and run setup.py with arguments:
 ```
 tar xvzf daemonpy-x.y.z.tar.gz
 cd daemonpy-x.y.z
 pip install -r requirements.txt
-```
-
-Install lib process
-```
 python setup.py install_lib
-running install_lib
-running build_py
-creating build
-creating build/lib.linux-x86_64-2.7
-creating build/lib.linux-x86_64-2.7/daemonpy
-copying daemonpy/__init__.py -> build/lib.linux-x86_64-2.7/daemonpy
-creating /usr/local/lib/python2.7/dist-packages/daemonpy
-copying build/lib.linux-x86_64-2.7/daemonpy/__init__.py -> /usr/local/lib/python2.7/dist-packages/daemonpy
-byte-compiling /usr/local/lib/python2.7/dist-packages/daemonpy/__init__.py to __init__.pyc
-```
-
-Install lib egg info
-```
 python setup.py install_egg_info
-running egg_info
-creating daemonpy.egg-info
-writing requirements to daemonpy.egg-info/requires.txt
-writing daemonpy.egg-info/PKG-INFO
-writing top-level names to daemonpy.egg-info/top_level.txt
-writing dependency_links to daemonpy.egg-info/dependency_links.txt
-writing manifest file 'daemonpy.egg-info/SOURCES.txt'
-reading manifest file 'daemonpy.egg-info/SOURCES.txt'
-writing manifest file 'daemonpy.egg-info/SOURCES.txt'
-Copying daemonpy.egg-info to /usr/local/lib/python2.7/dist-packages/daemonpy-1.2.0.egg-info
 ```
 
-Or You can use docker to create image/container.
+##### Install using docker
+
+You can use Dockerfile to create image/container.
 
 [![daemonpy docker checker](https://github.com/vroncevic/daemonpy/workflows/daemonpy%20docker%20checker/badge.svg)](https://github.com/vroncevic/daemonpy/actions?query=workflow%3A%22daemonpy+docker+checker%22)
 

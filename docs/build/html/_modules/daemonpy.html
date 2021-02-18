@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.3.0
               </div>
             
           
@@ -175,11 +175,11 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">fork</span><span class="p">,</span> <span class="n">chdir</span><span class="p">,</span> <span class="n">setsid</span><span class="p">,</span> <span class="n">umask</span><span class="p">,</span> <span class="n">dup2</span><span class="p">,</span> <span class="n">getpid</span><span class="p">,</span> <span class="n">remove</span><span class="p">,</span> <span class="n">kill</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">exists</span>
-<span class="kn">from</span> <span class="nn">atexit</span> <span class="kn">import</span> <span class="n">register</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">exists</span>
 <span class="kn">from</span> <span class="nn">signal</span> <span class="kn">import</span> <span class="n">SIGTERM</span>
+<span class="kn">from</span> <span class="nn">atexit</span> <span class="kn">import</span> <span class="n">register</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">fork</span><span class="p">,</span> <span class="n">chdir</span><span class="p">,</span> <span class="n">setsid</span><span class="p">,</span> <span class="n">umask</span><span class="p">,</span> <span class="n">dup2</span><span class="p">,</span> <span class="n">getpid</span><span class="p">,</span> <span class="n">remove</span><span class="p">,</span> <span class="n">kill</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.checker</span> <span class="kn">import</span> <span class="n">ATSChecker</span>
@@ -196,7 +196,7 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2020, Free software to use and distributed it.&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;GNU General Public License (GPL)&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.2.0&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.3.0&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
@@ -209,65 +209,58 @@
 <span class="sd">        It defines:</span>
 
 <span class="sd">            :attributes:</span>
-<span class="sd">                | __slots__ - Setting class slots</span>
-<span class="sd">                | VERBOSE - Console text indicator for current process-phase</span>
-<span class="sd">                | __DAEMON_OPERATIONS - Supported Daemon operations</span>
-<span class="sd">                | __checker - ATS checker for parameters</span>
-<span class="sd">                | __active - Control operations of Daemon process</span>
-<span class="sd">                | __pid_file - PID file for Daemon process</span>
-<span class="sd">                | __stdin - Standard input stream file path</span>
-<span class="sd">                | __stdout - Standard output stream file path</span>
-<span class="sd">                | __stderr - Standard error stream file path</span>
+<span class="sd">                | __slots__ - Setting class slots.</span>
+<span class="sd">                | VERBOSE - Console text indicator for current process-phase.</span>
+<span class="sd">                | __DAEMON_OPERATIONS - Supported Daemon operations.</span>
+<span class="sd">                | __active - Control operations of Daemon process.</span>
+<span class="sd">                | __pid_file - PID file for Daemon process.</span>
+<span class="sd">                | __stdin - Standard input stream file path.</span>
+<span class="sd">                | __stdout - Standard output stream file path.</span>
+<span class="sd">                | __stderr - Standard error stream file path.</span>
 <span class="sd">            :methods:</span>
-<span class="sd">                | __init__ - Initial constructor</span>
-<span class="sd">                | daemonize - Create Daemon process</span>
-<span class="sd">                | delpid - Delete PID file</span>
-<span class="sd">                | start - Start Daemon process</span>
-<span class="sd">                | stop - Stop Daemon process</span>
-<span class="sd">                | restart - Restart Daemon process</span>
-<span class="sd">                | usage - Checking usage of Daemon process</span>
-<span class="sd">                | run - Run Daemon process (abstract method)</span>
+<span class="sd">                | __init__ - Initial constructor.</span>
+<span class="sd">                | daemonize - Create Daemon process.</span>
+<span class="sd">                | delpid - Delete PID file.</span>
+<span class="sd">                | start - Start Daemon process.</span>
+<span class="sd">                | stop - Stop Daemon process.</span>
+<span class="sd">                | restart - Restart Daemon process.</span>
+<span class="sd">                | usage - Checking usage of Daemon process.</span>
+<span class="sd">                | run - Run Daemon process (abstract method).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__DAEMON_OPERATIONS&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__checker&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__active&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__pid_file&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__stdin&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__stdout&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__stderr&#39;</span>
+        <span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span> <span class="s1">&#39;__DAEMON_OPERATIONS&#39;</span><span class="p">,</span> <span class="s1">&#39;__active&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;__pid_file&#39;</span><span class="p">,</span> <span class="s1">&#39;__stdin&#39;</span><span class="p">,</span> <span class="s1">&#39;__stdout&#39;</span><span class="p">,</span> <span class="s1">&#39;__stderr&#39;</span>
     <span class="p">)</span>
     <span class="n">VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DAEMONPY&#39;</span>
     <span class="n">__DAEMON_OPERATIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="s1">&#39;restart&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pf</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pid_file</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Initial constructor.</span>
 
-<span class="sd">            :param pf: PID file path</span>
-<span class="sd">            :type pf: &lt;str&gt;</span>
-<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :param pid_file: PID file path.</span>
+<span class="sd">            :type pid_file: &lt;str&gt;</span>
+<span class="sd">            :param verbose: Enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: ATSTypeError | ATSBadCallError</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__checker</span> <span class="o">=</span> <span class="n">ATSChecker</span><span class="p">()</span>
-        <span class="n">error</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__checker</span><span class="o">.</span><span class="n">check_params</span><span class="p">([(</span><span class="s1">&#39;str:pf&#39;</span><span class="p">,</span> <span class="n">pf</span><span class="p">)])</span>
+        <span class="n">checker</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ATSChecker</span><span class="p">(),</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="n">error</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">checker</span><span class="o">.</span><span class="n">check_params</span><span class="p">([(</span><span class="s1">&#39;str:pid_file&#39;</span><span class="p">,</span> <span class="n">pid_file</span><span class="p">)])</span>
         <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">ATSChecker</span><span class="o">.</span><span class="n">TYPE_ERROR</span><span class="p">:</span> <span class="k">raise</span> <span class="n">ATSTypeError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">ATSChecker</span><span class="o">.</span><span class="n">VALUE_ERROR</span><span class="p">:</span> <span class="k">raise</span> <span class="n">ATSBadCallError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
         <span class="n">verbose_message</span><span class="p">(</span><span class="n">Daemon</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;Initial Daemon process&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__stdin</span> <span class="o">=</span> <span class="s1">&#39;/dev/null&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__stdout</span> <span class="o">=</span> <span class="s1">&#39;/dev/null&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__stderr</span> <span class="o">=</span> <span class="s1">&#39;/dev/null&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span> <span class="o">=</span> <span class="n">pf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__pid_file</span> <span class="o">=</span> <span class="n">pid_file</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__active</span> <span class="o">=</span> <span class="kc">True</span>
 
 <div class="viewcode-block" id="Daemon.daemonize"><a class="viewcode-back" href="../daemonpy.html#daemonpy.Daemon.daemonize">[docs]</a>    <span class="k">def</span> <span class="nf">daemonize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Create daemon process.</span>
 
-<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :param verbose: Enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -311,7 +304,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Remove PID file.</span>
 
-<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :param verbose: Enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -325,7 +318,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Start Daemon process.</span>
 
-<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :param verbose: Enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -354,7 +347,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Stop Daemon process.</span>
 
-<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :param verbose: Enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -386,7 +379,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Restart Daemon process.</span>
 
-<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :param verbose: Enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -399,9 +392,9 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Checking usage of Daemon process.</span>
 
-<span class="sd">            :param arguments: List of arguments</span>
+<span class="sd">            :param arguments: List of arguments.</span>
 <span class="sd">            :type arguments: &lt;list&gt;</span>
-<span class="sd">            :param verbose: Enable/disable verbose option</span>
+<span class="sd">            :param verbose: Enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>

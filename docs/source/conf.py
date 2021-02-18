@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 project = u'daemonpy'
 copyright = u'2020, Vladimir Roncevic <elektron.ronca@gmail.com>'
 author = u'Vladimir Roncevic <elektron.ronca@gmail.com>'
-version = u'1.2.0'
+version = u'1.3.0'
 release = u'https://github.com/vroncevic/daemonpy/releases'
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode',]
 templates_path = ['_templates']

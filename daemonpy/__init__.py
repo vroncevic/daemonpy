@@ -21,17 +21,17 @@
 """
 
 import sys
-from os import fork, chdir, setsid, umask, dup2, getpid, remove, kill
-from os.path import exists
-from atexit import register
 from time import sleep
+from os.path import exists
 from signal import SIGTERM
+from atexit import register
+from os import fork, chdir, setsid, umask, dup2, getpid, remove, kill
 
 try:
     from ats_utilities.checker import ATSChecker
     from ats_utilities.abstract import abstract_method
-    from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.console_io.error import error_message
+    from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as error_message:
@@ -42,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.2.0'
+__version__ = '1.3.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -55,65 +55,58 @@ class Daemon(object):
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots
-                | VERBOSE - Console text indicator for current process-phase
-                | __DAEMON_OPERATIONS - Supported Daemon operations
-                | __checker - ATS checker for parameters
-                | __active - Control operations of Daemon process
-                | __pid_file - PID file for Daemon process
-                | __stdin - Standard input stream file path
-                | __stdout - Standard output stream file path
-                | __stderr - Standard error stream file path
+                | __slots__ - Setting class slots.
+                | VERBOSE - Console text indicator for current process-phase.
+                | __DAEMON_OPERATIONS - Supported Daemon operations.
+                | __active - Control operations of Daemon process.
+                | __pid_file - PID file for Daemon process.
+                | __stdin - Standard input stream file path.
+                | __stdout - Standard output stream file path.
+                | __stderr - Standard error stream file path.
             :methods:
-                | __init__ - Initial constructor
-                | daemonize - Create Daemon process
-                | delpid - Delete PID file
-                | start - Start Daemon process
-                | stop - Stop Daemon process
-                | restart - Restart Daemon process
-                | usage - Checking usage of Daemon process
-                | run - Run Daemon process (abstract method)
+                | __init__ - Initial constructor.
+                | daemonize - Create Daemon process.
+                | delpid - Delete PID file.
+                | start - Start Daemon process.
+                | stop - Stop Daemon process.
+                | restart - Restart Daemon process.
+                | usage - Checking usage of Daemon process.
+                | run - Run Daemon process (abstract method).
     """
 
     __slots__ = (
-        'VERBOSE',
-        '__DAEMON_OPERATIONS',
-        '__checker',
-        '__active',
-        '__pid_file',
-        '__stdin',
-        '__stdout',
-        '__stderr'
+        'VERBOSE', '__DAEMON_OPERATIONS', '__active',
+        '__pid_file', '__stdin', '__stdout', '__stderr'
     )
     VERBOSE = 'DAEMONPY'
     __DAEMON_OPERATIONS = ['start', 'stop', 'restart']
 
-    def __init__(self, pf, verbose=False):
+    def __init__(self, pid_file, verbose=False):
         """
             Initial constructor.
 
-            :param pf: PID file path
-            :type pf: <str>
-            :param verbose: Enable/disable verbose option
+            :param pid_file: PID file path.
+            :type pid_file: <str>
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         """
-        self.__checker = ATSChecker()
-        error, status = self.__checker.check_params([('str:pf', pf)])
+        checker, error, status = ATSChecker(), None, False
+        error, status = checker.check_params([('str:pid_file', pid_file)])
         if status == ATSChecker.TYPE_ERROR: raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR: raise ATSBadCallError(error)
         verbose_message(Daemon.VERBOSE, verbose, 'Initial Daemon process')
         self.__stdin = '/dev/null'
         self.__stdout = '/dev/null'
         self.__stderr = '/dev/null'
-        self.__pid_file = pf
+        self.__pid_file = pid_file
         self.__active = True
 
     def daemonize(self, verbose=False):
         """
             Create daemon process.
 
-            :param verbose: Enable/disable verbose option
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         """
@@ -157,7 +150,7 @@ class Daemon(object):
         """
             Remove PID file.
 
-            :param verbose: Enable/disable verbose option
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         """
@@ -171,7 +164,7 @@ class Daemon(object):
         """
             Start Daemon process.
 
-            :param verbose: Enable/disable verbose option
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         """
@@ -200,7 +193,7 @@ class Daemon(object):
         """
             Stop Daemon process.
 
-            :param verbose: Enable/disable verbose option
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         """
@@ -232,7 +225,7 @@ class Daemon(object):
         """
             Restart Daemon process.
 
-            :param verbose: Enable/disable verbose option
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         """
@@ -245,9 +238,9 @@ class Daemon(object):
         """
             Checking usage of Daemon process.
 
-            :param arguments: List of arguments
+            :param arguments: List of arguments.
             :type arguments: <list>
-            :param verbose: Enable/disable verbose option
+            :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         """

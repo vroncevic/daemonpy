@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.2.0
+                1.3.0
               </div>
             
           
@@ -187,7 +187,7 @@ Load a settings and setup operations.</dd>
 </dl>
 <dl class="class">
 <dt id="daemonpy.Daemon">
-<em class="property">class </em><code class="descclassname">daemonpy.</code><code class="descname">Daemon</code><span class="sig-paren">(</span><em>pf</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/daemonpy.html#Daemon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#daemonpy.Daemon" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">daemonpy.</code><code class="descname">Daemon</code><span class="sig-paren">(</span><em>pid_file</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/daemonpy.html#Daemon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#daemonpy.Daemon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Define class Daemon with attribute(s) and method(s).
 Load a settings and setup operations.
@@ -198,27 +198,26 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase</div>
-<div class="line">__DAEMON_OPERATIONS - Supported Daemon operations</div>
-<div class="line">__checker - ATS checker for parameters</div>
-<div class="line">__active - Control operations of Daemon process</div>
-<div class="line">__pid_file - PID file for Daemon process</div>
-<div class="line">__stdin - Standard input stream file path</div>
-<div class="line">__stdout - Standard output stream file path</div>
-<div class="line">__stderr - Standard error stream file path</div>
+<div class="line">__slots__ - Setting class slots.</div>
+<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
+<div class="line">__DAEMON_OPERATIONS - Supported Daemon operations.</div>
+<div class="line">__active - Control operations of Daemon process.</div>
+<div class="line">__pid_file - PID file for Daemon process.</div>
+<div class="line">__stdin - Standard input stream file path.</div>
+<div class="line">__stdout - Standard output stream file path.</div>
+<div class="line">__stderr - Standard error stream file path.</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor</div>
-<div class="line">daemonize - Create Daemon process</div>
-<div class="line">delpid - Delete PID file</div>
-<div class="line">start - Start Daemon process</div>
-<div class="line">stop - Stop Daemon process</div>
-<div class="line">restart - Restart Daemon process</div>
-<div class="line">usage - Checking usage of Daemon process</div>
-<div class="line">run - Run Daemon process (abstract method)</div>
+<div class="line">__init__ - Initial constructor.</div>
+<div class="line">daemonize - Create Daemon process.</div>
+<div class="line">delpid - Delete PID file.</div>
+<div class="line">start - Start Daemon process.</div>
+<div class="line">stop - Stop Daemon process.</div>
+<div class="line">restart - Restart Daemon process.</div>
+<div class="line">usage - Checking usage of Daemon process.</div>
+<div class="line">run - Run Daemon process (abstract method).</div>
 </div>
 </td>
 </tr>
@@ -238,7 +237,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body">None</td>
 </tr>
@@ -254,7 +253,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body">None</td>
 </tr>
@@ -270,7 +269,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body">None</td>
 </tr>
@@ -291,7 +290,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body">None</td>
 </tr>
@@ -307,7 +306,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body">None</td>
 </tr>
@@ -324,8 +323,8 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>arguments</strong> (<em>&lt;list&gt;</em>) – List of arguments</li>
-<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option</li>
+<li><strong>arguments</strong> (<em>&lt;list&gt;</em>) – List of arguments.</li>
+<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</li>
 </ul>
 </td>
 </tr>
