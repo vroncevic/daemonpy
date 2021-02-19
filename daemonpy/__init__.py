@@ -42,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.3.0'
+__version__ = '1.4.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -95,7 +95,7 @@ class Daemon(object):
         error, status = checker.check_params([('str:pid_file', pid_file)])
         if status == ATSChecker.TYPE_ERROR: raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR: raise ATSBadCallError(error)
-        verbose_message(Daemon.VERBOSE, verbose, 'Initial Daemon process')
+        verbose_message(Daemon.VERBOSE, verbose, 'initial daemon process')
         self.__stdin = '/dev/null'
         self.__stdout = '/dev/null'
         self.__stderr = '/dev/null'
@@ -110,7 +110,7 @@ class Daemon(object):
             :type verbose: <bool>
             :exceptions: None
         """
-        verbose_message(Daemon.VERBOSE, verbose, 'Create Daemon process')
+        verbose_message(Daemon.VERBOSE, verbose, 'create daemon process')
         if self.__active:
             try:
                 pid = fork()
@@ -155,7 +155,7 @@ class Daemon(object):
             :exceptions: None
         """
         verbose_message(
-            Daemon.VERBOSE, verbose, 'Remove PID file', self.__pid_file
+            Daemon.VERBOSE, verbose, 'remove pid file', self.__pid_file
         )
         if self.__active:
             remove(self.__pid_file)
@@ -169,19 +169,19 @@ class Daemon(object):
             :exceptions: None
         """
         pid = None
-        verbose_message(Daemon.VERBOSE, verbose, 'Start Daemon process')
+        verbose_message(Daemon.VERBOSE, verbose, 'start daemon process')
         if self.__active:
             try:
                 with open(self.__pid_file, 'r') as pid_file:
                     pid = int(pid_file.read().strip())
             except IOError:
                 verbose_message(Daemon.VERBOSE, verbose, "{0}".format(
-                        'No such file or directory', self.__pid_file
+                        'no such file or directory', self.__pid_file
                     )
                 )
             if pid:
                 sys.stderr.write(
-                    'File {0} already exist, Daemon already running?\n'.format(
+                    'file {0} already exist, daemon already running?\n'.format(
                         self.__pid_file
                     )
                 )
@@ -198,7 +198,7 @@ class Daemon(object):
             :exceptions: None
         """
         pid = None
-        verbose_message(Daemon.VERBOSE, verbose, 'Stop Daemon process')
+        verbose_message(Daemon.VERBOSE, verbose, 'stop daemon process')
         if self.__active:
             try:
                 with open(self.__pid_file, 'r') as pid_file:
@@ -206,7 +206,7 @@ class Daemon(object):
             except IOError as err:
                 error_message(Daemon.VERBOSE, "{0}".format(str(err)))
             if not pid:
-                sys.stderr.write('Daemon process running?\n')
+                sys.stderr.write('daemon process running?\n')
                 return
             try:
                 while 1:
@@ -229,7 +229,7 @@ class Daemon(object):
             :type verbose: <bool>
             :exceptions: None
         """
-        verbose_message(Daemon.VERBOSE, verbose, 'Restart Daemon process')
+        verbose_message(Daemon.VERBOSE, verbose, 'restart daemon process')
         if self.__active:
             self.stop()
             self.start()
@@ -244,7 +244,7 @@ class Daemon(object):
             :type verbose: <bool>
             :exceptions: None
         """
-        verbose_message(Daemon.VERBOSE, verbose, 'Checking usage')
+        verbose_message(Daemon.VERBOSE, verbose, 'check usage')
         if len(arguments) == 2:
             if self.__DAEMON_OPERATIONS[0] == arguments[1]:
                 self.start()
