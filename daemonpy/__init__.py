@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-"""
+'''
  Module
      __init__.py
  Copyright
@@ -18,7 +18,7 @@
  Info
      Define class Daemon with attribute(s) and method(s).
      Load a settings and setup operations.
-"""
+'''
 
 import sys
 from time import sleep
@@ -35,21 +35,21 @@ try:
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as error_message:
-    MESSAGE = "\n{0}\n{1}\n".format(__file__, error_message)
+    MESSAGE = '\n{0}\n{1}\n'.format(__file__, error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.4.0'
+__version__ = '1.4.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
 class Daemon(object):
-    """
+    '''
         Define class Daemon with attribute(s) and method(s).
         Load a settings and setup operations.
         It defines:
@@ -72,7 +72,7 @@ class Daemon(object):
                 | restart - Restart Daemon process.
                 | usage - Checking usage of Daemon process.
                 | run - Run Daemon process (abstract method).
-    """
+    '''
 
     __slots__ = (
         'VERBOSE', '__DAEMON_OPERATIONS', '__active',
@@ -82,7 +82,7 @@ class Daemon(object):
     __DAEMON_OPERATIONS = ['start', 'stop', 'restart']
 
     def __init__(self, pid_file, verbose=False):
-        """
+        '''
             Initial constructor.
 
             :param pid_file: PID file path.
@@ -90,7 +90,7 @@ class Daemon(object):
             :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
-        """
+        '''
         checker, error, status = ATSChecker(), None, False
         error, status = checker.check_params([('str:pid_file', pid_file)])
         if status == ATSChecker.TYPE_ERROR: raise ATSTypeError(error)
@@ -103,13 +103,13 @@ class Daemon(object):
         self.__active = True
 
     def daemonize(self, verbose=False):
-        """
+        '''
             Create daemon process.
 
             :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
-        """
+        '''
         verbose_message(Daemon.VERBOSE, verbose, 'create daemon process')
         if self.__active:
             try:
@@ -121,7 +121,7 @@ class Daemon(object):
                     'fork #1 failed: {0} {1}\n'.format(err.errno, err.strerror)
                 )
                 sys.exit(1)
-            chdir("/")
+            chdir('/')
             setsid()
             umask(0)
             try:
@@ -147,13 +147,13 @@ class Daemon(object):
                 pid_file.write('{0}\n'.format(pid))
 
     def delpid(self, verbose=False):
-        """
+        '''
             Remove PID file.
 
             :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
-        """
+        '''
         verbose_message(
             Daemon.VERBOSE, verbose, 'remove pid file', self.__pid_file
         )
@@ -161,13 +161,13 @@ class Daemon(object):
             remove(self.__pid_file)
 
     def start(self, verbose=False):
-        """
+        '''
             Start Daemon process.
 
             :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
-        """
+        '''
         pid = None
         verbose_message(Daemon.VERBOSE, verbose, 'start daemon process')
         if self.__active:
@@ -175,7 +175,7 @@ class Daemon(object):
                 with open(self.__pid_file, 'r') as pid_file:
                     pid = int(pid_file.read().strip())
             except IOError:
-                verbose_message(Daemon.VERBOSE, verbose, "{0}".format(
+                verbose_message(Daemon.VERBOSE, verbose, '{0}'.format(
                         'no such file or directory', self.__pid_file
                     )
                 )
@@ -190,13 +190,13 @@ class Daemon(object):
             self.run()
 
     def stop(self, verbose=False):
-        """
+        '''
             Stop Daemon process.
 
             :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
-        """
+        '''
         pid = None
         verbose_message(Daemon.VERBOSE, verbose, 'stop daemon process')
         if self.__active:
@@ -204,7 +204,7 @@ class Daemon(object):
                 with open(self.__pid_file, 'r') as pid_file:
                     pid = int(pid_file.read().strip())
             except IOError as err:
-                error_message(Daemon.VERBOSE, "{0}".format(str(err)))
+                error_message(Daemon.VERBOSE, '{0}'.format(str(err)))
             if not pid:
                 sys.stderr.write('daemon process running?\n')
                 return
@@ -218,24 +218,24 @@ class Daemon(object):
                     if exists(self.__pid_file):
                         remove(self.__pid_file)
                 else:
-                    error_message(Daemon.VERBOSE, "{0}".format(err))
+                    error_message(Daemon.VERBOSE, '{0}'.format(err))
                     sys.exit(1)
 
     def restart(self, verbose=False):
-        """
+        '''
             Restart Daemon process.
 
             :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
-        """
+        '''
         verbose_message(Daemon.VERBOSE, verbose, 'restart daemon process')
         if self.__active:
             self.stop()
             self.start()
 
     def usage(self, arguments, verbose=False):
-        """
+        '''
             Checking usage of Daemon process.
 
             :param arguments: List of arguments.
@@ -243,7 +243,7 @@ class Daemon(object):
             :param verbose: Enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
-        """
+        '''
         verbose_message(Daemon.VERBOSE, verbose, 'check usage')
         if len(arguments) == 2:
             if self.__DAEMON_OPERATIONS[0] == arguments[1]:
@@ -270,12 +270,12 @@ class Daemon(object):
 
     @abstract_method
     def run(self):
-        """
+        '''
             Run Daemon process.
             Override this method when subclass Daemon.
             It will be called after the process has been
             daemonized by start() or restart().
 
             :exceptions: None
-        """
+        '''
         pass
