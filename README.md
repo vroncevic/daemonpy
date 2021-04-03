@@ -99,14 +99,14 @@ Create short example:
      Set an operation for Daemon process.
 '''
 
-from sys import exit, argv
+import sys
 from time import sleep
 
 try:
     from daemonpy import Daemon
 except ImportError as ats_error:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error)
-    exit(MESSAGE)  # Force close python ATS ##############################
+    sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 
 class MyDaemon(Daemon):
