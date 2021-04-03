@@ -22,7 +22,7 @@ other information that should be provided before the modules are installed.
     - [Install using docker](#install-using-docker)
 - [Usage](#usage)
 - [Dependencies](#dependencies)
-- [Library structure](#library-structure)
+- [Package structure](#package-structure)
 - [Docs](#docs)
 - [Copyright and Licence](#copyright-and-licence)
 
@@ -43,7 +43,10 @@ Python package is located at **[pypi.org](https://pypi.org/project/daemonpy/)**.
 
 You can install by using pip
 ```
+# python2
 pip install daemonpy
+# python3
+pip3 install daemonpy
 ```
 
 ##### Install using setuptools
@@ -54,9 +57,14 @@ To install modules, locate and run setup.py with arguments:
 ```
 tar xvzf daemonpy-x.y.z.tar.gz
 cd daemonpy-x.y.z
+# python2
 pip install -r requirements.txt
 python setup.py install_lib
 python setup.py install_egg_info
+# python3
+pip3 install -r requirements.txt
+python3 setup.py install_lib
+python3 setup.py install_egg_info
 ```
 
 ##### Install using docker
@@ -71,7 +79,7 @@ Create short example:
 ```python
 #!/usr/bin/env python
 
-"""
+'''
  Module
      mydaemon.py
  Copyright
@@ -89,20 +97,20 @@ Create short example:
  Info
      Define class MyDaemon with attribute(s) and method(s).
      Set an operation for Daemon process.
-"""
+'''
 
-import sys
+from sys import exit, argv
 from time import sleep
 
 try:
     from daemonpy import Daemon
-except ImportError as error:
-    MESSAGE = "\n{0}\n{1}\n".format(__file__, error)
-    sys.exit(MESSAGE)  # Force close python ATS ##############################
+except ImportError as ats_error:
+    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error)
+    exit(MESSAGE)  # Force close python ATS ##############################
 
 
 class MyDaemon(Daemon):
-    """
+    '''
         Define class MyDaemon with attribute(s) and method(s).
         Set an operation for Daemon process.
         It defines:
@@ -111,19 +119,20 @@ class MyDaemon(Daemon):
                 | None
             :methods:
                 | run - Run Daemon process (defined method)
-    """
+    '''
+
     def run(self):
-        """
+        '''
             Run Daemon process with time sleep example.
 
             :exceptions: None
-        """
+        '''
         while True:
             sleep(1)
 
-if __name__ == "__main__":
-    daemon = MyDaemon('/tmp/daemon-example.pid')
-    daemon.usage(sys.argv)
+if __name__ == '__main__':
+    DAEMON = MyDaemon('/tmp/daemon-example.pid')
+    DAEMON.usage(sys.argv[1])
 ```
 
 ### Dependencies
@@ -131,14 +140,18 @@ if __name__ == "__main__":
 These modules requires other modules and libraries (Python 2.x/3.x):
 * [ats-utilities - Python App/Tool/Script Utilities](https://pypi.org/project/ats-utilities/)
 
-### Library structure
+### Package structure
 
 **daemonpy** is based on OOP:
 
-Library structure:
+Package structure:
 ```
 daemonpy/
-└── __init__.py
+├── daemon_usage.py
+├── file_descriptor.py
+├── file_process_id.py
+├── __init__.py
+└── unix_operations.py
 ```
 
 ### Docs
