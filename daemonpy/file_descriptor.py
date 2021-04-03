@@ -20,7 +20,7 @@
      Created API for file descriptor context management.
 '''
 
-from sys import exit
+import sys
 
 try:
     from ats_utilities.checker import ATSChecker
@@ -30,7 +30,7 @@ try:
     from ats_utilities.exceptions.ats_parameter_error import ATSParameterError
 except ImportError as ats_error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
-    exit(MESSAGE)  # Force close python ATS ##############################
+    sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'

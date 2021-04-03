@@ -20,7 +20,7 @@
      Created API for operating Unix Like OS processes.
 '''
 
-from sys import platform, exit
+import sys
 from os import fork, kill, remove
 from os.path import exists
 from signal import SIGTERM
@@ -34,7 +34,7 @@ try:
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, error_message)
-    exit(MESSAGE)  # Force close python ATS ##############################
+    sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
@@ -83,7 +83,7 @@ class UnixOperations(object):
             'init daemon operations'
         )
         self.__unix_status = any([
-            platform == target for target in UnixOperations.__OS_TARGET
+            sys.platform == target for target in UnixOperations.__OS_TARGET
         ])
 
     @property
@@ -124,14 +124,14 @@ class UnixOperations(object):
                     verbose_message(
                         UnixOperations.VERBOSE, verbose, 'first fork'
                     )
-                    exit(0)
+                    sys.exit(0)
             except OSError as os_error:
                 error_message(
                     'fork #1 failed: {0} {1}\n'.format(
                         os_error.errno, os_error.strerror
                     )
                 )
-                exit(1)
+                sys.exit(1)
 
     def second_fork(self, verbose=False):
         '''
@@ -149,14 +149,14 @@ class UnixOperations(object):
                     verbose_message(
                         UnixOperations.VERBOSE, verbose, 'second fork'
                     )
-                    exit(0)
+                    sys.exit(0)
             except OSError as os_error:
                 error_message(
                     'fork #2 failed: {0} {1}\n'.format(
                         os_error.errno, os_error.strerror
                     )
                 )
-                exit(1)
+                sys.exit(1)
 
     def unix_kill(self, process_id, pid_file_path, verbose=False):
         '''

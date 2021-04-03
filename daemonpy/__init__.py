@@ -20,7 +20,7 @@
      Created base class with backend API.
 '''
 
-from sys import exit, stdin, stdout, stderr
+import sys
 from atexit import register
 from os.path import exists
 from os import chdir, setsid, umask, dup2, getpid, remove
@@ -38,7 +38,7 @@ try:
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, error_message)
-    exit(MESSAGE)  # Force close python ATS ##############################
+    sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
@@ -121,7 +121,7 @@ class Daemon(UnixOperations):
         if self.unix_status:
             self.__daemon_usage.check(operation, verbose=verbose)
             if self.__daemon_usage.usage_status == 127:
-                exit(127)
+                sys.exit(127)
             elif self.__daemon_usage.usage_status == 0:
                 self.start(verbose=verbose)
             elif self.__daemon_usage.usage_status == 1:
@@ -130,7 +130,7 @@ class Daemon(UnixOperations):
                 self.restart(verbose=verbose)
             else:
                 error_message(Daemon.VERBOSE, 'wrong option code')
-                exit(128)
+                sys.exit(128)
 
     def daemonize(self, verbose=False):
         '''
@@ -148,14 +148,14 @@ class Daemon(UnixOperations):
             setsid()
             umask(0)
             self.second_fork()
-            stdout.flush()
-            stderr.flush()
+            sys.stdout.flush()
+            sys.stderr.flush()
             with FileDescriptor(null, FileDescriptor.STDIN) as in_file:
-                dup2(in_file.fileno(), stdin.fileno())
+                dup2(in_file.fileno(), sys.stdin.fileno())
             with FileDescriptor(null, FileDescriptor.STDOUT) as out_file:
-                dup2(out_file.fileno(), stdout.fileno())
+                dup2(out_file.fileno(), sys.stdout.fileno())
             with FileDescriptor(null, FileDescriptor.STDERR) as err_file:
-                dup2(err_file.fileno(), stderr.fileno())
+                dup2(err_file.fileno(), sys.stderr.fileno())
             register(self.exit_handler)
             pid = str(getpid())
             with FileProcessId(self.__pid_file_path, 'w+') as pid_file_path:
