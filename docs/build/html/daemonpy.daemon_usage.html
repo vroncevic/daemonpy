@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>daemonpy.daemon_usage module &mdash; daemonpy https://github.com/vroncevic/daemonpy/releases documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="daemonpy.file_descriptor module" href="daemonpy.file_descriptor.html" />
+    <link rel="prev" title="daemonpy package" href="daemonpy.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> daemonpy
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Creating Daemon process</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">daemonpy</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="daemonpy.html">daemonpy package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="daemonpy.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">daemonpy.daemon_usage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="daemonpy.file_descriptor.html">daemonpy.file_descriptor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="daemonpy.file_process_id.html">daemonpy.file_process_id module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="daemonpy.unix_operations.html">daemonpy.unix_operations module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="daemonpy.html#module-daemonpy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">daemonpy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">daemonpy</a> &raquo;</li>
+        
+          <li><a href="daemonpy.html">daemonpy package</a> &raquo;</li>
+        
+      <li>daemonpy.daemon_usage module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/daemonpy.daemon_usage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-daemonpy.daemon_usage">
+<span id="daemonpy-daemon-usage-module"></span><h1>daemonpy.daemon_usage module<a class="headerlink" href="#module-daemonpy.daemon_usage" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Module</dt>
+<dd>daemon_usage.py</dd>
+<dt>Copyright</dt>
+<dd>Copyright (C) 2020 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+daemonpy is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+daemonpy is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along
+with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</dd>
+<dt>Info</dt>
+<dd>Defined class DaemonUsage with attribute(s) and method(s).
+Created API for daemon usage.</dd>
+</dl>
+<dl class="class">
+<dt id="daemonpy.daemon_usage.DaemonUsage">
+<em class="property">class </em><code class="descclassname">daemonpy.daemon_usage.</code><code class="descname">DaemonUsage</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/daemonpy/daemon_usage.html#DaemonUsage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#daemonpy.daemon_usage.DaemonUsage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Defined class DaemonUsage with attribute(s) and method(s).
+Created API for daemon usage.
+It defines:</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
+<div class="line">__slots__ - Setting class slots.</div>
+<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
+<div class="line">DAEMON_OPERATIONS - list of supported operations.</div>
+<div class="line">__usage_status - Daemon usage status.</div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
+<div class="line">__init__ - Initial constructor.</div>
+<div class="line">usage_status - Property methods for set/get operations.</div>
+<div class="line">check - Checking usage of Daemon process.</div>
+<div class="line">__str__ - Dunder method for object DaemonUsage.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<dl class="attribute">
+<dt id="daemonpy.daemon_usage.DaemonUsage.DAEMON_OPERATIONS">
+<code class="descname">DAEMON_OPERATIONS</code><em class="property"> = ['start', 'stop', 'restart']</em><a class="headerlink" href="#daemonpy.daemon_usage.DaemonUsage.DAEMON_OPERATIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="daemonpy.daemon_usage.DaemonUsage.VERBOSE">
+<code class="descname">VERBOSE</code><em class="property"> = 'DAEMONPY::DAEMON_USAGE'</em><a class="headerlink" href="#daemonpy.daemon_usage.DaemonUsage.VERBOSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="daemonpy.daemon_usage.DaemonUsage.check">
+<code class="descname">check</code><span class="sig-paren">(</span><em>daemon_operation</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/daemonpy/daemon_usage.html#DaemonUsage.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#daemonpy.daemon_usage.DaemonUsage.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checking usage of Daemon process.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>daemon_operation</strong> (<em>&lt;str&gt;</em>) – Daemon operation.</li>
+<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body"><p class="first last">ATSTypeError | ATSBadCallError</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="daemonpy.daemon_usage.DaemonUsage.usage_status">
+<code class="descname">usage_status</code><a class="headerlink" href="#daemonpy.daemon_usage.DaemonUsage.usage_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property method for getting daemon usage status.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Daemon usage status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;int&gt;</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Exceptions:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="daemonpy.file_descriptor.html" class="btn btn-neutral float-right" title="daemonpy.file_descriptor module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="daemonpy.html" class="btn btn-neutral float-left" title="daemonpy package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
