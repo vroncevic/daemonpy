@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.5.1
+                1.6.1
               </div>
             
           
@@ -188,45 +188,43 @@
     <span class="kn">from</span> <span class="nn">ats_utilities.console_io.verbose</span> <span class="kn">import</span> <span class="n">verbose_message</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_type_error</span> <span class="kn">import</span> <span class="n">ATSTypeError</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_bad_call_error</span> <span class="kn">import</span> <span class="n">ATSBadCallError</span>
-<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">error_message</span><span class="p">:</span>
-    <span class="n">MESSAGE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="si">{0}</span><span class="se">\n</span><span class="si">{1}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="n">error_message</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">ats_error_message</span><span class="p">:</span>
+    <span class="n">MESSAGE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="si">{0}</span><span class="se">\n</span><span class="si">{1}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="n">ats_error_message</span><span class="p">)</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">MESSAGE</span><span class="p">)</span>  <span class="c1"># Force close python ATS ##############################</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2020, https://vroncevic.github.io/daemonpy&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/daemonpy/blob/master/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.5.1&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/daemonpy/blob/dev/LICENSE&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.6.1&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
 
 
-<div class="viewcode-block" id="UnixOperations"><a class="viewcode-back" href="../../daemonpy.unix_operations.html#daemonpy.unix_operations.UnixOperations">[docs]</a><span class="k">class</span> <span class="nc">UnixOperations</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="UnixOperations"><a class="viewcode-back" href="../../daemonpy.unix_operations.html#daemonpy.unix_operations.UnixOperations">[docs]</a><span class="k">class</span> <span class="nc">UnixOperations</span><span class="p">:</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Defined class UnixOperations with attribute(s) and method(s).</span>
 <span class="sd">        Created API for operating Unix Like OS processes.</span>
 <span class="sd">        It defines:</span>
 
 <span class="sd">            :attributes:</span>
-<span class="sd">                | __slots__ - Setting class slots.</span>
-<span class="sd">                | VERBOSE - Console text indicator for current process-phase.</span>
-<span class="sd">                | __OS_TARGET - List of supported Operating Systems.</span>
-<span class="sd">                | __NO_PROCESS - No such process message.</span>
-<span class="sd">                | __unix_status - Unix status (True for Unix Like OS).</span>
+<span class="sd">                | PKG_VERBOSE - console text indicator for process-phase.</span>
+<span class="sd">                | OS_TARGET - list of supported operating systems.</span>
+<span class="sd">                | NO_PROCESS - no such process message.</span>
+<span class="sd">                | __unix_status - unix status (True for unix like OS).</span>
 <span class="sd">            :methods:</span>
-<span class="sd">                | __init__ - Initial constructor.</span>
-<span class="sd">                | unix_status - Property methods for set/get operations.</span>
-<span class="sd">                | first_fork - Make sure that process is not group leader.</span>
-<span class="sd">                | second_fork - Won&#39;t be started merely by opening a terminal.</span>
-<span class="sd">                | unix_kill - Kill Unix Like OS process.</span>
-<span class="sd">                | __str__ - Dunder method for object UnixOperations.</span>
+<span class="sd">                | __init__ - initial constructor.</span>
+<span class="sd">                | unix_status - property methods for set/get operations.</span>
+<span class="sd">                | first_fork - make sure that process is not group leader.</span>
+<span class="sd">                | second_fork - won&#39;t be started merely by opening a terminal.</span>
+<span class="sd">                | unix_kill - kill unix like OS process.</span>
+<span class="sd">                | __str__ - dunder method for object UnixOperations.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span> <span class="s1">&#39;__OS_TARGET&#39;</span><span class="p">,</span> <span class="s1">&#39;__NO_PROCESS&#39;</span><span class="p">,</span> <span class="s1">&#39;__unix_status&#39;</span><span class="p">)</span>
-    <span class="n">VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DAEMONPY::UNIX_OPERATIONS&#39;</span>
-    <span class="n">__OS_TARGET</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="s1">&#39;linux2&#39;</span><span class="p">]</span>
-    <span class="n">__NO_PROCESS</span> <span class="o">=</span> <span class="s1">&#39;No such process&#39;</span>
+    <span class="n">PKG_VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DAEMONPY::UNIX_OPERATIONS&#39;</span>
+    <span class="n">OS_TARGET</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="s1">&#39;linux2&#39;</span><span class="p">]</span>
+    <span class="n">NO_PROCESS</span> <span class="o">=</span> <span class="s1">&#39;No such process&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
@@ -235,19 +233,18 @@
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">verbose_message</span><span class="p">(</span>
-            <span class="n">UnixOperations</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span>
-            <span class="s1">&#39;init daemon operations&#39;</span>
+            <span class="n">UnixOperations</span><span class="o">.</span><span class="n">PKG_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;init daemon operations&#39;</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__unix_status</span> <span class="o">=</span> <span class="nb">any</span><span class="p">([</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="n">target</span> <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">UnixOperations</span><span class="o">.</span><span class="n">__OS_TARGET</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="n">target</span> <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">UnixOperations</span><span class="o">.</span><span class="n">OS_TARGET</span>
         <span class="p">])</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">unix_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">            Property method for getting Unix Like OS status.</span>
+<span class="sd">            Property method for getting unix like OS status.</span>
 
-<span class="sd">            :return: Unix Like OS status.</span>
+<span class="sd">            :return: unix like OS status.</span>
 <span class="sd">            :rtype: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -256,9 +253,9 @@
     <span class="nd">@unix_status</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">unix_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unix_status</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">            Property method for setting Unix Like OS status.</span>
+<span class="sd">            Property method for setting unix like OS status.</span>
 
-<span class="sd">            :param unix_status: Unix Like OS status.</span>
+<span class="sd">            :param unix_status: unix like OS status.</span>
 <span class="sd">            :type unix_status: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -268,7 +265,7 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Make sure that process is not group leader.</span>
 
-<span class="sd">            :param verbose: Enable/disable verbose option.</span>
+<span class="sd">            :param verbose: enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exit code: 0 (success) | 1 (failed)</span>
 <span class="sd">            :exceptions: None</span>
@@ -278,7 +275,7 @@
                 <span class="n">process_id</span> <span class="o">=</span> <span class="n">fork</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">process_id</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">verbose_message</span><span class="p">(</span>
-                        <span class="n">UnixOperations</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;first fork&#39;</span>
+                        <span class="n">UnixOperations</span><span class="o">.</span><span class="n">PKG_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;first fork&#39;</span>
                     <span class="p">)</span>
                     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">os_error</span><span class="p">:</span>
@@ -293,7 +290,7 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Won&#39;t be started merely by opening a terminal.</span>
 
-<span class="sd">            :param verbose: Enable/disable verbose option.</span>
+<span class="sd">            :param verbose: enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exit code: 0 (success) | 1 (failed)</span>
 <span class="sd">            :exceptions: None</span>
@@ -303,7 +300,7 @@
                 <span class="n">process_id</span> <span class="o">=</span> <span class="n">fork</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">process_id</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">verbose_message</span><span class="p">(</span>
-                        <span class="n">UnixOperations</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;second fork&#39;</span>
+                        <span class="n">UnixOperations</span><span class="o">.</span><span class="n">PKG_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="s1">&#39;second fork&#39;</span>
                     <span class="p">)</span>
                     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">os_error</span><span class="p">:</span>
@@ -318,11 +315,11 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Kill Unix Like OS process.</span>
 
-<span class="sd">            :param process_id: Process ID.</span>
+<span class="sd">            :param process_id: process ID.</span>
 <span class="sd">            :type process_id: &lt;int&gt;</span>
 <span class="sd">            :param pid_file_path: PID file path.</span>
 <span class="sd">            :type pid_file_path: &lt;str&gt;</span>
-<span class="sd">            :param verbose: Enable/disable verbose option.</span>
+<span class="sd">            :param verbose: enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: ATSTypeError | ATSBadCallError</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -338,7 +335,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__unix_status</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">verbose_message</span><span class="p">(</span>
-                    <span class="n">UnixOperations</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span>
+                    <span class="n">UnixOperations</span><span class="o">.</span><span class="n">PKG_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span>
                     <span class="s1">&#39;kill process </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">process_id</span><span class="p">)</span>
                 <span class="p">)</span>
                 <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
@@ -347,12 +344,12 @@
                     <span class="n">status</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">os_error</span><span class="p">:</span>
                 <span class="n">os_error</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">os_error</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">os_error</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">UnixOperations</span><span class="o">.</span><span class="n">__NO_PROCESS</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">os_error</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">UnixOperations</span><span class="o">.</span><span class="n">NO_PROCESS</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">exists</span><span class="p">(</span><span class="n">pid_file_path</span><span class="p">):</span>
                         <span class="n">verbose_message</span><span class="p">(</span>
-                            <span class="n">UnixOperations</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span>
+                            <span class="n">UnixOperations</span><span class="o">.</span><span class="n">PKG_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span>
                             <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> with PID: </span><span class="si">{1}</span><span class="s1">, removing pid file </span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                                <span class="n">UnixOperations</span><span class="o">.</span><span class="n">__NO_PROCESS</span><span class="p">,</span>
+                                <span class="n">UnixOperations</span><span class="o">.</span><span class="n">NO_PROCESS</span><span class="p">,</span>
                                 <span class="n">process_id</span><span class="p">,</span> <span class="n">pid_file_path</span>
                             <span class="p">)</span>
                         <span class="p">)</span>
@@ -360,7 +357,7 @@
                         <span class="n">status</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">error_message</span><span class="p">(</span>
-                        <span class="n">UnixOperations</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os_error</span><span class="p">)</span>
+                        <span class="n">UnixOperations</span><span class="o">.</span><span class="n">PKG_VERBOSE</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os_error</span><span class="p">)</span>
                     <span class="p">)</span>
                     <span class="n">status</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">status</span> <span class="k">else</span> <span class="kc">False</span></div>
@@ -369,7 +366,7 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Dunder method for UnixOperations.</span>
 
-<span class="sd">            :return: Object in a human-readable format.</span>
+<span class="sd">            :return: object in a human-readable format.</span>
 <span class="sd">            :rtype: &lt;str&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>

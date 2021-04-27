@@ -27,7 +27,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.5.1'
+__version__ = '1.6.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -58,7 +58,7 @@ PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 
 setup(
     name='daemonpy',
-    version='1.5.1',
+    version='1.6.1',
     description='Creating Daemon process',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -69,8 +69,6 @@ setup(
     keywords='Unix, Linux, Daemon, Process',
     platforms='POSIX',
     classifiers=PYP_CLASSIFIERS,
-    packages=[
-        'daemonpy',
-    ],
+    packages=['daemonpy',],
     install_requires=['ats-utilities',]
 )

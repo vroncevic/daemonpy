@@ -36,47 +36,42 @@ except ImportError as ats_error_message:
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/daemonpy/blob/master/LICENSE'
-__version__ = '1.5.1'
+__license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
+__version__ = '1.6.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class FileProcessId(object):
+class FileProcessId:
     '''
         Defined class FileProcessId with attribute(s) and method(s).
         Created API for file descriptor context management.
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots.
-                | VERBOSE - Console text indicator for current process-phase.
-                | __MODE - Supported modes for process id file.
+                | PKG_VERBOSE - console text indicator for process-phase.
+                | MODE - supported modes for process id file.
                 | __file_process_id_path - PID file path.
                 | __file_process_id_mode - PID file mode.
                 | __file_process_id - PID file object.
             :methods:
-                | __init__ - Initial constructor.
-                | __enter__ - Open PID file.
-                | __exit__ - Close PID file.
-                | __str__ - Dunder method for object FileDescriptor.
+                | __init__ - initial constructor.
+                | __enter__ - open PID file.
+                | __exit__ - close PID file.
+                | __str__ - dunder method for object FileDescriptor.
     '''
 
-    __slots__ = (
-        'VERBOSE', '__MODE', '__file_process_id_path',
-        '__file_process_id_mode', '__file_process_id'
-    )
-    VERBOSE = 'DAEMONPY::FILE_PROCESS_ID'
-    __MODE = ['w+', 'r']
+    PKG_VERBOSE = 'DAEMONPY::FILE_PROCESS_ID'
+    MODE = ['w+', 'r']
 
     def __init__(self, file_process_id_path, file_process_id_mode):
         '''
             Initial constructor.
 
-            :param file_process_id_path: File process id path.
+            :param file_process_id_path: file process id path.
             :type file_process_id_path: <str>
-            :param file_process_id_mode: File process id mode.
+            :param file_process_id_mode: file process id mode.
             :type file_process_id_mode: <str>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
@@ -89,30 +84,30 @@ class FileProcessId(object):
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
-        if file_process_id_mode in FileProcessId.__MODE:
+        if file_process_id_mode in FileProcessId.MODE:
             self.__file_process_id_path = file_process_id_path
             self.__file_process_id_mode = file_process_id_mode
             self.__file_process_id = None
         else:
             error = 'PID file mode can be <w+ | r>'
-            error_message(FileProcessId.VERBOSE, error)
+            error_message(FileProcessId.PKG_VERBOSE, error)
 
     def __enter__(self):
         '''
             Open PID file.
 
-            :return: File device object | None.
+            :return: file device object | None.
             :rtype: <file> | <NoneType>
             :exceptions: ATSParameterError
         '''
         error = None
-        if self.__file_process_id_mode == FileProcessId.__MODE[1]:
+        if self.__file_process_id_mode == FileProcessId.MODE[1]:
             if not exists(self.__file_process_id_path):
                 error = 'check PID file path'
                 raise ATSParameterError(error)
             else:
                 pass
-        elif self.__file_process_id_mode == FileProcessId.__MODE[0]:
+        elif self.__file_process_id_mode == FileProcessId.MODE[0]:
             pass
         else:
             error = 'check PID file mode'
@@ -137,7 +132,7 @@ class FileProcessId(object):
         '''
             Dunder method for FileProcessId.
 
-            :return: Object in a human-readable format.
+            :return: object in a human-readable format.
             :rtype: <str>
             :exceptions: None
         '''

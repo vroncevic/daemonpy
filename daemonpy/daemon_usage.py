@@ -35,44 +35,42 @@ except ImportError as ats_error_message:
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/daemonpy/blob/master/LICENSE'
-__version__ = '1.5.1'
+__license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
+__version__ = '1.6.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class DaemonUsage(object):
+class DaemonUsage:
     '''
         Defined class DaemonUsage with attribute(s) and method(s).
         Created API for daemon usage.
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots.
-                | VERBOSE - Console text indicator for current process-phase.
+                | PKG_VERBOSE - console text indicator for process-phase.
                 | DAEMON_OPERATIONS - list of supported operations.
-                | __usage_status - Daemon usage status.
+                | __usage_status - daemon usage status.
             :methods:
-                | __init__ - Initial constructor.
-                | usage_status - Property methods for set/get operations.
-                | check - Checking usage of Daemon process.
-                | __str__ - Dunder method for object DaemonUsage.
+                | __init__ - initial constructor.
+                | usage_status - property methods for set/get operations.
+                | check - checking usage of daemon process.
+                | __str__ - dunder method for object DaemonUsage.
     '''
 
-    __slots__ = ('VERBOSE', 'DAEMON_OPERATIONS', '__usage_status')
-    VERBOSE = 'DAEMONPY::DAEMON_USAGE'
+    PKG_VERBOSE = 'DAEMONPY::DAEMON_USAGE'
     DAEMON_OPERATIONS = ['start', 'stop', 'restart']
 
     def __init__(self, verbose=False):
         '''
             Initial constructor.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         '''
-        verbose_message(DaemonUsage.VERBOSE, verbose, 'init usage')
+        verbose_message(DaemonUsage.PKG_VERBOSE, verbose, 'init usage')
         self.__usage_status = 0
 
     @property
@@ -80,7 +78,7 @@ class DaemonUsage(object):
         '''
             Property method for getting daemon usage status.
 
-            :return: Daemon usage status.
+            :return: daemon usage status.
             :rtype: <int>
             :exceptions: None
         '''
@@ -91,7 +89,7 @@ class DaemonUsage(object):
         '''
             Property method for setting daemon usage status.
 
-            :param usage_status: Daemon usage status.
+            :param usage_status: daemon usage status.
             :type usage_status: <int>
             :exceptions: None
         '''
@@ -101,9 +99,9 @@ class DaemonUsage(object):
         '''
             Checking usage of Daemon process.
 
-            :param daemon_operation: Daemon operation.
+            :param daemon_operation: daemon operation.
             :type daemon_operation: <str>
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
@@ -115,26 +113,27 @@ class DaemonUsage(object):
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
-        verbose_message(DaemonUsage.VERBOSE, verbose, 'checking usage')
+        verbose_message(DaemonUsage.PKG_VERBOSE, verbose, 'checking usage')
         for index, option in enumerate(DaemonUsage.DAEMON_OPERATIONS):
             if option == daemon_operation:
                 self.__usage_status = index
         if daemon_operation not in DaemonUsage.DAEMON_OPERATIONS:
             self.__usage_status = 127
             error_message(
-                DaemonUsage.VERBOSE, 'usage: {0}'.format(
+                DaemonUsage.PKG_VERBOSE, 'usage: {0}'.format(
                     '|'.join(DaemonUsage.DAEMON_OPERATIONS)
                 )
             )
         verbose_message(
-            DaemonUsage.VERBOSE, verbose, 'usage status', self.__usage_status
+            DaemonUsage.PKG_VERBOSE, verbose,
+            'usage status', self.__usage_status
         )
 
     def __str__(self):
         '''
             Dunder method for DaemonUsage.
 
-            :return: Object in a human-readable format.
+            :return: object in a human-readable format.
             :rtype: <str>
             :exceptions: None
         '''

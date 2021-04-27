@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.5.1
+                1.6.1
               </div>
             
           
@@ -191,41 +191,36 @@
 <span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2020, https://vroncevic.github.io/daemonpy&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/daemonpy/blob/master/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.5.1&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/daemonpy/blob/dev/LICENSE&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.6.1&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
 
 
-<div class="viewcode-block" id="FileDescriptor"><a class="viewcode-back" href="../../daemonpy.file_descriptor.html#daemonpy.file_descriptor.FileDescriptor">[docs]</a><span class="k">class</span> <span class="nc">FileDescriptor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="FileDescriptor"><a class="viewcode-back" href="../../daemonpy.file_descriptor.html#daemonpy.file_descriptor.FileDescriptor">[docs]</a><span class="k">class</span> <span class="nc">FileDescriptor</span><span class="p">:</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Defined class FileDescriptor with attribute(s) and method(s).</span>
 <span class="sd">        Created API for file descriptor context management.</span>
 <span class="sd">        It defines:</span>
 
 <span class="sd">            :attributes:</span>
-<span class="sd">                | __slots__ - Setting class slots.</span>
-<span class="sd">                | VERBOSE - Console text indicator for current process-phase.</span>
-<span class="sd">                | STDIN - Standard input is a stream id for input data.</span>
-<span class="sd">                | STDOUT - Standard output is a stream id for output data.</span>
-<span class="sd">                | STDERR - Standard error is a stream id for error messages.</span>
-<span class="sd">                | FORMAT - Supported desciptor types with modes.</span>
-<span class="sd">                | __device_path - File descriptor device path.</span>
-<span class="sd">                | __device_type - File descriptor device type.</span>
-<span class="sd">                | __device_file - File descriptor device object.</span>
+<span class="sd">                | PKG_VERBOSE - console text indicator for process-phase.</span>
+<span class="sd">                | STDIN - standard input is a stream id for input data.</span>
+<span class="sd">                | STDOUT - standard output is a stream id for output data.</span>
+<span class="sd">                | STDERR - standard error is a stream id for error messages.</span>
+<span class="sd">                | FORMAT - supported desciptor types with modes.</span>
+<span class="sd">                | __device_path - file descriptor device path.</span>
+<span class="sd">                | __device_type - file descriptor device type.</span>
+<span class="sd">                | __device_file - file descriptor device object.</span>
 <span class="sd">            :methods:</span>
-<span class="sd">                | __init__ - Initial constructor.</span>
-<span class="sd">                | __enter__ - Open descriptor file.</span>
-<span class="sd">                | __exit__  - Close descriptor file.</span>
-<span class="sd">                | __str__ - Dunder method for object FileDescriptor.</span>
+<span class="sd">                | __init__ - initial constructor.</span>
+<span class="sd">                | __enter__ - open descriptor file.</span>
+<span class="sd">                | __exit__  - close descriptor file.</span>
+<span class="sd">                | __str__ - dunder method for object FileDescriptor.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span> <span class="s1">&#39;STDIN&#39;</span><span class="p">,</span> <span class="s1">&#39;STDOUT&#39;</span><span class="p">,</span> <span class="s1">&#39;STDERR&#39;</span><span class="p">,</span> <span class="s1">&#39;FORMAT&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__device_path&#39;</span><span class="p">,</span> <span class="s1">&#39;__device_type&#39;</span><span class="p">,</span> <span class="s1">&#39;__device_file&#39;</span>
-    <span class="p">)</span>
-    <span class="n">VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DAEMONPY::FILE_DESCRIPTOR&#39;</span>
+    <span class="n">PKG_VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DAEMONPY::FILE_DESCRIPTOR&#39;</span>
     <span class="n">STDIN</span><span class="p">,</span> <span class="n">STDOUT</span><span class="p">,</span> <span class="n">STDERR</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
     <span class="n">FORMAT</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">STDIN</span><span class="p">:</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">STDOUT</span><span class="p">:</span> <span class="s1">&#39;a+&#39;</span><span class="p">,</span> <span class="n">STDERR</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a+&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
@@ -235,11 +230,11 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Initial constructor.</span>
 
-<span class="sd">            :param device_path: File descriptor device path.</span>
+<span class="sd">            :param device_path: file descriptor device path.</span>
 <span class="sd">            :type device_path: &lt;str&gt;</span>
-<span class="sd">            :param device_type: File descriptor device type.</span>
+<span class="sd">            :param device_type: file descriptor device type.</span>
 <span class="sd">            :type device_type: &lt;int&gt;</span>
-<span class="sd">            :param verbose: Enable/disable verbose option.</span>
+<span class="sd">            :param verbose: enable/disable verbose option.</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
 <span class="sd">            :exceptions: ATSTypeError | ATSBadCallError</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -261,13 +256,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__device_file</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;file descriptor type can be &lt;STDIN | STDOUT | STDERR&gt;&#39;</span>
-            <span class="n">error_message</span><span class="p">(</span><span class="n">FileDescriptor</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+            <span class="n">error_message</span><span class="p">(</span><span class="n">FileDescriptor</span><span class="o">.</span><span class="n">PKG_VERBOSE</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Open descriptor file.</span>
 
-<span class="sd">            :return: File Device object | None.</span>
+<span class="sd">            :return: file device object | None.</span>
 <span class="sd">            :rtype: &lt;file&gt; | &lt;NoneType&gt;</span>
 <span class="sd">            :exceptions: ATSParameterError</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -316,7 +311,7 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Dunder method for FileDescriptor.</span>
 
-<span class="sd">            :return: Object in a human-readable format.</span>
+<span class="sd">            :return: object in a human-readable format.</span>
 <span class="sd">            :rtype: &lt;str&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>

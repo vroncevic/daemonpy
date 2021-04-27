@@ -35,41 +35,36 @@ except ImportError as ats_error_message:
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/daemonpy/blob/master/LICENSE'
-__version__ = '1.5.1'
+__license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
+__version__ = '1.6.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class FileDescriptor(object):
+class FileDescriptor:
     '''
         Defined class FileDescriptor with attribute(s) and method(s).
         Created API for file descriptor context management.
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots.
-                | VERBOSE - Console text indicator for current process-phase.
-                | STDIN - Standard input is a stream id for input data.
-                | STDOUT - Standard output is a stream id for output data.
-                | STDERR - Standard error is a stream id for error messages.
-                | FORMAT - Supported desciptor types with modes.
-                | __device_path - File descriptor device path.
-                | __device_type - File descriptor device type.
-                | __device_file - File descriptor device object.
+                | PKG_VERBOSE - console text indicator for process-phase.
+                | STDIN - standard input is a stream id for input data.
+                | STDOUT - standard output is a stream id for output data.
+                | STDERR - standard error is a stream id for error messages.
+                | FORMAT - supported desciptor types with modes.
+                | __device_path - file descriptor device path.
+                | __device_type - file descriptor device type.
+                | __device_file - file descriptor device object.
             :methods:
-                | __init__ - Initial constructor.
-                | __enter__ - Open descriptor file.
-                | __exit__  - Close descriptor file.
-                | __str__ - Dunder method for object FileDescriptor.
+                | __init__ - initial constructor.
+                | __enter__ - open descriptor file.
+                | __exit__  - close descriptor file.
+                | __str__ - dunder method for object FileDescriptor.
     '''
 
-    __slots__ = (
-        'VERBOSE', 'STDIN', 'STDOUT', 'STDERR', 'FORMAT',
-        '__device_path', '__device_type', '__device_file'
-    )
-    VERBOSE = 'DAEMONPY::FILE_DESCRIPTOR'
+    PKG_VERBOSE = 'DAEMONPY::FILE_DESCRIPTOR'
     STDIN, STDOUT, STDERR = 0, 1, 2
     FORMAT = {
         STDIN: 'r', STDOUT: 'a+', STDERR: ['a+', 0]
@@ -79,11 +74,11 @@ class FileDescriptor(object):
         '''
             Initial constructor.
 
-            :param device_path: File descriptor device path.
+            :param device_path: file descriptor device path.
             :type device_path: <str>
-            :param device_type: File descriptor device type.
+            :param device_type: file descriptor device type.
             :type device_type: <int>
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
@@ -105,13 +100,13 @@ class FileDescriptor(object):
             self.__device_file = None
         else:
             error = 'file descriptor type can be <STDIN | STDOUT | STDERR>'
-            error_message(FileDescriptor.VERBOSE, error)
+            error_message(FileDescriptor.PKG_VERBOSE, error)
 
     def __enter__(self):
         '''
             Open descriptor file.
 
-            :return: File Device object | None.
+            :return: file device object | None.
             :rtype: <file> | <NoneType>
             :exceptions: ATSParameterError
         '''
@@ -160,7 +155,7 @@ class FileDescriptor(object):
         '''
             Dunder method for FileDescriptor.
 
-            :return: Object in a human-readable format.
+            :return: object in a human-readable format.
             :rtype: <str>
             :exceptions: None
         '''

@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.5.1
+                1.6.1
               </div>
             
           
@@ -196,8 +196,7 @@ Created API for file process id context management.</dd>
 <dl class="class">
 <dt id="daemonpy.file_process_id.FileProcessId">
 <em class="property">class </em><code class="descclassname">daemonpy.file_process_id.</code><code class="descname">FileProcessId</code><span class="sig-paren">(</span><em>file_process_id_path</em>, <em>file_process_id_mode</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/daemonpy/file_process_id.html#FileProcessId"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#daemonpy.file_process_id.FileProcessId" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Defined class FileProcessId with attribute(s) and method(s).
+<dd><p>Defined class FileProcessId with attribute(s) and method(s).
 Created API for file descriptor context management.
 It defines:</p>
 <blockquote>
@@ -206,9 +205,8 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots.</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
-<div class="line">__MODE - Supported modes for process id file.</div>
+<div class="line">PKG_VERBOSE - console text indicator for process-phase.</div>
+<div class="line">MODE - supported modes for process id file.</div>
 <div class="line">__file_process_id_path - PID file path.</div>
 <div class="line">__file_process_id_mode - PID file mode.</div>
 <div class="line">__file_process_id - PID file object.</div>
@@ -216,10 +214,10 @@ It defines:</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor.</div>
-<div class="line">__enter__ - Open PID file.</div>
-<div class="line">__exit__ - Close PID file.</div>
-<div class="line">__str__ - Dunder method for object FileDescriptor.</div>
+<div class="line">__init__ - initial constructor.</div>
+<div class="line">__enter__ - open PID file.</div>
+<div class="line">__exit__ - close PID file.</div>
+<div class="line">__str__ - dunder method for object FileDescriptor.</div>
 </div>
 </td>
 </tr>
@@ -227,8 +225,13 @@ It defines:</p>
 </table>
 </div></blockquote>
 <dl class="attribute">
-<dt id="daemonpy.file_process_id.FileProcessId.VERBOSE">
-<code class="descname">VERBOSE</code><em class="property"> = 'DAEMONPY::FILE_PROCESS_ID'</em><a class="headerlink" href="#daemonpy.file_process_id.FileProcessId.VERBOSE" title="Permalink to this definition">¶</a></dt>
+<dt id="daemonpy.file_process_id.FileProcessId.MODE">
+<code class="descname">MODE</code><em class="property"> = ['w+', 'r']</em><a class="headerlink" href="#daemonpy.file_process_id.FileProcessId.MODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="daemonpy.file_process_id.FileProcessId.PKG_VERBOSE">
+<code class="descname">PKG_VERBOSE</code><em class="property"> = 'DAEMONPY::FILE_PROCESS_ID'</em><a class="headerlink" href="#daemonpy.file_process_id.FileProcessId.PKG_VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

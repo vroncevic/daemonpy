@@ -31,20 +31,20 @@ try:
     from daemonpy.file_descriptor import FileDescriptor
     from daemonpy.unix_operations import UnixOperations
     from ats_utilities.checker import ATSChecker
-    from ats_utilities.abstract import abstract_method
+    from ats_utilities.abstract import AbstractMethod
     from ats_utilities.console_io.error import error_message
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-except ImportError as error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, error_message)
+except ImportError as ats_error_message:
+    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/daemonpy/blob/master/LICENSE'
-__version__ = '1.5.1'
+__license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
+__version__ = '1.6.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -57,22 +57,20 @@ class Daemon(UnixOperations):
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots.
-                | VERBOSE - Console text indicator for current process-phase.
-                | __daemon_usage - Daemon usage.
+                | PKG_VERBOSE - console text indicator for process-phase.
+                | __daemon_usage - daemon usage.
                 | __pid_file_path - PID file path.
             :methods:
-                | __init__ - Initial constructor.
-                | daemonize - Create Daemon process.
-                | start - Start Daemon process.
-                | stop - Stop Daemon process.
-                | restart - Restart Daemon process.
-                | exit_handler - At exit delete PID file.
-                | run - Run Daemon process (abstract method).
+                | __init__ - initial constructor.
+                | daemonize - create daemon process.
+                | start - start daemon process.
+                | stop - stop daemon process.
+                | restart - restart daemon process.
+                | exit_handler - at exit delete PID file.
+                | run - run daemon process (abstract method).
     '''
 
-    __slots__ = ('VERBOSE', '__daemon_usage', '__pid_file_path')
-    VERBOSE = 'DAEMONPY'
+    PKG_VERBOSE = 'DAEMONPY'
 
     def __init__(self, pid_file_path, verbose=False):
         '''
@@ -80,7 +78,7 @@ class Daemon(UnixOperations):
 
             :param pid_file_path: PID file path.
             :type pid_file_path: <str>
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
@@ -92,8 +90,8 @@ class Daemon(UnixOperations):
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
-        verbose_message(Daemon.VERBOSE, verbose, 'init daemon process')
         UnixOperations.__init__(self)
+        verbose_message(Daemon.PKG_VERBOSE, verbose, 'init daemon process')
         if self.unix_status:
             self.__daemon_usage = DaemonUsage()
             self.__pid_file_path = pid_file_path
@@ -105,9 +103,9 @@ class Daemon(UnixOperations):
         '''
             Create daemon process.
 
-            :param operation: Daemon operation.
+            :param operation: daemon operation.
             :type operation: <str>
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
@@ -117,7 +115,9 @@ class Daemon(UnixOperations):
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
-        verbose_message(Daemon.VERBOSE, verbose, 'daemon operation', operation)
+        verbose_message(
+            Daemon.PKG_VERBOSE, verbose, 'daemon operation', operation
+        )
         if self.unix_status:
             self.__daemon_usage.check(operation, verbose=verbose)
             if self.__daemon_usage.usage_status == 127:
@@ -129,19 +129,19 @@ class Daemon(UnixOperations):
             elif self.__daemon_usage.usage_status == 2:
                 self.restart(verbose=verbose)
             else:
-                error_message(Daemon.VERBOSE, 'wrong option code')
+                error_message(Daemon.PKG_VERBOSE, 'wrong option code')
                 sys.exit(128)
 
     def daemonize(self, verbose=False):
         '''
             Create daemon process.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         '''
         null = '/dev/null'
-        verbose_message(Daemon.VERBOSE, verbose, 'create daemon process')
+        verbose_message(Daemon.PKG_VERBOSE, verbose, 'create daemon process')
         if self.unix_status:
             self.first_fork()
             chdir('/')
@@ -163,22 +163,22 @@ class Daemon(UnixOperations):
 
     def start(self, verbose=False):
         '''
-            Start Daemon process.
+            Start daemon process.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: Start daemon process status (True) | False.
+            :return: start daemon process status (True) | False.
             :rtype: <bool>
             :exceptions: None
         '''
         pid, status = None, False
-        verbose_message(Daemon.VERBOSE, verbose, 'start daemon process')
+        verbose_message(Daemon.PKG_VERBOSE, verbose, 'start daemon process')
         if self.unix_status:
             with FileProcessId(self.__pid_file_path, 'w+') as pid_file_path:
                 pid = pid_file_path.read().strip()
                 if bool(pid):
                     error_message(
-                        Daemon.VERBOSE, 'file {0} already exist'.format(
+                        Daemon.PKG_VERBOSE, 'file {0} already exist'.format(
                             self.__pid_file_path
                         ), 'daemon already running?'
                     )
@@ -190,74 +190,76 @@ class Daemon(UnixOperations):
 
     def stop(self, verbose=False):
         '''
-            Stop Daemon process.
+            Stop daemon process.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: Stop daemon process status (True) | False.
+            :return: stop daemon process status (True) | False.
             :rtype: <bool>
             :exceptions: None
         '''
         pid, status = None, False
-        verbose_message(Daemon.VERBOSE, verbose, 'stop daemon process')
+        verbose_message(Daemon.PKG_VERBOSE, verbose, 'stop daemon process')
         if self.unix_status:
             with FileProcessId(self.__pid_file_path, 'r') as pid_file_path:
                 pid = int(pid_file_path.read().strip())
                 if not pid:
-                    error_message(Daemon.VERBOSE, 'daemon process running?')
+                    error_message(
+                        Daemon.PKG_VERBOSE, 'daemon process running?'
+                    )
                 else:
                     status = self.unix_kill(pid, self.__pid_file_path)
         return True if status else False
 
     def restart(self, verbose=False):
         '''
-            Restart Daemon process.
+            Restart daemon process.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: Restart daemon process status (True) | False.
+            :return: restart daemon process status (True) | False.
             :rtype: <bool>
             :exceptions: None
         '''
         status = False
-        verbose_message(Daemon.VERBOSE, verbose, 'restart daemon process')
+        verbose_message(Daemon.PKG_VERBOSE, verbose, 'restart daemon process')
         if self.unix_status:
             status = self.stop(verbose=verbose)
             if status:
                 status = self.start(verbose=verbose)
             else:
                 error_message(
-                    Daemon.VERBOSE, 'faled to restart daemon process'
+                    Daemon.PKG_VERBOSE, 'faled to restart daemon process'
                 )
         else:
-            error_message(Daemon.VERBOSE, 'daemon process is active?')
+            error_message(Daemon.PKG_VERBOSE, 'daemon process is active?')
         return True if status else False
 
     def exit_handler(self, verbose=False):
         '''
             Remove PID file at exit.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
         '''
         if self.unix_status:
             if exists(self.__pid_file_path):
                 verbose_message(
-                    Daemon.VERBOSE, verbose,
+                    Daemon.PKG_VERBOSE, verbose,
                     'removing pid file', self.__pid_file_path
                 )
                 remove(self.__pid_file_path)
             else:
                 error_message(
-                    Daemon.VERBOSE, 'check PID file', self.__pid_file_path
+                    Daemon.PKG_VERBOSE, 'check PID file', self.__pid_file_path
                 )
 
-    @abstract_method
+    @AbstractMethod
     def run(self):
         '''
-            Run Daemon process.
-            Override this method when subclass Daemon.
+            Run daemon process.
+            Override this method when subclass daemon.
             It will be called after the process has been
             daemonized by start() or restart().
 
@@ -267,9 +269,9 @@ class Daemon(UnixOperations):
 
     def __str__(self):
         '''
-            Dunder method for Daemon.
+            Dunder method for daemon.
 
-            :return: Object in a human-readable format.
+            :return: object in a human-readable format.
             :rtype: <str>
             :exceptions: None
         '''
