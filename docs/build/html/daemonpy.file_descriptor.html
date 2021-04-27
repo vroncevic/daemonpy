@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.5.1
+                1.6.1
               </div>
             
           
@@ -196,8 +196,7 @@ Created API for file descriptor context management.</dd>
 <dl class="class">
 <dt id="daemonpy.file_descriptor.FileDescriptor">
 <em class="property">class </em><code class="descclassname">daemonpy.file_descriptor.</code><code class="descname">FileDescriptor</code><span class="sig-paren">(</span><em>device_path</em>, <em>device_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/daemonpy/file_descriptor.html#FileDescriptor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#daemonpy.file_descriptor.FileDescriptor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Defined class FileDescriptor with attribute(s) and method(s).
+<dd><p>Defined class FileDescriptor with attribute(s) and method(s).
 Created API for file descriptor context management.
 It defines:</p>
 <blockquote>
@@ -206,23 +205,22 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots.</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
-<div class="line">STDIN - Standard input is a stream id for input data.</div>
-<div class="line">STDOUT - Standard output is a stream id for output data.</div>
-<div class="line">STDERR - Standard error is a stream id for error messages.</div>
-<div class="line">FORMAT - Supported desciptor types with modes.</div>
-<div class="line">__device_path - File descriptor device path.</div>
-<div class="line">__device_type - File descriptor device type.</div>
-<div class="line">__device_file - File descriptor device object.</div>
+<div class="line">PKG_VERBOSE - console text indicator for process-phase.</div>
+<div class="line">STDIN - standard input is a stream id for input data.</div>
+<div class="line">STDOUT - standard output is a stream id for output data.</div>
+<div class="line">STDERR - standard error is a stream id for error messages.</div>
+<div class="line">FORMAT - supported desciptor types with modes.</div>
+<div class="line">__device_path - file descriptor device path.</div>
+<div class="line">__device_type - file descriptor device type.</div>
+<div class="line">__device_file - file descriptor device object.</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor.</div>
-<div class="line">__enter__ - Open descriptor file.</div>
-<div class="line">__exit__  - Close descriptor file.</div>
-<div class="line">__str__ - Dunder method for object FileDescriptor.</div>
+<div class="line">__init__ - initial constructor.</div>
+<div class="line">__enter__ - open descriptor file.</div>
+<div class="line">__exit__  - close descriptor file.</div>
+<div class="line">__str__ - dunder method for object FileDescriptor.</div>
 </div>
 </td>
 </tr>
@@ -232,6 +230,11 @@ It defines:</p>
 <dl class="attribute">
 <dt id="daemonpy.file_descriptor.FileDescriptor.FORMAT">
 <code class="descname">FORMAT</code><em class="property"> = {0: 'r', 1: 'a+', 2: ['a+', 0]}</em><a class="headerlink" href="#daemonpy.file_descriptor.FileDescriptor.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="daemonpy.file_descriptor.FileDescriptor.PKG_VERBOSE">
+<code class="descname">PKG_VERBOSE</code><em class="property"> = 'DAEMONPY::FILE_DESCRIPTOR'</em><a class="headerlink" href="#daemonpy.file_descriptor.FileDescriptor.PKG_VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -247,11 +250,6 @@ It defines:</p>
 <dl class="attribute">
 <dt id="daemonpy.file_descriptor.FileDescriptor.STDOUT">
 <code class="descname">STDOUT</code><em class="property"> = 1</em><a class="headerlink" href="#daemonpy.file_descriptor.FileDescriptor.STDOUT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="daemonpy.file_descriptor.FileDescriptor.VERBOSE">
-<code class="descname">VERBOSE</code><em class="property"> = 'DAEMONPY::FILE_DESCRIPTOR'</em><a class="headerlink" href="#daemonpy.file_descriptor.FileDescriptor.VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

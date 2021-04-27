@@ -32,45 +32,43 @@ try:
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-except ImportError as error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, error_message)
+except ImportError as ats_error_message:
+    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/daemonpy/blob/master/LICENSE'
-__version__ = '1.5.1'
+__license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
+__version__ = '1.6.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class UnixOperations(object):
+class UnixOperations:
     '''
         Defined class UnixOperations with attribute(s) and method(s).
         Created API for operating Unix Like OS processes.
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots.
-                | VERBOSE - Console text indicator for current process-phase.
-                | __OS_TARGET - List of supported Operating Systems.
-                | __NO_PROCESS - No such process message.
-                | __unix_status - Unix status (True for Unix Like OS).
+                | PKG_VERBOSE - console text indicator for process-phase.
+                | OS_TARGET - list of supported operating systems.
+                | NO_PROCESS - no such process message.
+                | __unix_status - unix status (True for unix like OS).
             :methods:
-                | __init__ - Initial constructor.
-                | unix_status - Property methods for set/get operations.
-                | first_fork - Make sure that process is not group leader.
-                | second_fork - Won't be started merely by opening a terminal.
-                | unix_kill - Kill Unix Like OS process.
-                | __str__ - Dunder method for object UnixOperations.
+                | __init__ - initial constructor.
+                | unix_status - property methods for set/get operations.
+                | first_fork - make sure that process is not group leader.
+                | second_fork - won't be started merely by opening a terminal.
+                | unix_kill - kill unix like OS process.
+                | __str__ - dunder method for object UnixOperations.
     '''
 
-    __slots__ = ('VERBOSE', '__OS_TARGET', '__NO_PROCESS', '__unix_status')
-    VERBOSE = 'DAEMONPY::UNIX_OPERATIONS'
-    __OS_TARGET = ['linux', 'linux2']
-    __NO_PROCESS = 'No such process'
+    PKG_VERBOSE = 'DAEMONPY::UNIX_OPERATIONS'
+    OS_TARGET = ['linux', 'linux2']
+    NO_PROCESS = 'No such process'
 
     def __init__(self, verbose=False):
         '''
@@ -79,19 +77,18 @@ class UnixOperations(object):
             :exceptions: None
         '''
         verbose_message(
-            UnixOperations.VERBOSE, verbose,
-            'init daemon operations'
+            UnixOperations.PKG_VERBOSE, verbose, 'init daemon operations'
         )
         self.__unix_status = any([
-            sys.platform == target for target in UnixOperations.__OS_TARGET
+            sys.platform == target for target in UnixOperations.OS_TARGET
         ])
 
     @property
     def unix_status(self):
         '''
-            Property method for getting Unix Like OS status.
+            Property method for getting unix like OS status.
 
-            :return: Unix Like OS status.
+            :return: unix like OS status.
             :rtype: <bool>
             :exceptions: None
         '''
@@ -100,9 +97,9 @@ class UnixOperations(object):
     @unix_status.setter
     def unix_status(self, unix_status):
         '''
-            Property method for setting Unix Like OS status.
+            Property method for setting unix like OS status.
 
-            :param unix_status: Unix Like OS status.
+            :param unix_status: unix like OS status.
             :type unix_status: <bool>
             :exceptions: None
         '''
@@ -112,7 +109,7 @@ class UnixOperations(object):
         '''
             Make sure that process is not group leader.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exit code: 0 (success) | 1 (failed)
             :exceptions: None
@@ -122,7 +119,7 @@ class UnixOperations(object):
                 process_id = fork()
                 if process_id > 0:
                     verbose_message(
-                        UnixOperations.VERBOSE, verbose, 'first fork'
+                        UnixOperations.PKG_VERBOSE, verbose, 'first fork'
                     )
                     sys.exit(0)
             except OSError as os_error:
@@ -137,7 +134,7 @@ class UnixOperations(object):
         '''
             Won't be started merely by opening a terminal.
 
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exit code: 0 (success) | 1 (failed)
             :exceptions: None
@@ -147,7 +144,7 @@ class UnixOperations(object):
                 process_id = fork()
                 if process_id > 0:
                     verbose_message(
-                        UnixOperations.VERBOSE, verbose, 'second fork'
+                        UnixOperations.PKG_VERBOSE, verbose, 'second fork'
                     )
                     sys.exit(0)
             except OSError as os_error:
@@ -162,11 +159,11 @@ class UnixOperations(object):
         '''
             Kill Unix Like OS process.
 
-            :param process_id: Process ID.
+            :param process_id: process ID.
             :type process_id: <int>
             :param pid_file_path: PID file path.
             :type pid_file_path: <str>
-            :param verbose: Enable/disable verbose option.
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
@@ -182,7 +179,7 @@ class UnixOperations(object):
         if self.__unix_status:
             try:
                 verbose_message(
-                    UnixOperations.VERBOSE, verbose,
+                    UnixOperations.PKG_VERBOSE, verbose,
                     'kill process {0}'.format(process_id)
                 )
                 while 1:
@@ -191,12 +188,12 @@ class UnixOperations(object):
                     status = True
             except OSError as os_error:
                 os_error = str(os_error)
-                if os_error.find(UnixOperations.__NO_PROCESS) > 0:
+                if os_error.find(UnixOperations.NO_PROCESS) > 0:
                     if exists(pid_file_path):
                         verbose_message(
-                            UnixOperations.VERBOSE, verbose,
+                            UnixOperations.PKG_VERBOSE, verbose,
                             '{0} with PID: {1}, removing pid file {2}'.format(
-                                UnixOperations.__NO_PROCESS,
+                                UnixOperations.NO_PROCESS,
                                 process_id, pid_file_path
                             )
                         )
@@ -204,7 +201,7 @@ class UnixOperations(object):
                         status = True
                 else:
                     error_message(
-                        UnixOperations.VERBOSE, '{0}'.format(os_error)
+                        UnixOperations.PKG_VERBOSE, '{0}'.format(os_error)
                     )
                     status = False
         return True if status else False
@@ -213,7 +210,7 @@ class UnixOperations(object):
         '''
             Dunder method for UnixOperations.
 
-            :return: Object in a human-readable format.
+            :return: object in a human-readable format.
             :rtype: <str>
             :exceptions: None
         '''

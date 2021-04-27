@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.5.1
+                1.6.1
               </div>
             
           
@@ -192,47 +192,42 @@
 <span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2020, https://vroncevic.github.io/daemonpy&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/daemonpy/blob/master/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.5.1&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/daemonpy/blob/dev/LICENSE&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.6.1&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
 
 
-<div class="viewcode-block" id="FileProcessId"><a class="viewcode-back" href="../../daemonpy.file_process_id.html#daemonpy.file_process_id.FileProcessId">[docs]</a><span class="k">class</span> <span class="nc">FileProcessId</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="FileProcessId"><a class="viewcode-back" href="../../daemonpy.file_process_id.html#daemonpy.file_process_id.FileProcessId">[docs]</a><span class="k">class</span> <span class="nc">FileProcessId</span><span class="p">:</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Defined class FileProcessId with attribute(s) and method(s).</span>
 <span class="sd">        Created API for file descriptor context management.</span>
 <span class="sd">        It defines:</span>
 
 <span class="sd">            :attributes:</span>
-<span class="sd">                | __slots__ - Setting class slots.</span>
-<span class="sd">                | VERBOSE - Console text indicator for current process-phase.</span>
-<span class="sd">                | __MODE - Supported modes for process id file.</span>
+<span class="sd">                | PKG_VERBOSE - console text indicator for process-phase.</span>
+<span class="sd">                | MODE - supported modes for process id file.</span>
 <span class="sd">                | __file_process_id_path - PID file path.</span>
 <span class="sd">                | __file_process_id_mode - PID file mode.</span>
 <span class="sd">                | __file_process_id - PID file object.</span>
 <span class="sd">            :methods:</span>
-<span class="sd">                | __init__ - Initial constructor.</span>
-<span class="sd">                | __enter__ - Open PID file.</span>
-<span class="sd">                | __exit__ - Close PID file.</span>
-<span class="sd">                | __str__ - Dunder method for object FileDescriptor.</span>
+<span class="sd">                | __init__ - initial constructor.</span>
+<span class="sd">                | __enter__ - open PID file.</span>
+<span class="sd">                | __exit__ - close PID file.</span>
+<span class="sd">                | __str__ - dunder method for object FileDescriptor.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span> <span class="s1">&#39;__MODE&#39;</span><span class="p">,</span> <span class="s1">&#39;__file_process_id_path&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__file_process_id_mode&#39;</span><span class="p">,</span> <span class="s1">&#39;__file_process_id&#39;</span>
-    <span class="p">)</span>
-    <span class="n">VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DAEMONPY::FILE_PROCESS_ID&#39;</span>
-    <span class="n">__MODE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;w+&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">]</span>
+    <span class="n">PKG_VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DAEMONPY::FILE_PROCESS_ID&#39;</span>
+    <span class="n">MODE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;w+&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_process_id_path</span><span class="p">,</span> <span class="n">file_process_id_mode</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Initial constructor.</span>
 
-<span class="sd">            :param file_process_id_path: File process id path.</span>
+<span class="sd">            :param file_process_id_path: file process id path.</span>
 <span class="sd">            :type file_process_id_path: &lt;str&gt;</span>
-<span class="sd">            :param file_process_id_mode: File process id mode.</span>
+<span class="sd">            :param file_process_id_mode: file process id mode.</span>
 <span class="sd">            :type file_process_id_mode: &lt;str&gt;</span>
 <span class="sd">            :exceptions: ATSTypeError | ATSBadCallError</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -245,30 +240,30 @@
             <span class="k">raise</span> <span class="n">ATSTypeError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">ATSChecker</span><span class="o">.</span><span class="n">VALUE_ERROR</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ATSBadCallError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">file_process_id_mode</span> <span class="ow">in</span> <span class="n">FileProcessId</span><span class="o">.</span><span class="n">__MODE</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">file_process_id_mode</span> <span class="ow">in</span> <span class="n">FileProcessId</span><span class="o">.</span><span class="n">MODE</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__file_process_id_path</span> <span class="o">=</span> <span class="n">file_process_id_path</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__file_process_id_mode</span> <span class="o">=</span> <span class="n">file_process_id_mode</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__file_process_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;PID file mode can be &lt;w+ | r&gt;&#39;</span>
-            <span class="n">error_message</span><span class="p">(</span><span class="n">FileProcessId</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+            <span class="n">error_message</span><span class="p">(</span><span class="n">FileProcessId</span><span class="o">.</span><span class="n">PKG_VERBOSE</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Open PID file.</span>
 
-<span class="sd">            :return: File device object | None.</span>
+<span class="sd">            :return: file device object | None.</span>
 <span class="sd">            :rtype: &lt;file&gt; | &lt;NoneType&gt;</span>
 <span class="sd">            :exceptions: ATSParameterError</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__file_process_id_mode</span> <span class="o">==</span> <span class="n">FileProcessId</span><span class="o">.</span><span class="n">__MODE</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__file_process_id_mode</span> <span class="o">==</span> <span class="n">FileProcessId</span><span class="o">.</span><span class="n">MODE</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__file_process_id_path</span><span class="p">):</span>
                 <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;check PID file path&#39;</span>
                 <span class="k">raise</span> <span class="n">ATSParameterError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">pass</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__file_process_id_mode</span> <span class="o">==</span> <span class="n">FileProcessId</span><span class="o">.</span><span class="n">__MODE</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__file_process_id_mode</span> <span class="o">==</span> <span class="n">FileProcessId</span><span class="o">.</span><span class="n">MODE</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
             <span class="k">pass</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;check PID file mode&#39;</span>
@@ -293,7 +288,7 @@
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Dunder method for FileProcessId.</span>
 
-<span class="sd">            :return: Object in a human-readable format.</span>
+<span class="sd">            :return: object in a human-readable format.</span>
 <span class="sd">            :rtype: &lt;str&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>

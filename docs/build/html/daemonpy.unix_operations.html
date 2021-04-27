@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.5.1
+                1.6.1
               </div>
             
           
@@ -195,8 +195,7 @@ Created API for operating Unix Like OS processes.</dd>
 <dl class="class">
 <dt id="daemonpy.unix_operations.UnixOperations">
 <em class="property">class </em><code class="descclassname">daemonpy.unix_operations.</code><code class="descname">UnixOperations</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/daemonpy/unix_operations.html#UnixOperations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#daemonpy.unix_operations.UnixOperations" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Defined class UnixOperations with attribute(s) and method(s).
+<dd><p>Defined class UnixOperations with attribute(s) and method(s).
 Created API for operating Unix Like OS processes.
 It defines:</p>
 <blockquote>
@@ -205,21 +204,20 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots.</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
-<div class="line">__OS_TARGET - List of supported Operating Systems.</div>
-<div class="line">__NO_PROCESS - No such process message.</div>
-<div class="line">__unix_status - Unix status (True for Unix Like OS).</div>
+<div class="line">PKG_VERBOSE - console text indicator for process-phase.</div>
+<div class="line">OS_TARGET - list of supported operating systems.</div>
+<div class="line">NO_PROCESS - no such process message.</div>
+<div class="line">__unix_status - unix status (True for unix like OS).</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor.</div>
-<div class="line">unix_status - Property methods for set/get operations.</div>
-<div class="line">first_fork - Make sure that process is not group leader.</div>
-<div class="line">second_fork - Won’t be started merely by opening a terminal.</div>
-<div class="line">unix_kill - Kill Unix Like OS process.</div>
-<div class="line">__str__ - Dunder method for object UnixOperations.</div>
+<div class="line">__init__ - initial constructor.</div>
+<div class="line">unix_status - property methods for set/get operations.</div>
+<div class="line">first_fork - make sure that process is not group leader.</div>
+<div class="line">second_fork - won’t be started merely by opening a terminal.</div>
+<div class="line">unix_kill - kill unix like OS process.</div>
+<div class="line">__str__ - dunder method for object UnixOperations.</div>
 </div>
 </td>
 </tr>
@@ -227,8 +225,18 @@ It defines:</p>
 </table>
 </div></blockquote>
 <dl class="attribute">
-<dt id="daemonpy.unix_operations.UnixOperations.VERBOSE">
-<code class="descname">VERBOSE</code><em class="property"> = 'DAEMONPY::UNIX_OPERATIONS'</em><a class="headerlink" href="#daemonpy.unix_operations.UnixOperations.VERBOSE" title="Permalink to this definition">¶</a></dt>
+<dt id="daemonpy.unix_operations.UnixOperations.NO_PROCESS">
+<code class="descname">NO_PROCESS</code><em class="property"> = 'No such process'</em><a class="headerlink" href="#daemonpy.unix_operations.UnixOperations.NO_PROCESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="daemonpy.unix_operations.UnixOperations.OS_TARGET">
+<code class="descname">OS_TARGET</code><em class="property"> = ['linux', 'linux2']</em><a class="headerlink" href="#daemonpy.unix_operations.UnixOperations.OS_TARGET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="daemonpy.unix_operations.UnixOperations.PKG_VERBOSE">
+<code class="descname">PKG_VERBOSE</code><em class="property"> = 'DAEMONPY::UNIX_OPERATIONS'</em><a class="headerlink" href="#daemonpy.unix_operations.UnixOperations.PKG_VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -239,7 +247,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – enable/disable verbose option.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Exit code:</th><td class="field-body">0 (success) | 1 (failed)</td>
 </tr>
@@ -257,7 +265,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – enable/disable verbose option.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Exit code:</th><td class="field-body">0 (success) | 1 (failed)</td>
 </tr>
@@ -276,9 +284,9 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>process_id</strong> (<em>&lt;int&gt;</em>) – Process ID.</li>
+<li><strong>process_id</strong> (<em>&lt;int&gt;</em>) – process ID.</li>
 <li><strong>pid_file_path</strong> (<em>&lt;str&gt;</em>) – PID file path.</li>
-<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</li>
+<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – enable/disable verbose option.</li>
 </ul>
 </td>
 </tr>
@@ -292,12 +300,12 @@ It defines:</p>
 <dl class="attribute">
 <dt id="daemonpy.unix_operations.UnixOperations.unix_status">
 <code class="descname">unix_status</code><a class="headerlink" href="#daemonpy.unix_operations.UnixOperations.unix_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property method for getting Unix Like OS status.</p>
+<dd><p>Property method for getting unix like OS status.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Unix Like OS status.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">unix like OS status.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;bool&gt;</td>
 </tr>

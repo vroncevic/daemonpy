@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.5.1
+                1.6.1
               </div>
             
           
@@ -196,8 +196,7 @@ Created API for daemon usage.</dd>
 <dl class="class">
 <dt id="daemonpy.daemon_usage.DaemonUsage">
 <em class="property">class </em><code class="descclassname">daemonpy.daemon_usage.</code><code class="descname">DaemonUsage</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/daemonpy/daemon_usage.html#DaemonUsage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#daemonpy.daemon_usage.DaemonUsage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Defined class DaemonUsage with attribute(s) and method(s).
+<dd><p>Defined class DaemonUsage with attribute(s) and method(s).
 Created API for daemon usage.
 It defines:</p>
 <blockquote>
@@ -206,18 +205,17 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots.</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase.</div>
+<div class="line">PKG_VERBOSE - console text indicator for process-phase.</div>
 <div class="line">DAEMON_OPERATIONS - list of supported operations.</div>
-<div class="line">__usage_status - Daemon usage status.</div>
+<div class="line">__usage_status - daemon usage status.</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor.</div>
-<div class="line">usage_status - Property methods for set/get operations.</div>
-<div class="line">check - Checking usage of Daemon process.</div>
-<div class="line">__str__ - Dunder method for object DaemonUsage.</div>
+<div class="line">__init__ - initial constructor.</div>
+<div class="line">usage_status - property methods for set/get operations.</div>
+<div class="line">check - checking usage of daemon process.</div>
+<div class="line">__str__ - dunder method for object DaemonUsage.</div>
 </div>
 </td>
 </tr>
@@ -230,8 +228,8 @@ It defines:</p>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="daemonpy.daemon_usage.DaemonUsage.VERBOSE">
-<code class="descname">VERBOSE</code><em class="property"> = 'DAEMONPY::DAEMON_USAGE'</em><a class="headerlink" href="#daemonpy.daemon_usage.DaemonUsage.VERBOSE" title="Permalink to this definition">¶</a></dt>
+<dt id="daemonpy.daemon_usage.DaemonUsage.PKG_VERBOSE">
+<code class="descname">PKG_VERBOSE</code><em class="property"> = 'DAEMONPY::DAEMON_USAGE'</em><a class="headerlink" href="#daemonpy.daemon_usage.DaemonUsage.PKG_VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -243,8 +241,8 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>daemon_operation</strong> (<em>&lt;str&gt;</em>) – Daemon operation.</li>
-<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option.</li>
+<li><strong>daemon_operation</strong> (<em>&lt;str&gt;</em>) – daemon operation.</li>
+<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – enable/disable verbose option.</li>
 </ul>
 </td>
 </tr>
@@ -263,7 +261,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Daemon usage status.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">daemon usage status.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;int&gt;</td>
 </tr>
