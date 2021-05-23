@@ -99,7 +99,7 @@ Create short example:
          You should have received a copy of the GNU General Public License along
          with this program. If not, see <http://www.gnu.org/licenses/>.
      Info
-         Define class MyDaemon with attribute(s) and method(s).
+         Defined class MyDaemon with attribute(s) and method(s).
          Set an operation for Daemon process.
     '''
 
@@ -115,14 +115,14 @@ Create short example:
 
     class MyDaemon(Daemon):
         '''
-            Define class MyDaemon with attribute(s) and method(s).
+            Defined class MyDaemon with attribute(s) and method(s).
             Set an operation for Daemon process.
             It defines:
 
                 :attributes:
                     | None
                 :methods:
-                    | run - Run Daemon process (defined method)
+                    | run - run Daemon process (defined method).
         '''
         def run(self):
             '''

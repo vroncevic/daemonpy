@@ -17,17 +17,17 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Define setup for daemonpy package.
+     Defined setup for daemonpy package.
 '''
 
 from os.path import abspath, dirname, join
 from setuptools import setup
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2020, Free software to use and distributed it.'
+__copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'GNU General Public License (GPL)'
-__version__ = '1.6.1'
+__license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
+__version__ = '1.6.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -58,7 +58,7 @@ PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 
 setup(
     name='daemonpy',
-    version='1.6.1',
+    version='1.6.2',
     description='Creating Daemon process',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',

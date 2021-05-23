@@ -44,7 +44,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '1.6.1'
+__version__ = '1.6.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -186,7 +186,7 @@ class Daemon(UnixOperations):
                     self.daemonize(verbose=verbose)
                     self.run()
                     status = True
-        return True if status else False
+        return status
 
     def stop(self, verbose=False):
         '''
@@ -209,7 +209,7 @@ class Daemon(UnixOperations):
                     )
                 else:
                     status = self.unix_kill(pid, self.__pid_file_path)
-        return True if status else False
+        return status
 
     def restart(self, verbose=False):
         '''
@@ -233,7 +233,7 @@ class Daemon(UnixOperations):
                 )
         else:
             error_message(Daemon.PKG_VERBOSE, 'daemon process is active?')
-        return True if status else False
+        return status
 
     def exit_handler(self, verbose=False):
         '''
