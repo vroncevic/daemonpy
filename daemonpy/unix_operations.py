@@ -40,7 +40,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '1.6.1'
+__version__ = '1.6.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -165,6 +165,8 @@ class UnixOperations:
             :type pid_file_path: <str>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
+            :return: boolean status, True | False.
+            :rtype: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
         checker, error, status, sleep_time = ATSChecker(), None, False, 0.1
@@ -204,7 +206,7 @@ class UnixOperations:
                         UnixOperations.PKG_VERBOSE, '{0}'.format(os_error)
                     )
                     status = False
-        return True if status else False
+        return status
 
     def __str__(self):
         '''
