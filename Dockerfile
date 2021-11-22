@@ -34,7 +34,6 @@ RUN python2 -m pip install --upgrade build
 RUN python3 -m pip install --upgrade setuptools
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade build
-RUN python3 -m venv env
 RUN mkdir /daemonpy/
 COPY daemonpy /daemonpy/
 COPY setup.cfg /
