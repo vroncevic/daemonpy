@@ -28,7 +28,7 @@
             <a href="#" class="icon icon-home"> daemonpy
           </a>
               <div class="version">
-                1.6.2
+                1.7.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -100,21 +100,35 @@ other information that should be provided before the modules are installed.</p>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
 <p><a class="reference external" href="https://github.com/vroncevic/daemonpy/workflows/Install%20Python2%20Package%20daemonpy/badge.svg?branch=master"><img alt="Install Python2 Package" src="https://github.com/vroncevic/daemonpy/workflows/Install%20Python2%20Package%20daemonpy/badge.svg" /></a> <a class="reference external" href="https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg?branch=master"><img alt="Install Python3 Package" src="https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg" /></a></p>
+<p><img alt="Debian Linux OS" src="https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/debtux.png" /></p>
 <p>Navigate to release <a class="reference external" href="https://github.com/vroncevic/daemonpy/releases">page</a> download and extract release archive.</p>
-<p>To install this set of modules type the following:</p>
+<p>To install <strong>daemonpy</strong> run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf daemonpy-x.y.z.tar.gz
 <span class="nb">cd</span> daemonpy-x.y.z
 <span class="c1"># python2</span>
 pip install -r requirements.txt
+python -m build
+pip install dist/daemonpy-x.y.z-py2-none-any.whl
+<span class="c1"># python3</span>
+pip3 install -r requirements.txt
+python3 -m build
+pip3 install dist/daemonpy-x.y.z-py3-none-any.whl
+</pre></div>
+</div>
+<p>Or type the following</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf daemonpy-x.y.z.tar.gz
+<span class="nb">cd</span> daemonpy-x.y.z/
+<span class="c1"># python2</span>
+pip install -r requirements.txt
 python setup.py install_lib
 python setup.py install_egg_info
-<span class="c1"># python3</span>
+<span class="c1"># pyton3</span>
 pip3 install -r requirements.txt
 python3 setup.py install_lib
 python3 setup.py install_egg_info
 </pre></div>
 </div>
-<p>You can use Docker to create image/container, or You can use pip to install:</p>
+<p>You can use Docker to create image/container, or You can use pip to install</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># python2</span>
 pip install daemonpy
 <span class="c1"># python3</span>
@@ -125,7 +139,7 @@ pip3 install daemonpy
 </div>
 <div class="section" id="usage">
 <h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h1>
-<p>Create short example:</p>
+<p>Create short example</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 
 <span class="sd">&#39;&#39;&#39;</span>
@@ -186,15 +200,15 @@ pip3 install daemonpy
 </div>
 <div class="section" id="dependencies">
 <h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline"></a></h1>
-<p><strong>daemonpy</strong> requires next modules and libraries:</p>
+<p><strong>daemonpy</strong> requires next modules and libraries</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pypi.org/project/ats-utilities/">ats-utilities - Python App/Tool/Script Utilities</a></p></li>
 </ul>
 </div>
-<div class="section" id="library-structure">
-<h1>Library structure<a class="headerlink" href="#library-structure" title="Permalink to this headline"></a></h1>
-<p><strong>daemonpy</strong> is based on OOP:</p>
-<p>Code structure:</p>
+<div class="section" id="package-structure">
+<h1>Package structure<a class="headerlink" href="#package-structure" title="Permalink to this headline"></a></h1>
+<p><strong>daemonpy</strong> is based on OOP.</p>
+<p>Package structure</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>daemonpy/
 ├── daemon_usage.py
 ├── file_descriptor.py

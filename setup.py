@@ -27,7 +27,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '1.6.2'
+__version__ = '1.7.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -37,7 +37,9 @@ with open(join(THIS_DIR, 'README.md')) as readme:
     LONG_DESCRIPTION = readme.read()
 
 PROGRAMMING_LANG = 'Programming Language :: Python ::'
-VERSIONS = ['2.7', '3', '3.2', '3.3', '3.4']
+VERSIONS = [
+    '2.7', '3', '3.1', '3.2', '3.3','3.4', '3.5', '3.6', '3.7', '3.8', '3.9'
+]
 SUPPORTED_PY_VERSIONS = [
     '{0} {1}'.format(PROGRAMMING_LANG, VERSION) for VERSION in VERSIONS
 ]
@@ -58,7 +60,7 @@ PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 
 setup(
     name='daemonpy',
-    version='1.6.2',
+    version='1.7.2',
     description='Creating Daemon process',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -67,7 +69,7 @@ setup(
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     keywords='Unix, Linux, Daemon, Process',
-    platforms='POSIX',
+    platforms='any',
     classifiers=PYP_CLASSIFIERS,
     packages=['daemonpy',],
     install_requires=['ats-utilities',]
