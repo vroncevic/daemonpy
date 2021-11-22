@@ -19,13 +19,17 @@ RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -yq --no-install-recommends \
     tree \
     htop \
+    wget \
+    unzip \
+    ca-certificates \
+    openssl \
     python \
     python-pip \
     python-wheel \
     python3 \
     python3-pip \
     python3-wheel \
-    python3-setuptools \
+    python3-venv \
     libyaml-dev
 
 RUN python2 -m pip install --upgrade setuptools
@@ -34,6 +38,7 @@ RUN python2 -m pip install --upgrade build
 RUN python3 -m pip install --upgrade setuptools
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade build
+RUN python3 -m venv env
 RUN mkdir /daemonpy/
 COPY daemonpy /daemonpy/
 COPY setup.cfg /
