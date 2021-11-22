@@ -41,11 +41,15 @@ Installation
 .. |Install Python3 Package| image:: https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg
    :target: https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg?branch=master
 
+|Debian Linux OS|
+
+.. |Debian Linux OS| image:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/debtux.png
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/daemonpy/releases
 
-To install this set of modules type the following:
+To install **daemonpy** run
 
 .. code-block:: bash
 
@@ -53,14 +57,29 @@ To install this set of modules type the following:
     cd daemonpy-x.y.z
     # python2
     pip install -r requirements.txt
+    python -m build
+    pip install dist/daemonpy-x.y.z-py2-none-any.whl
+    # python3
+    pip3 install -r requirements.txt
+    python3 -m build
+    pip3 install dist/daemonpy-x.y.z-py3-none-any.whl
+
+Or type the following
+
+.. code-block:: bash
+
+    tar xvzf daemonpy-x.y.z.tar.gz
+    cd daemonpy-x.y.z/
+    # python2
+    pip install -r requirements.txt
     python setup.py install_lib
     python setup.py install_egg_info
-    # python3
+    # pyton3
     pip3 install -r requirements.txt
     python3 setup.py install_lib
     python3 setup.py install_egg_info
 
-You can use Docker to create image/container, or You can use pip to install:
+You can use Docker to create image/container, or You can use pip to install
 
 .. code-block:: bash
 
@@ -77,7 +96,7 @@ You can use Docker to create image/container, or You can use pip to install:
 Usage
 -----
 
-Create short example:
+Create short example
 
 .. code-block:: python
 
@@ -140,16 +159,16 @@ Create short example:
 Dependencies
 -------------
 
-**daemonpy** requires next modules and libraries:
+**daemonpy** requires next modules and libraries
 
 * `ats-utilities - Python App/Tool/Script Utilities <https://pypi.org/project/ats-utilities/>`_
 
-Library structure
+Package structure
 ------------------
 
-**daemonpy** is based on OOP:
+**daemonpy** is based on OOP.
 
-Code structure:
+Package structure
 
 .. code-block:: bash
 
