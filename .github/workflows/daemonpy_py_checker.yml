@@ -2,8 +2,14 @@ name: daemonpy py checker
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'daemonpy/**'
+      - 'setup.py'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'daemonpy/**'
+      - 'setup.py'
 jobs:
   build:
     runs-on: ubuntu-latest

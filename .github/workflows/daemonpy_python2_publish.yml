@@ -2,8 +2,20 @@ name: Install Python2 Package daemonpy
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'daemonpy/**'
+      - 'MANIFEST.in'
+      - 'pyproject.toml'
+      - 'setup.cfg'
+      - 'setup.py'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'daemonpy/**'
+      - 'MANIFEST.in'
+      - 'pyproject.toml'
+      - 'setup.cfg'
+      - 'setup.py'
 jobs:
   deploy:
     runs-on: ubuntu-latest
