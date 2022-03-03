@@ -41,9 +41,9 @@ Installation
 .. |Install Python3 Package| image:: https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg
    :target: https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg?branch=master
 
-|Debian Linux OS|
+|Ubuntu Linux OS|
 
-.. |Debian Linux OS| image:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/debtux.png
+.. |Ubuntu Linux OS| image:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/ubuntuxis.png
 
 Navigate to release `page`_ download and extract release archive.
 

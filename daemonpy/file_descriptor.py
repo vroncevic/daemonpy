@@ -67,7 +67,7 @@ class FileDescriptor:
     PKG_VERBOSE = 'DAEMONPY::FILE_DESCRIPTOR'
     STDIN, STDOUT, STDERR = 0, 1, 2
     FORMAT = {
-        STDIN: 'r', STDOUT: 'a+', STDERR: ['a+', 0]
+        STDIN: 'r', STDOUT: 'a+', STDERR: 'a+'
     }
 
     def __init__(self, device_path, device_type):
@@ -116,25 +116,6 @@ class FileDescriptor:
             self.__device_file = open(
                 self.__device_path, file_descriptor_mode
             )
-        elif isinstance(file_descriptor_mode, list):
-            if len(file_descriptor_mode) == 2:
-                check_file_descriptor_mode_ok = all([
-                    isinstance(file_descriptor_mode[0], str),
-                    isinstance(file_descriptor_mode[1], int),
-                    file_descriptor_mode[1] == 0
-                ])
-                if check_file_descriptor_mode_ok:
-                    self.__device_file = open(
-                        self.__device_path,
-                        file_descriptor_mode[0],
-                        file_descriptor_mode[1]
-                    )
-                else:
-                    error = 'check file descriptor mode'
-                    raise ATSParameterError(error)
-            else:
-                error = 'check format of file descriptor mode'
-                raise ATSParameterError(error)
         else:
             error = 'unsupported file descriptor mode'
             raise ATSParameterError(error)

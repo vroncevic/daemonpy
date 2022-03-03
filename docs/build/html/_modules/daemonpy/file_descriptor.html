@@ -94,11 +94,11 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">ats_utilities.checker</span> <span class="kn">import</span> <span class="n">ATSChecker</span>
-    <span class="kn">from</span> <span class="nn">ats_utilities.console_io.error</span> <span class="kn">import</span> <span class="n">error_message</span>
-    <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_type_error</span> <span class="kn">import</span> <span class="n">ATSTypeError</span>
-    <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_bad_call_error</span> <span class="kn">import</span> <span class="n">ATSBadCallError</span>
-    <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_parameter_error</span> <span class="kn">import</span> <span class="n">ATSParameterError</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.checker</span> <span class="k">import</span> <span class="n">ATSChecker</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.console_io.error</span> <span class="k">import</span> <span class="n">error_message</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_type_error</span> <span class="k">import</span> <span class="n">ATSTypeError</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_bad_call_error</span> <span class="k">import</span> <span class="n">ATSBadCallError</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_parameter_error</span> <span class="k">import</span> <span class="n">ATSParameterError</span>
 <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">ats_error_message</span><span class="p">:</span>
     <span class="n">MESSAGE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="si">{0}</span><span class="se">\n</span><span class="si">{1}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="n">ats_error_message</span><span class="p">)</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">MESSAGE</span><span class="p">)</span>  <span class="c1"># Force close python ATS ##############################</span>
@@ -138,10 +138,10 @@
     <span class="n">PKG_VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;DAEMONPY::FILE_DESCRIPTOR&#39;</span>
     <span class="n">STDIN</span><span class="p">,</span> <span class="n">STDOUT</span><span class="p">,</span> <span class="n">STDERR</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
     <span class="n">FORMAT</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">STDIN</span><span class="p">:</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">STDOUT</span><span class="p">:</span> <span class="s1">&#39;a+&#39;</span><span class="p">,</span> <span class="n">STDERR</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a+&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">STDIN</span><span class="p">:</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">STDOUT</span><span class="p">:</span> <span class="s1">&#39;a+&#39;</span><span class="p">,</span> <span class="n">STDERR</span><span class="p">:</span> <span class="s1">&#39;a+&#39;</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_path</span><span class="p">,</span> <span class="n">device_type</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_path</span><span class="p">,</span> <span class="n">device_type</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Initial constructor.</span>
 
@@ -173,7 +173,7 @@
             <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;file descriptor type can be &lt;STDIN | STDOUT | STDERR&gt;&#39;</span>
             <span class="n">error_message</span><span class="p">(</span><span class="n">FileDescriptor</span><span class="o">.</span><span class="n">PKG_VERBOSE</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Open descriptor file.</span>
 
@@ -187,31 +187,12 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__device_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__device_path</span><span class="p">,</span> <span class="n">file_descriptor_mode</span>
             <span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_descriptor_mode</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_descriptor_mode</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                <span class="n">check_file_descriptor_mode_ok</span> <span class="o">=</span> <span class="nb">all</span><span class="p">([</span>
-                    <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_descriptor_mode</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">),</span>
-                    <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_descriptor_mode</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">int</span><span class="p">),</span>
-                    <span class="n">file_descriptor_mode</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
-                <span class="p">])</span>
-                <span class="k">if</span> <span class="n">check_file_descriptor_mode_ok</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">__device_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">__device_path</span><span class="p">,</span>
-                        <span class="n">file_descriptor_mode</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                        <span class="n">file_descriptor_mode</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                    <span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;check file descriptor mode&#39;</span>
-                    <span class="k">raise</span> <span class="n">ATSParameterError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;check format of file descriptor mode&#39;</span>
-                <span class="k">raise</span> <span class="n">ATSParameterError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;unsupported file descriptor mode&#39;</span>
             <span class="k">raise</span> <span class="n">ATSParameterError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__device_file</span>
 
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Close descriptor file.</span>
 
@@ -222,7 +203,7 @@
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Dunder method for FileDescriptor.</span>
 
