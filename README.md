@@ -7,7 +7,7 @@
 Developed in **[python](https://www.python.org/)** code: **100%**.
 
 [![codecov](https://codecov.io/gh/vroncevic/daemonpy/branch/dev/graph/badge.svg?token=NKYH7UGEYS)](https://codecov.io/gh/vroncevic/daemonpy)
-
+[![CircleCI](https://circleci.com/gh/vroncevic/daemonpy/tree/master.svg?style=svg)](https://circleci.com/gh/vroncevic/daemonpy/tree/master)
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
