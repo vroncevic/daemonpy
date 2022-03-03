@@ -12,12 +12,12 @@ jobs:
     steps:
       - checkout
       - run: |
-          python3 -m pip install --upgrade setuptools
-          python3 -m pip install --upgrade pip
-          python3 -m pip install --upgrade build
-          python3 -m pip install -r requirements.txt
-          python3 -m venv env
-          python3 -m build
+          sudo python3 -m pip install --upgrade setuptools
+          sudo python3 -m pip install --upgrade pip
+          sudo python3 -m pip install --upgrade build
+          sudo python3 -m pip install -r requirements.txt
+          sudo python3 -m venv env
+          sudo python3 -m build
 workflows:
   daemonpy-workflow:
     jobs:
