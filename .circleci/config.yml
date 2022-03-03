@@ -2,7 +2,7 @@ version: 2.1
 executors:
   daemonpy-executor:
     docker:
-      - image: cimg/python:3.10.2
+      - image: cimg/python:3.8.10
         auth:
           username: $DOCKER_HUB_USER
           password: $DOCKER_HUB_PASSWORD
