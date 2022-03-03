@@ -33,7 +33,7 @@ other information that should be provided before the modules are installed.
 
 ![Install Python2 Package](https://github.com/vroncevic/daemonpy/workflows/Install%20Python2%20Package%20daemonpy/badge.svg?branch=master) ![Install Python3 Package](https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg?branch=master)
 
-![Ubuntu Linux OS](https://raw.githubusercontent.com/vroncevic/ats_utilities/dev/docs/ubuntuxis.png)
+![Ubuntu Linux OS](https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/ubuntuxis.png)
 
 Currently there are three ways to install package
 * Install process based on using pip
