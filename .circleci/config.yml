@@ -12,7 +12,6 @@ jobs:
     steps:
       - checkout
       - run: |
-          sudo apt install python3-setuptools
           sudo python3 -m pip install --upgrade setuptools
           sudo python3 -m pip install --upgrade pip
           sudo python3 -m pip install --upgrade build
