@@ -2,7 +2,7 @@ version: 2.1
 executors:
   daemonpy-executor:
     docker:
-      - image: cimg/python:3.10.2
+      - image: cimg/python:3.8.10
         auth:
           username: $DOCKER_HUB_USER
           password: $DOCKER_HUB_PASSWORD
@@ -12,12 +12,9 @@ jobs:
     steps:
       - checkout
       - run: |
-          sudo python3 -m pip install --upgrade setuptools
-          sudo python3 -m pip install --upgrade pip
-          sudo python3 -m pip install --upgrade build
-          sudo python3 -m pip install -r requirements.txt
-          sudo python3 -m venv env
-          sudo python3 -m build
+          python3 -m pip install --upgrade setuptools
+          python3 -m pip install --upgrade pip
+          python3 -m pip install --upgrade build
 workflows:
   daemonpy-workflow:
     jobs:
