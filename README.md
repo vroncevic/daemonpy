@@ -17,13 +17,14 @@ other information that should be provided before the modules are installed.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Installation](#installation)
-    - [Install using pip](#install-using-pip)
-    - [Install using build](#install-using-build)
-    - [Install using py setup](#install-using-py-setup)
-    - [Install using docker](#install-using-docker)
+  - [Install using pip](#install-using-pip)
+  - [Install using build](#install-using-build)
+  - [Install using py setup](#install-using-py-setup)
+  - [Install using docker](#install-using-docker)
 - [Usage](#usage)
 - [Dependencies](#dependencies)
 - [Package structure](#package-structure)
@@ -39,17 +40,19 @@ other information that should be provided before the modules are installed.
 ![Ubuntu Linux OS](https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/ubuntuxis.png)
 
 Currently there are three ways to install package
-* Install process based on using pip
-* Install process based on build (setuptools)
-* Install process based on setup.py (setuptools)
-* Install process based on docker mechanism
+
+- Install process based on using pip
+- Install process based on build (setuptools)
+- Install process based on setup.py (setuptools)
+- Install process based on docker mechanism
 
 ##### Install using pip
 
 Python package is located at **[pypi.org](https://pypi.org/project/daemonpy/)**.
 
 You can install by using pip
-```
+
+```bash
 # python2
 pip install daemonpy
 # python3
@@ -61,7 +64,8 @@ pip3 install daemonpy
 Navigate to **[release page](https://github.com/vroncevic/daemonpy/releases)** download and extract release archive.
 
 To install **daemonpy**, run
-```
+
+```bash
 tar xvzf daemonpy-x.y.z.tar.gz
 cd daemonpy-x.y.z
 # python2
@@ -79,7 +83,8 @@ pip3 install dist/daemonpy-x.y.z-py3-none-any.whl
 Navigate to **[release page](https://github.com/vroncevic/daemonpy/releases)** download and extract release archive.
 
 To install modules, locate and run setup.py with arguments
-```
+
+```bash
 tar xvzf daemonpy-x.y.z.tar.gz
 cd daemonpy-x.y.z
 # python2
@@ -101,6 +106,7 @@ You can use Dockerfile to create image/container.
 ### Usage
 
 Create short example
+
 ```python
 #!/usr/bin/env python
 
@@ -163,14 +169,16 @@ if __name__ == '__main__':
 ### Dependencies
 
 These modules requires other modules and libraries (Python 2.x/3.x)
-* [daemonpy - Python App/Tool/Script Utilities](https://pypi.org/project/daemonpy/)
+
+- [daemonpy - Python App/Tool/Script Utilities](https://pypi.org/project/daemonpy/)
 
 ### Package structure
 
 **daemonpy** is based on OOP.
 
 Package structure
-```
+
+```bash
 daemonpy/
 ├── daemon_usage.py
 ├── file_descriptor.py
@@ -184,8 +192,9 @@ daemonpy/
 [![Documentation Status](https://readthedocs.org/projects/daemonpy/badge/?version=latest)](https://daemonpy.readthedocs.io/projects/daemonpy/en/latest/?badge=latest)
 
 More documentation and info at
-* [daemonpy.readthedocs.io](https://daemonpy.readthedocs.io/en/latest/)
-* [www.python.org](https://www.python.org/)
+
+- [daemonpy.readthedocs.io](https://daemonpy.readthedocs.io/en/latest/)
+- [www.python.org](https://www.python.org/)
 
 ### Copyright and Licence
 

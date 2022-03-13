@@ -184,8 +184,8 @@ class Daemon(UnixOperations):
                     )
                 else:
                     self.daemonize(verbose=verbose)
-                    self.run()
                     status = True
+                    self.run()
         return status
 
     def stop(self, verbose=False):
