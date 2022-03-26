@@ -4,7 +4,7 @@
 
 **daemonpy** is package for creating Daemon processes.
 
-Developed in **[python](https://www.python.org/)** code: **100%**.
+Developed in **[python](https://www.python.org/)** code.
 
 [![codecov](https://codecov.io/gh/vroncevic/daemonpy/branch/dev/graph/badge.svg?token=NKYH7UGEYS)](https://codecov.io/gh/vroncevic/daemonpy)
 [![CircleCI](https://circleci.com/gh/vroncevic/daemonpy/tree/master.svg?style=svg)](https://circleci.com/gh/vroncevic/daemonpy/tree/master)
@@ -28,6 +28,7 @@ other information that should be provided before the modules are installed.
 - [Dependencies](#dependencies)
 - [Package structure](#package-structure)
 - [Docs](#docs)
+- [Contributing](#contributing)
 - [Copyright and Licence](#copyright-and-licence)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -194,6 +195,10 @@ More documentation and info at
 
 - [daemonpy.readthedocs.io](https://daemonpy.readthedocs.io/en/latest/)
 - [www.python.org](https://www.python.org/)
+
+### Contributing
+
+[Contributing to daemonpy](CONTRIBUTING.md)
 
 ### Copyright and Licence
 

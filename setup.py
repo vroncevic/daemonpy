@@ -27,7 +27,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '1.7.2'
+__version__ = '1.7.3'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -60,7 +60,7 @@ PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 
 setup(
     name='daemonpy',
-    version='1.7.2',
+    version='1.7.3',
     description='Creating Daemon process',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
