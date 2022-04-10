@@ -44,7 +44,6 @@ RUN python3 -m pip install --upgrade setuptools
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade build
 RUN rm -f get-pip.py
-RUN python3 -m venv env
 RUN mkdir /daemonpy/
 COPY daemonpy /daemonpy/
 COPY setup.cfg /
