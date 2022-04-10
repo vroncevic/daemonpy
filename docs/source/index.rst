@@ -5,14 +5,25 @@ Creating Daemon process
 
 Developed in `python <https://www.python.org/>`_ code.
 
+|CodeCov| |CircleCI|
+
+.. |CodeCov| image:: https://codecov.io/gh/vroncevic/daemonpy/branch/dev/graph/badge.svg
+   :target: https://codecov.io/gh/vroncevic/daemonpy
+
+.. |CircleCI| image:: https://circleci.com/gh/vroncevic/daemonpy/tree/master.svg
+   :target: https://circleci.com/gh/vroncevic/daemonpy/tree/master
+
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-|Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
+|Python checker| |Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
 
-.. |Python package| image:: https://github.com/vroncevic/daemonpy/workflows/Python%20package%20daemonpy/badge.svg
-   :target: https://github.com/vroncevic/daemonpy/workflows/Python%20package/badge.svg?branch=master
+.. |Python checker| image:: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_py_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_py_checker.yml
+
+.. |Python package| image:: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_package.yml/badge.svg
+   :target: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_package.yml
 
 .. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/daemonpy.svg
    :target: https://github.com/vroncevic/daemonpy/issues
@@ -20,8 +31,8 @@ other information that should be provided before the modules are installed.
 .. |GitHub contributors| image:: https://img.shields.io/github/contributors/vroncevic/daemonpy.svg
    :target: https://github.com/vroncevic/daemonpy/graphs/contributors
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/daemonpy/badge/?version=latest
-   :target: https://daemonpy.readthedocs.io/projects/daemonpy/en/latest/?badge=latest
+.. |Documentation Status| image:: https://readthedocs.org/projects/daemonpy/badge/?version=master
+   :target: https://daemonpy.readthedocs.io/projects/daemonpy/en/master/?badge=master
 
 .. toctree::
    :maxdepth: 4
@@ -35,11 +46,11 @@ Installation
 
 |Install Python2 Package| |Install Python3 Package|
 
-.. |Install Python2 Package| image:: https://github.com/vroncevic/daemonpy/workflows/Install%20Python2%20Package%20daemonpy/badge.svg
-   :target: https://github.com/vroncevic/daemonpy/workflows/Install%20Python2%20Package%20daemonpy/badge.svg?branch=master
+.. |Install Python2 Package| image:: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python2_publish.yml/badge.svg
+   :target: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python2_publish.yml
 
-.. |Install Python3 Package| image:: https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg
-   :target: https://github.com/vroncevic/daemonpy/workflows/Install%20Python3%20Package%20daemonpy/badge.svg?branch=master
+.. |Install Python3 Package| image:: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python3_publish.yml/badge.svg
+   :target: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python3_publish.yml
 
 |Ubuntu Linux OS|
 
@@ -90,8 +101,8 @@ You can use Docker to create image/container, or You can use pip to install
 
 |GitHub docker checker|
 
-.. |GitHub docker checker| image:: https://github.com/vroncevic/daemonpy/workflows/daemonpy%20docker%20checker/badge.svg
-   :target: https://github.com/vroncevic/daemonpy/actions?query=workflow%3A%22daemonpy+docker+checker%22
+.. |GitHub docker checker| image:: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_docker_checker.yml/badge.svg
+   :target: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_docker_checker.yml
 
 Usage
 -----

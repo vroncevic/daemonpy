@@ -32,6 +32,15 @@ except ImportError as ats_error:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
+__author__ = 'Vladimir Roncevic'
+__copyright__ = 'Copyright 2022, https://vroncevic.github.io/daemonpy'
+__credits__ = ['Vladimir Roncevic']
+__license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
+__version__ = '1.8.3'
+__maintainer__ = 'Vladimir Roncevic'
+__email__ = 'elektron.ronca@gmail.com'
+__status__ = 'Updated'
+
 
 class FileDescriptorTestCase(unittest.TestCase):
     '''
