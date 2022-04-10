@@ -1,14 +1,14 @@
-name: Triage daemonpy label
+name: daemonpy triage label
 on:
   issues:
     types: [opened]
 jobs:
   applyTriageLabel:
-    name: Apply Triage Label
+    name: daemonpy triage label
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Apply Triage Label
+      - name: daemonpy triage label
         uses: actions/github@v1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
