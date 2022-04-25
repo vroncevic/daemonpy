@@ -5,38 +5,38 @@ Creating Daemon process
 
 Developed in `python <https://www.python.org/>`_ code.
 
-|CodeCov| |CircleCI|
+|codecov| |circleci|
 
-.. |CodeCov| image:: https://codecov.io/gh/vroncevic/daemonpy/branch/dev/graph/badge.svg
+.. |codecov| image:: https://codecov.io/gh/vroncevic/daemonpy/branch/dev/graph/badge.svg
    :target: https://codecov.io/gh/vroncevic/daemonpy
 
-.. |CircleCI| image:: https://circleci.com/gh/vroncevic/daemonpy/tree/master.svg
+.. |circleci| image:: https://circleci.com/gh/vroncevic/daemonpy/tree/master.svg
    :target: https://circleci.com/gh/vroncevic/daemonpy/tree/master
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-|Python checker| |Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
+|python checker| |python package| |github issues| |documentation status| |github contributors|
 
-.. |Python checker| image:: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_py_checker.yml/badge.svg
-   :target: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_py_checker.yml
+.. |python checker| image:: https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python_checker?style=flat&label=daemonpy%20python%20checker
+   :target: https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python_checker
 
-.. |Python package| image:: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_package.yml/badge.svg
-   :target: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_package.yml
+.. |python package| image:: https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_package_checker?style=flat&label=daemonpy%20package%20checker
+   :target: https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_package_checker
 
-.. |GitHub issues| image:: https://img.shields.io/github/issues/vroncevic/daemonpy.svg
+.. |github issues| image:: https://img.shields.io/github/issues/vroncevic/daemonpy.svg
    :target: https://github.com/vroncevic/daemonpy/issues
 
-.. |GitHub contributors| image:: https://img.shields.io/github/contributors/vroncevic/daemonpy.svg
+.. |github contributors| image:: https://img.shields.io/github/contributors/vroncevic/daemonpy.svg
    :target: https://github.com/vroncevic/daemonpy/graphs/contributors
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/daemonpy/badge/?version=master
+.. |documentation status| image:: https://readthedocs.org/projects/daemonpy/badge/?version=master
    :target: https://daemonpy.readthedocs.io/projects/daemonpy/en/master/?badge=master
 
 .. toctree::
    :maxdepth: 4
-   :caption: Contents
+   :caption: contents
 
    self
    modules
@@ -44,17 +44,17 @@ other information that should be provided before the modules are installed.
 Installation
 -------------
 
-|Install Python2 Package| |Install Python3 Package|
+|install python2 package| |install python3 package|
 
-.. |Install Python2 Package| image:: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python2_publish.yml/badge.svg
-   :target: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python2_publish.yml
+.. |install python2 package| image:: https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python2_build?style=flat&label=daemonpy%20python2%20build
+   :target: https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python2_build
 
-.. |Install Python3 Package| image:: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python3_publish.yml/badge.svg
-   :target: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python3_publish.yml
+.. |install python3 package| image:: https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python3_build?style=flat&label=daemonpy%20python3%20build
+   :target: https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python3_build
 
-|Ubuntu Linux OS|
+|ubuntu linux os|
 
-.. |Ubuntu Linux OS| image:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/ubuntuxis.png
+.. |ubuntu linux os| image:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/ubuntuxis.png
 
 Navigate to release `page`_ download and extract release archive.
 
@@ -99,10 +99,10 @@ You can use Docker to create image/container, or You can use pip to install
     # python3
     pip3 install daemonpy
 
-|GitHub docker checker|
+|github docker checker|
 
-.. |GitHub docker checker| image:: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_docker_checker.yml/badge.svg
-   :target: https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_docker_checker.yml
+.. |github docker checker| image:: https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_docker_checker?style=flat&label=daemonpy%20docker%20checker
+   :target: https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_docker_checker
 
 Usage
 -----
@@ -193,13 +193,13 @@ Package structure
 Copyright and licence
 ----------------------
 
-|License: GPL v3| |License: Apache 2.0|
+|license: gpl v3| |license: apache 2.0|
 
-.. |License: GPL v3| image:: https://img.shields.io/badge/License-GPLv3-blue.svg
+.. |license: gpl v3| image:: https://img.shields.io/badge/license-gplv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
 
-.. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
-   :target: https://opensource.org/licenses/Apache-2.0
+.. |license: apache 2.0| image:: https://img.shields.io/badge/license-apache%202.0-blue.svg
+   :target: https://opensource.org/licenses/apache-2.0
 
 Copyright (C) 2020 by `vroncevic.github.io/daemonpy <https://vroncevic.github.io/daemonpy>`_
 
@@ -209,14 +209,14 @@ at your option, any later version of Python 3 you may have available.
 
 Lets help and support PSF.
 
-|Python Software Foundation|
+|python software foundation|
 
-.. |Python Software Foundation| image:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/psf-logo-alpha.png
+.. |python software foundation| image:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/psf-logo-alpha.png
    :target: https://www.python.org/psf/
 
-|Donate|
+|donate|
 
-.. |Donate| image:: https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif
+.. |donate| image:: https://www.paypalobjects.com/en_us/i/btn/btn_donatecc_lg.gif
    :target: https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2
 
 Indices and tables

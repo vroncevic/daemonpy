@@ -1,4 +1,4 @@
-name: daemonpy py checker
+name: daemonpy_python_checker
 on:
   push:
     branches: [ master ]
