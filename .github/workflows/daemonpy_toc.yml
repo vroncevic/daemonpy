@@ -1,11 +1,11 @@
-name: daemonpy toc generator
+name: daemonpy_toc
 on:
   push:
     paths:
       - '**.md'
 jobs:
   generateTOC:
-    name: daemonpy toc generator
+    name: daemonpy_toc
     runs-on: ubuntu-latest
     steps:
       - uses: technote-space/toc-generator@v2

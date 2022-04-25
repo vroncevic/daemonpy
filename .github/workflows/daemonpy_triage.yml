@@ -1,14 +1,14 @@
-name: daemonpy triage
+name: daemonpy_triage
 on:
   issues:
     types: [opened]
 jobs:
   commentOnNewIssues:
-    name: daemonpy triage
+    name: daemonpy_triage
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: daemonpy triage
+      - name: daemonpy_triage
         uses: actions/github@v1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

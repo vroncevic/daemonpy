@@ -1,4 +1,4 @@
-name: daemonpy install python3 package
+name: daemonpy_python2_build
 on:
   push:
     branches: [ master ]
@@ -24,17 +24,17 @@ jobs:
     - name: set up Python
       uses: actions/setup-python@v1
       with:
-        python-version: '3.9'
+        python-version: '2.7'
     - name: install dependencies
       run: |
-        python3 -m pip install --upgrade setuptools
-        python3 -m pip install --upgrade pip
-        python3 -m pip install --upgrade build
-        python3 -m pip install --upgrade wheel
-        pip3 install -r requirements.txt
+        python2 -m pip install --upgrade setuptools
+        python2 -m pip install --upgrade pip
+        python2 -m pip install --upgrade build
+        python2 -m pip install --upgrade wheel
+        pip2 install -r requirements.txt
     - name: build by python build
       run: |
-        python3 -m build -s --no-isolation --wheel
+        python2 -m build -s --no-isolation --wheel
     - name: build by python setup
       run: |
-        python3 setup.py sdist bdist_wheel
+        python2 setup.py sdist bdist_wheel

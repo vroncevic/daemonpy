@@ -13,7 +13,7 @@ The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-[![daemonpy py code checker](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_py_checker.yml/badge.svg)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_py_checker.yml) [![daemonpy python package checker](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_package.yml/badge.svg)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/daemonpy.svg)](https://github.com/vroncevic/daemonpy/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/daemonpy.svg)](https://github.com/vroncevic/daemonpy/graphs/contributors)
+[![daemonpy python checker](https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python_checker?style=flat&label=daemonpy%20python%20checker)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python_checker.yml) [![daemonpy package checker](https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_package_checker?style=flat&label=daemonpy%20package%20checker)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_package_checker.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/daemonpy.svg)](https://github.com/vroncevic/daemonpy/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/daemonpy.svg)](https://github.com/vroncevic/daemonpy/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -35,9 +35,11 @@ other information that should be provided before the modules are installed.
 
 ### Installation
 
-[![daemonpy build python2 package](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python2_publish.yml/badge.svg)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python2_publish.yml) [![daemonpy build python3 package](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python3_publish.yml/badge.svg)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python3_publish.yml)
+Used next development environment
 
-![ubuntu linux os](https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/ubuntuxis.png)
+![debian linux os](https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/debtux.png)
+
+[![daemonpy python2 build](https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python2_build?style=flat&label=daemonpy%20python2%20build)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python2_build.yml) [![daemonpy python3 build](https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python3_build?style=flat&label=daemonpy%20python3%20build)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python3_build.yml)
 
 Currently there are three ways to install package
 
@@ -92,7 +94,7 @@ pip3 install dist/daemonpy-x.y.z-py3-none-any.whl
 
 Navigate to **[release page](https://github.com/vroncevic/daemonpy/releases)** download and extract release archive 📦.
 
-To install modules, locate and run setup.py with arguments
+To install **daemonpy** locate and run setup.py with arguments
 
 ```bash
 tar xvzf daemonpy-x.y.z.tar.gz
@@ -111,7 +113,7 @@ python3 setup.py install_egg_info
 
 You can use Dockerfile to create image/container 🚢.
 
-[![daemonpy docker checker](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_docker_checker.yml/badge.svg)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_docker_checker.yml)
+[![daemonpy docker checker](https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_docker_checker?style=flat&label=daemonpy%20docker%20checker)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_docker_checker.yml)
 
 ### Usage
 
@@ -199,7 +201,7 @@ daemonpy/
 
 ### Docs
 
-[![documentation status](https://readthedocs.org/projects/ats-utilities/badge/?version=master)](https://ats-utilities.readthedocs.io/projects/ats-utilities/en/master/?badge=master) [![Pages build deployment](https://github.com/vroncevic/daemonpy/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/vroncevic/daemonpy/actions/workflows/pages/pages-build-deployment)
+[![documentation status](https://readthedocs.org/projects/ats-utilities/badge/?version=master)](https://ats-utilities.readthedocs.io/projects/ats-utilities/en/master/?badge=master)
 
 📗 More documentation and info at
 
