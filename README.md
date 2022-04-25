@@ -37,7 +37,7 @@ other information that should be provided before the modules are installed.
 
 Used next development environment
 
-![debian linux os](https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/debtux.png)
+![debian linux os](https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/ubuntuxis.png)
 
 [![daemonpy python2 build](https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python2_build?style=flat&label=daemonpy%20python2%20build)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python2_build.yml) [![daemonpy python3 build](https://img.shields.io/github/workflow/status/vroncevic/daemonpy/daemonpy_python3_build?style=flat&label=daemonpy%20python3%20build)](https://github.com/vroncevic/daemonpy/actions/workflows/daemonpy_python3_build.yml)
 
