@@ -1,9 +1,9 @@
 Creating Daemon process
 -----------------------
 
-**daemonpy** is package for creating Daemon processes.
+☯️ **daemonpy** is package for creating Daemon processes.
 
-Developed in `python <https://www.python.org/>`_ code.
+Developed in 🐍 `python <https://www.python.org/>`_ code.
 
 |codecov| |circleci|
 
@@ -56,11 +56,11 @@ Installation
 
 .. |ubuntu linux os| image:: https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/ubuntuxis.png
 
-Navigate to release `page`_ download and extract release archive.
+Navigate to release `page`_ download and extract release archive 📦.
 
 .. _page: https://github.com/vroncevic/daemonpy/releases
 
-To install **daemonpy** run
+To install **daemonpy** 📦 run
 
 .. code-block:: bash
 
@@ -90,7 +90,7 @@ Or type the following
     python3 setup.py install_lib
     python3 setup.py install_egg_info
 
-You can use Docker to create image/container, or You can use pip to install
+You can use Docker to create image/container, or You can use pip to install 📦
 
 .. code-block:: bash
 
@@ -179,7 +179,7 @@ Package structure
 
 **daemonpy** is based on OOP.
 
-Package structure
+🧰 Package structure
 
 .. code-block:: bash
 
@@ -207,7 +207,7 @@ Copyright (C) 2020 by `vroncevic.github.io/daemonpy <https://vroncevic.github.io
 it under the same terms as Python itself, either Python version 2.x/3.x or,
 at your option, any later version of Python 3 you may have available.
 
-Lets help and support PSF.
+🌎 🌍 🌏 Lets help and support PSF.
 
 |python software foundation|
 
