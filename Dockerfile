@@ -1,4 +1,4 @@
-# Copyright 2020 Vladimir Roncevic <elektron.ronca@gmail.com>
+# Copyright 2020 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,37 +13,26 @@
 # limitations under the License.
 #
 
-FROM debian:10
+FROM debian:12
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -yq --no-install-recommends \
-    vim \
-    nano \
     tree \
     htop \
     wget \
-    curl \
     unzip \
     ca-certificates \
     openssl \
-    python \
-    python-dev \
     python3 \
-    python3-dev \
+    python3-pip \
+    python3-wheel \
+    python3-venv \
     libyaml-dev
 
-RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
-RUN python2 get-pip.py
-RUN python2 -m pip install --upgrade setuptools
-RUN python2 -m pip install --upgrade pip
-RUN python2 -m pip install --upgrade build
-RUN rm -f get-pip.py
-RUN wget https://bootstrap.pypa.io/get-pip.py
-RUN python3 get-pip.py
 RUN python3 -m pip install --upgrade setuptools
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade build
-RUN rm -f get-pip.py
+RUN python3 -m venv env
 RUN mkdir /daemonpy/
 COPY daemonpy /daemonpy/
 COPY setup.cfg /
@@ -53,12 +42,10 @@ COPY setup.py /
 COPY README.md /
 COPY LICENSE /
 COPY requirements.txt /
-RUN pip2 install -r requirements.txt
 RUN pip3 install -r requirements.txt
 RUN rm -f requirements.txt
-RUN python2 -m build --no-isolation --wheel
-RUN pip2 install /dist/daemonpy-*-py2-none-any.whl
-RUN python3 -m build --no-isolation --wheel
+RUN python -m build
+RUN python3 -m build
 RUN pip3 install /dist/daemonpy-*-py3-none-any.whl
 RUN rm -rf /daemonpy*
 RUN rm -rf dist/ tests/
@@ -68,4 +55,3 @@ RUN rm -f MANIFEST.in
 RUN rm -f setup.py
 RUN rm -f README.md
 RUN rm -f LICENSE
-

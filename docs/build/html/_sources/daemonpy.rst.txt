@@ -5,6 +5,7 @@ Submodules
 ----------
 
 .. toctree::
+   :maxdepth: 4
 
    daemonpy.daemon_usage
    daemonpy.file_descriptor
@@ -15,6 +16,7 @@ Module contents
 ---------------
 
 .. automodule:: daemonpy
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

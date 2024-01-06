@@ -2,7 +2,7 @@
 
 '''
 Module
-    daemon_usage_test.py
+    daemon_test.py
 Copyright
     Copyright (C) 2020 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
     daemonpy is free software: you can redistribute it and/or modify it
@@ -16,20 +16,21 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class DaemonUsageTestCase with attribute(s) and method(s).
-    Creates test cases for checking functionalities of DaemonUsage.
+    Defines class DaemonTestCase with attribute(s) and method(s).
+    Creates test cases for checking functionalities of Daemon.
 Execute
-    python3 -m unittest -v daemon_usage_test
+    python3 -m unittest -v daemon_test
 '''
 
 import sys
 import unittest
 from typing import List
+from time import sleep
 
 try:
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_value_error import ATSValueError
-    from daemonpy.daemon_usage import DaemonUsage
+    from daemonpy import Daemon
 except ImportError as test_error_message:
     # Force close python test #################################################
     sys.exit(f'\n{__file__}\n{test_error_message}\n')
@@ -44,10 +45,33 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class DaemonUsageTestCase(unittest.TestCase):
+class MyDaemon(Daemon):
     '''
-        Defines class DaemonUsageTestCase with attribute(s) and method(s).
-        Creates test cases for checking functionalities of DaemonUsage.
+        Defines class MyDaemon with attribute(s) and method(s).
+        Sets an operation for Daemon process.
+
+        It defines:
+
+            :attributes:
+                | None
+            :methods:
+                | run - Runs Daemon process (defined method).
+    '''
+
+    def run(self):
+        '''
+            Runs Daemon process with time sleep example.
+
+            :exceptions: None
+        '''
+        while True:
+            sleep(1)
+
+
+class DaemonTestCase(unittest.TestCase):
+    '''
+        Defines class DaemonTestCase with attribute(s) and method(s).
+        Creates test cases for checking functionalities of MyDaemon.
 
         It defines:
 
@@ -56,12 +80,8 @@ class DaemonUsageTestCase(unittest.TestCase):
             :methods:
                 | setUp - Call before test cases.
                 | tearDown - Call after test cases.
-                | test_create - Test creation of daemon usage.
-                | test_default_status - Test default daemon usage status.
-                | test_change_status - Test changes of daemon usage status.
-                | test_usage - Test daemon usage start.
-                | test_usage_none - Test None usage.
-                | test_usage_empty - Test empty usage.
+                | test_run_usage_with_none - Test daemon usage with None.
+                | test_run_usage_with_empty - Test daemon usage with empty.
     '''
 
     def setUp(self) -> None:
@@ -71,40 +91,21 @@ class DaemonUsageTestCase(unittest.TestCase):
         '''Call after test cases.'''
 
     def test_create(self) -> None:
-        '''Test creation of daemon usage.'''
-        daemon_usage: DaemonUsage = DaemonUsage()
-        self.assertIsNotNone(daemon_usage)
+        '''Test creation of daemon.'''
+        my_daemon: MyDaemon = MyDaemon('/tmp/daemon-example.pid')
+        self.assertIsNotNone(my_daemon)
 
-    def test_default_status(self) -> None:
-        '''Test default daemon usage status.'''
-        daemon_usage: DaemonUsage = DaemonUsage()
-        self.assertEqual(daemon_usage.usage_status, 0)
-
-    def test_change_status(self) -> None:
-        '''Test changes of daemon usage status.'''
-        daemon_usage: DaemonUsage = DaemonUsage()
-        daemon_usage.usage_status = 0
-        daemon_usage.usage_status = 1
-        daemon_usage.usage_status = 0
-        self.assertEqual(daemon_usage.usage_status, 0)
-
-    def test_usage(self) -> None:
-        '''Test daemon usage start.'''
-        daemon_usage: DaemonUsage = DaemonUsage()
-        daemon_usage.check('start')
-        self.assertEqual(daemon_usage.usage_status, 0)
-
-    def test_usage_none(self) -> None:
-        '''Test None usage.'''
-        daemon_usage: DaemonUsage = DaemonUsage()
+    def test_run_usage_with_none(self) -> None:
+        '''Test daemon usage with None.'''
+        my_daemon: MyDaemon = MyDaemon('/tmp/daemon-example.pid')
         with self.assertRaises(ATSTypeError):
-            daemon_usage.check(None)
+            my_daemon.usage(None)
 
-    def test_usage_empty(self) -> None:
-        '''Test empty usage.'''
-        daemon_usage: DaemonUsage = DaemonUsage()
+    def test_run_usage_with_empty(self) -> None:
+        '''Test daemon usage with empty.'''
+        my_daemon: MyDaemon = MyDaemon('/tmp/daemon-example.pid')
         with self.assertRaises(ATSValueError):
-            daemon_usage.check('')
+            my_daemon.usage('')
 
 
 if __name__ == '__main__':
