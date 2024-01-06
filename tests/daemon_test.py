@@ -2,7 +2,7 @@
 
 '''
 Module
-    file_process_id_test.py
+    daemon_test.py
 Copyright
     Copyright (C) 2020 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
     daemonpy is free software: you can redistribute it and/or modify it
@@ -16,20 +16,21 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class FileProcessIdTestCase with attribute(s) and method(s).
-    Creates test cases for checking functionalities of FileProcessId.
+    Defines class DaemonTestCase with attribute(s) and method(s).
+    Creates test cases for checking functionalities of Daemon.
 Execute
-    python3 -m unittest -v file_process_id_test
+    python3 -m unittest -v daemon_test
 '''
 
 import sys
 import unittest
 from typing import List
+from time import sleep
 
 try:
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_value_error import ATSValueError
-    from daemonpy.file_process_id import FileProcessId
+    from daemonpy import Daemon
 except ImportError as test_error_message:
     # Force close python test #################################################
     sys.exit(f'\n{__file__}\n{test_error_message}\n')
@@ -44,10 +45,33 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class FileProcessIdTestCase(unittest.TestCase):
+class MyDaemon(Daemon):
     '''
-        Defines class FileProcessIdTestCase with attribute(s) and method(s).
-        Creates test cases for checking functionalities of FileProcessId.
+        Defines class MyDaemon with attribute(s) and method(s).
+        Sets an operation for Daemon process.
+
+        It defines:
+
+            :attributes:
+                | None
+            :methods:
+                | run - Runs Daemon process (defined method).
+    '''
+
+    def run(self):
+        '''
+            Runs Daemon process with time sleep example.
+
+            :exceptions: None
+        '''
+        while True:
+            sleep(1)
+
+
+class DaemonTestCase(unittest.TestCase):
+    '''
+        Defines class DaemonTestCase with attribute(s) and method(s).
+        Creates test cases for checking functionalities of MyDaemon.
 
         It defines:
 
@@ -56,50 +80,32 @@ class FileProcessIdTestCase(unittest.TestCase):
             :methods:
                 | setUp - Call before test cases.
                 | tearDown - Call after test cases.
-                | test_creation - Test creation.
-                | test_cration_none_path - Test creation None path.
-                | test_cration_empty_path - Test creation empty path.
-                | test_cration_none_mode - Test creation None mode.
-                | test_cration_empty_mode - Test creation empty mode.
+                | test_run_usage_with_none - Test daemon usage with None.
+                | test_run_usage_with_empty - Test daemon usage with empty.
     '''
 
     def setUp(self) -> None:
-        '''Call before test case.'''
+        '''Call before test cases.'''
 
     def tearDown(self) -> None:
-        '''Call after test case.'''
+        '''Call after test cases.'''
 
-    def test_creation(self) -> None:
-        '''Test creation.'''
-        null: str = '/dev/null'
-        with FileProcessId(null, 'w+') as in_file:
-            self.assertIsNotNone(in_file)
+    def test_create(self) -> None:
+        '''Test creation of daemon.'''
+        my_daemon: MyDaemon = MyDaemon('/tmp/daemon-example.pid')
+        self.assertIsNotNone(my_daemon)
 
-    def test_cration_none_path(self) -> None:
-        '''Test creation None path.'''
+    def test_run_usage_with_none(self) -> None:
+        '''Test daemon usage with None.'''
+        my_daemon: MyDaemon = MyDaemon('/tmp/daemon-example.pid')
         with self.assertRaises(ATSTypeError):
-            with FileProcessId(None, 'w+'):
-                print('Not reachable')
+            my_daemon.usage(None)
 
-    def test_cration_empty_path(self) -> None:
-        '''Test creation empty path.'''
+    def test_run_usage_with_empty(self) -> None:
+        '''Test daemon usage with empty.'''
+        my_daemon: MyDaemon = MyDaemon('/tmp/daemon-example.pid')
         with self.assertRaises(ATSValueError):
-            with FileProcessId('', 'w+'):
-                print('Not reachable')
-
-    def test_cration_none_mode(self) -> None:
-        '''Test creation None mode.'''
-        null: str = '/dev/null'
-        with self.assertRaises(ATSTypeError):
-            with FileProcessId(null, None):
-                print('Not reachable')
-
-    def test_cration_empty_mode(self) -> None:
-        '''Test creation empty mode.'''
-        null: str = '/dev/null'
-        with self.assertRaises(ATSValueError):
-            with FileProcessId(null, ''):
-                print('Not reachable')
+            my_daemon.usage('')
 
 
 if __name__ == '__main__':

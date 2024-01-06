@@ -1,43 +1,42 @@
 # -*- coding: UTF-8 -*-
 
 '''
- Module
-     file_process_id.py
- Copyright
-     Copyright (C) 2020 Vladimir Roncevic <elektron.ronca@gmail.com>
-     daemonpy is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     daemonpy is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class FileProcessId with attribute(s) and method(s).
-     Created API for file process id context management.
+Module
+    file_process_id.py
+Copyright
+    Copyright (C) 2020 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+    daemonpy is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    daemonpy is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class FileProcessId with attribute(s) and method(s).
+    Creates an API for the file process id context management.
 '''
 
 import sys
-from os.path import exists
+from typing import List
+from io import TextIOWrapper
 
 try:
     from ats_utilities.checker import ATSChecker
-    from ats_utilities.console_io.error import error_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
-    from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-    from ats_utilities.exceptions.ats_parameter_error import ATSParameterError
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
 except ImportError as ats_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
-    sys.exit(MESSAGE)  # Force close python ATS ##############################
+    # Force close python ATS ##################################################
+    sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2020, https://vroncevic.github.io/daemonpy'
-__credits__ = ['Vladimir Roncevic']
+__copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '1.9.3'
+__version__ = '1.8.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -45,98 +44,68 @@ __status__ = 'Updated'
 
 class FileProcessId:
     '''
-        Defined class FileProcessId with attribute(s) and method(s).
-        Created API for file descriptor context management.
+        Defines class FileProcessId with attribute(s) and method(s).
+        Creates an API for the file process id context management.
+
         It defines:
 
             :attributes:
-                | PKG_VERBOSE - console text indicator for process-phase.
-                | MODE - supported modes for process id file.
-                | __file_process_id_path - PID file path.
-                | __file_process_id_mode - PID file mode.
-                | __file_process_id - PID file object.
+                | _PKG_VERBOSE - Console text indicator for process-phase.
+                | _MODE - Supported modes for process id file.
+                | _pid_path - PID file path.
+                | _pid_mode - PID file mode.
+                | _pid - PID file object.
             :methods:
-                | __init__ - initial constructor.
-                | __enter__ - open PID file.
-                | __exit__ - close PID file.
-                | __str__ - dunder method for object FileDescriptor.
+                | __init__ - Initials FileProcessId constructor.
+                | __enter__ - Opens PID file.
+                | __exit__ - Closes PID file.
     '''
 
-    PKG_VERBOSE = 'DAEMONPY::FILE_PROCESS_ID'
-    MODE = ['w+', 'r']
+    _PKG_VERBOSE: str = 'DAEMONPY::FILE_PROCESS_ID'
+    _MODE: List[str] = ['w+', 'r']
 
-    def __init__(self, file_process_id_path, file_process_id_mode):
+    def __init__(self, pid_path: str | None, pid_mode: str | None) -> None:
         '''
-            Initial constructor.
+            Initials FileProcessId constructor.
 
-            :param file_process_id_path: file process id path.
-            :type file_process_id_path: <str>
-            :param file_process_id_mode: file process id mode.
-            :type file_process_id_mode: <str>
-            :exceptions: ATSTypeError | ATSBadCallError
+            :param pid_path: file process id path | None
+            :type pid_path: <str> | <NoneType>
+            :param pid_mode: file process id mode | None
+            :type pid_mode: <str> | <NoneType>
+            :exceptions: ATSTypeError | ATSValueError
         '''
-        checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params([
-            ('str:file_process_id_path', file_process_id_path),
-            ('str:file_process_id_mode', file_process_id_mode)
+        error_msg: str | None = None
+        error_id: int | None = None
+        checker: ATSChecker = ATSChecker()
+        error_msg, error_id = checker.check_params([
+            ('str:pid_path', pid_path), ('str:pid_mode', pid_mode)
         ])
-        if status == ATSChecker.TYPE_ERROR:
-            raise ATSTypeError(error)
-        if status == ATSChecker.VALUE_ERROR:
-            raise ATSBadCallError(error)
-        if file_process_id_mode in FileProcessId.MODE:
-            self.__file_process_id_path = file_process_id_path
-            self.__file_process_id_mode = file_process_id_mode
-            self.__file_process_id = None
-        else:
-            error = 'PID file mode can be <w+ | r>'
-            error_message(FileProcessId.PKG_VERBOSE, error)
+        if error_id == checker.TYPE_ERROR:
+            raise ATSTypeError(error_msg)
+        if not bool(pid_path):
+            raise ATSValueError('missing PID path file')
+        if any([not bool(pid_mode), pid_mode not in self._MODE]):
+            raise ATSValueError('check PID mode file')
+        self._pid_path: str | None = pid_path
+        self._pid_mode: str | None = pid_mode
+        self._pid: TextIOWrapper | None = None
 
-    def __enter__(self):
+    def __enter__(self) -> None:
         '''
-            Open PID file.
+            Opens PID file.
 
-            :return: file device object | None.
-            :rtype: <file> | <NoneType>
-            :exceptions: ATSParameterError
+            :return: File IO stream | None
+            :rtype: <TextIOWrapper> | <NoneType>
+            :exceptions: None
         '''
-        error = None
-        if self.__file_process_id_mode == FileProcessId.MODE[1]:
-            if not exists(self.__file_process_id_path):
-                error = 'check PID file path'
-                raise ATSParameterError(error)
-            else:
-                pass
-        elif self.__file_process_id_mode == FileProcessId.MODE[0]:
-            pass
-        else:
-            error = 'check PID file mode'
-            raise ATSParameterError(error)
-        self.__file_process_id = open(
-            self.__file_process_id_path, self.__file_process_id_mode
-        )
-        return self.__file_process_id
+        self._pid = open(self._pid_path, self._pid_mode, encoding='utf-8')
+        return self._pid
 
-    def __exit__(self, *args):
+    def __exit__(self, *args) -> None:
         '''
-            Close PID file.
+            Closes PID file.
 
             :exceptions: None
         '''
-        try:
-            self.__file_process_id.close()
-        except AttributeError:
-            pass
-
-    def __str__(self):
-        '''
-            Dunder method for FileProcessId.
-
-            :return: object in a human-readable format.
-            :rtype: <str>
-            :exceptions: None
-        '''
-        return '{0} ({1}, {2}, {3})'.format(
-            self.__class__.__name__, self.__file_process_id_path,
-            self.__file_process_id_mode, self.__file_process_id
-        )
+        if not self._pid.closed:
+            self._pid.close()

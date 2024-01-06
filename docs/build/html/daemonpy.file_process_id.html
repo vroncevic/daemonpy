@@ -1,96 +1,60 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>daemonpy.file_process_id module &mdash; daemonpy https://github.com/vroncevic/daemonpy/releases documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-    <script src="_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>daemonpy.file_process_id module &#8212; daemonpy https://github.com/vroncevic/daemonpy/releases documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="daemonpy.unix_operations module" href="daemonpy.unix_operations.html" />
     <link rel="prev" title="daemonpy.file_descriptor module" href="daemonpy.file_descriptor.html" /> 
-</head>
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="daemonpy.unix_operations.html" title="daemonpy.unix_operations module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="daemonpy.file_descriptor.html" title="daemonpy.file_descriptor module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">daemonpy https://github.com/vroncevic/daemonpy/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >daemonpy</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="daemonpy.html" accesskey="U">daemonpy package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">daemonpy.file_process_id module</a></li> 
+      </ul>
+    </div>  
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> daemonpy
-          </a>
-              <div class="version">
-                1.9.3
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">contents</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="index.html">Creating Daemon process</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">daemonpy</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="daemonpy.html">daemonpy package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="daemonpy.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="daemonpy.daemon_usage.html">daemonpy.daemon_usage module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="daemonpy.file_descriptor.html">daemonpy.file_descriptor module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">daemonpy.file_process_id module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="daemonpy.unix_operations.html">daemonpy.unix_operations module</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="daemonpy.html#module-daemonpy">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">daemonpy</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="modules.html">daemonpy</a> &raquo;</li>
-          <li><a href="daemonpy.html">daemonpy package</a> &raquo;</li>
-      <li>daemonpy.file_process_id module</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="_sources/daemonpy.file_process_id.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
   <section id="module-daemonpy.file_process_id">
-<span id="daemonpy-file-process-id-module"></span><h1>daemonpy.file_process_id module<a class="headerlink" href="#module-daemonpy.file_process_id" title="Permalink to this headline"></a></h1>
+<span id="daemonpy-file-process-id-module"></span><h1>daemonpy.file_process_id module<a class="headerlink" href="#module-daemonpy.file_process_id" title="Permalink to this heading">¶</a></h1>
 <dl class="simple">
 <dt>Module</dt><dd><p>file_process_id.py</p>
 </dd>
-<dt>Copyright</dt><dd><p>Copyright (C) 2020 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+<dt>Copyright</dt><dd><p>Copyright (C) 2020 - 2024 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
 daemonpy is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
 Free Software Foundation, either version 3 of the License, or
@@ -102,46 +66,45 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
 </dd>
-<dt>Info</dt><dd><p>Defined class FileProcessId with attribute(s) and method(s).
-Created API for file process id context management.</p>
+<dt>Info</dt><dd><p>Defines class FileProcessId with attribute(s) and method(s).
+Creates an API for the file process id context management.</p>
 </dd>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="daemonpy.file_process_id.FileProcessId">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daemonpy.file_process_id.</span></span><span class="sig-name descname"><span class="pre">FileProcessId</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_process_id_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_process_id_mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/daemonpy/file_process_id.html#FileProcessId"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#daemonpy.file_process_id.FileProcessId" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">daemonpy.file_process_id.</span></span><span class="sig-name descname"><span class="pre">FileProcessId</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pid_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pid_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/daemonpy/file_process_id.html#FileProcessId"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#daemonpy.file_process_id.FileProcessId" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Defined class FileProcessId with attribute(s) and method(s).
-Created API for file descriptor context management.
-It defines:</p>
+<p>Defines class FileProcessId with attribute(s) and method(s).
+Creates an API for the file process id context management.</p>
+<p>It defines:</p>
 <blockquote>
 <div><dl class="field-list">
-<dt class="field-odd">attributes</dt>
+<dt class="field-odd">attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="line-block">
-<div class="line">PKG_VERBOSE - console text indicator for process-phase.</div>
-<div class="line">MODE - supported modes for process id file.</div>
-<div class="line">__file_process_id_path - PID file path.</div>
-<div class="line">__file_process_id_mode - PID file mode.</div>
-<div class="line">__file_process_id - PID file object.</div>
+<div class="line">_PKG_VERBOSE - Console text indicator for process-phase.</div>
+<div class="line">_MODE - Supported modes for process id file.</div>
+<div class="line">_pid_path - PID file path.</div>
+<div class="line">_pid_mode - PID file mode.</div>
+<div class="line">_pid - PID file object.</div>
 </div>
 </dd>
-<dt class="field-even">methods</dt>
+<dt class="field-even">methods<span class="colon">:</span></dt>
 <dd class="field-even"><div class="line-block">
-<div class="line">__init__ - initial constructor.</div>
-<div class="line">__enter__ - open PID file.</div>
-<div class="line">__exit__ - close PID file.</div>
-<div class="line">__str__ - dunder method for object FileDescriptor.</div>
+<div class="line">__init__ - Initials FileProcessId constructor.</div>
+<div class="line">__enter__ - Opens PID file.</div>
+<div class="line">__exit__ - Closes PID file.</div>
 </div>
 </dd>
 </dl>
 </div></blockquote>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="daemonpy.file_process_id.FileProcessId.MODE">
-<span class="sig-name descname"><span class="pre">MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['w+',</span> <span class="pre">'r']</span></em><a class="headerlink" href="#daemonpy.file_process_id.FileProcessId.MODE" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="daemonpy.file_process_id.FileProcessId._MODE">
+<span class="sig-name descname"><span class="pre">_MODE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['w+',</span> <span class="pre">'r']</span></em><a class="headerlink" href="#daemonpy.file_process_id.FileProcessId._MODE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="daemonpy.file_process_id.FileProcessId.PKG_VERBOSE">
-<span class="sig-name descname"><span class="pre">PKG_VERBOSE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DAEMONPY::FILE_PROCESS_ID'</span></em><a class="headerlink" href="#daemonpy.file_process_id.FileProcessId.PKG_VERBOSE" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="daemonpy.file_process_id.FileProcessId._PKG_VERBOSE">
+<span class="sig-name descname"><span class="pre">_PKG_VERBOSE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DAEMONPY::FILE_PROCESS_ID'</span></em><a class="headerlink" href="#daemonpy.file_process_id.FileProcessId._PKG_VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -149,34 +112,81 @@ It defines:</p>
 </section>
 
 
-           </div>
+            <div class="clearer"></div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="daemonpy.file_descriptor.html" class="btn btn-neutral float-left" title="daemonpy.file_descriptor module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="daemonpy.unix_operations.html" class="btn btn-neutral float-right" title="daemonpy.unix_operations module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2020, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
         </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">daemonpy.file_process_id module</a><ul>
+<li><a class="reference internal" href="#daemonpy.file_process_id.FileProcessId"><code class="docutils literal notranslate"><span class="pre">FileProcessId</span></code></a><ul>
+<li><a class="reference internal" href="#daemonpy.file_process_id.FileProcessId._MODE"><code class="docutils literal notranslate"><span class="pre">FileProcessId._MODE</span></code></a></li>
+<li><a class="reference internal" href="#daemonpy.file_process_id.FileProcessId._PKG_VERBOSE"><code class="docutils literal notranslate"><span class="pre">FileProcessId._PKG_VERBOSE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-</body>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="daemonpy.file_descriptor.html"
+                          title="previous chapter">daemonpy.file_descriptor module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="daemonpy.unix_operations.html"
+                          title="next chapter">daemonpy.unix_operations module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/daemonpy.file_process_id.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="daemonpy.unix_operations.html" title="daemonpy.unix_operations module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="daemonpy.file_descriptor.html" title="daemonpy.file_descriptor module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">daemonpy https://github.com/vroncevic/daemonpy/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >daemonpy</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="daemonpy.html" >daemonpy package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">daemonpy.file_process_id module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
 </html>

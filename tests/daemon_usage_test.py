@@ -1,41 +1,44 @@
-#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
 
 '''
- Module
-     daemon_usage_test.py
- Copyright
-     Copyright (C) 2022 Vladimir Roncevic <elektron.ronca@gmail.com>
-     daemonpy is free software: you can redistribute it and/or modify it
-     under the terms of the GNU General Public License as published by the
-     Free Software Foundation, either version 3 of the License, or
-     (at your option) any later version.
-     daemonpy is distributed in the hope that it will be useful, but
-     WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-     See the GNU General Public License for more details.
-     You should have received a copy of the GNU General Public License along
-     with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class DaemonUsageTestCase with attribute(s) and method(s).
-     Created test cases for checking functionalities of DaemonUsage.
- Execute
-     python -m unittest -v daemon_usage_test
+Module
+    daemon_usage_test.py
+Copyright
+    Copyright (C) 2020 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+    daemonpy is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    daemonpy is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class DaemonUsageTestCase with attribute(s) and method(s).
+    Creates test cases for checking functionalities of DaemonUsage.
+Execute
+    python3 -m unittest -v daemon_usage_test
 '''
 
 import sys
 import unittest
+from typing import List
 
 try:
+    from ats_utilities.exceptions.ats_type_error import ATSTypeError
+    from ats_utilities.exceptions.ats_value_error import ATSValueError
     from daemonpy.daemon_usage import DaemonUsage
-except ImportError as ats_error:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error)
-    sys.exit(MESSAGE)  # Force close python ATS ##############################
+except ImportError as test_error_message:
+    # Force close python test #################################################
+    sys.exit(f'\n{__file__}\n{test_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2022, https://vroncevic.github.io/daemonpy'
-__credits__ = ['Vladimir Roncevic']
+__copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '1.9.3'
+__version__ = '1.8.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -43,42 +46,65 @@ __status__ = 'Updated'
 
 class DaemonUsageTestCase(unittest.TestCase):
     '''
-        Defined class DaemonUsageTestCase with attribute(s) and method(s).
-        Created test cases for checking functionalities of DaemonUsage.
+        Defines class DaemonUsageTestCase with attribute(s) and method(s).
+        Creates test cases for checking functionalities of DaemonUsage.
+
         It defines:
 
             :attributes:
-                | daemon_usage - Daemon usage object.
+                | None
             :methods:
-                | setUp - call before test cases.
-                | tearDown - call after test cases.
-                | test_daemon_usage_check_start - test daemon usage check start.
-                | test_daemon_usage_check_stop - test daemon usage check stop.
-                | test_daemon_usage_check_restart - test daemon usage check restart.
+                | setUp - Call before test cases.
+                | tearDown - Call after test cases.
+                | test_create - Test creation of daemon usage.
+                | test_default_status - Test default daemon usage status.
+                | test_change_status - Test changes of daemon usage status.
+                | test_usage - Test daemon usage start.
+                | test_usage_none - Test None usage.
+                | test_usage_empty - Test empty usage.
     '''
 
-    def setUp(self):
+    def setUp(self) -> None:
         '''Call before test cases.'''
-        self.daemon_usage = DaemonUsage()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         '''Call after test cases.'''
-        self.daemon_usage = None
 
-    def test_daemon_usage_check_start(self):
-        '''Test daemon usage check start.'''
-        self.daemon_usage.check('start')
-        self.assertEqual(self.daemon_usage.usage_status, 0)
+    def test_create(self) -> None:
+        '''Test creation of daemon usage.'''
+        daemon_usage: DaemonUsage = DaemonUsage()
+        self.assertIsNotNone(daemon_usage)
 
-    def test_daemon_usage_check_stop(self):
-        '''Test daemon usage check stop.'''
-        self.daemon_usage.check('stop')
-        self.assertEqual(self.daemon_usage.usage_status, 1)
+    def test_default_status(self) -> None:
+        '''Test default daemon usage status.'''
+        daemon_usage: DaemonUsage = DaemonUsage()
+        self.assertEqual(daemon_usage.usage_status, 0)
 
-    def test_daemon_usage_check_restart(self):
-        '''Test daemon usage check restart.'''
-        self.daemon_usage.check('restart')
-        self.assertEqual(self.daemon_usage.usage_status, 2)
+    def test_change_status(self) -> None:
+        '''Test changes of daemon usage status.'''
+        daemon_usage: DaemonUsage = DaemonUsage()
+        daemon_usage.usage_status = 0
+        daemon_usage.usage_status = 1
+        daemon_usage.usage_status = 0
+        self.assertEqual(daemon_usage.usage_status, 0)
+
+    def test_usage(self) -> None:
+        '''Test daemon usage start.'''
+        daemon_usage: DaemonUsage = DaemonUsage()
+        daemon_usage.check('start')
+        self.assertEqual(daemon_usage.usage_status, 0)
+
+    def test_usage_none(self) -> None:
+        '''Test None usage.'''
+        daemon_usage: DaemonUsage = DaemonUsage()
+        with self.assertRaises(ATSTypeError):
+            daemon_usage.check(None)
+
+    def test_usage_empty(self) -> None:
+        '''Test empty usage.'''
+        daemon_usage: DaemonUsage = DaemonUsage()
+        with self.assertRaises(ATSValueError):
+            daemon_usage.check('')
 
 
 if __name__ == '__main__':
