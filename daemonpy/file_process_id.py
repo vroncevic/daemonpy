@@ -21,8 +21,7 @@ Info
 '''
 
 import sys
-from typing import List
-from io import TextIOWrapper
+from typing import List, Any, IO
 
 try:
     from ats_utilities.checker import ATSChecker
@@ -36,7 +35,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.3'
+__version__ = '2.0.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -61,7 +60,7 @@ class FileProcessId:
                 | __exit__ - Closes PID file.
     '''
 
-    _PKG_VERBOSE: str = 'DAEMONPY::FILE_PROCESS_ID'
+    _P_VERBOSE: str = 'DAEMONPY::FILE_PROCESS_ID'
     _MODE: List[str] = ['w+', 'r']
 
     def __init__(self, pid_path: str | None, pid_mode: str | None) -> None:
@@ -88,9 +87,9 @@ class FileProcessId:
             raise ATSValueError('check PID mode file')
         self._pid_path: str | None = pid_path
         self._pid_mode: str | None = pid_mode
-        self._pid: TextIOWrapper | None = None
+        self._pid: IO[Any] | None = None
 
-    def __enter__(self) -> None:
+    def __enter__(self) -> IO[Any] | None:
         '''
             Opens PID file.
 
@@ -98,14 +97,18 @@ class FileProcessId:
             :rtype: <TextIOWrapper> | <NoneType>
             :exceptions: None
         '''
-        self._pid = open(self._pid_path, self._pid_mode, encoding='utf-8')
+        if bool(self._pid_path) and bool(self._pid_mode):
+            self._pid = open(
+                self._pid_path, self._pid_mode, encoding='utf-8'
+            )
         return self._pid
 
-    def __exit__(self, *args) -> None:
+    def __exit__(self, *args: Any) -> None:
         '''
             Closes PID file.
 
             :exceptions: None
         '''
-        if not self._pid.closed:
-            self._pid.close()
+        if bool(self._pid):
+            if not self._pid.closed:
+                self._pid.close()

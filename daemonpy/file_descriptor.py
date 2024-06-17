@@ -21,8 +21,7 @@ Info
 '''
 
 import sys
-from typing import Any, List, Dict
-from io import TextIOWrapper
+from typing import Any, List, Dict, IO
 
 try:
     from ats_utilities.checker import ATSChecker
@@ -64,7 +63,7 @@ class FileDescriptor:
                 | __exit__  - Closes descriptor file.
     '''
 
-    _PKG_VERBOSE: str = 'DAEMONPY::FILE_DESCRIPTOR'
+    _P_VERBOSE: str = 'DAEMONPY::FILE_DESCRIPTOR'
     STDIN: int = 0
     STDOUT: int = 1
     STDERR: int = 2
@@ -95,41 +94,40 @@ class FileDescriptor:
         if any([not bool(desc_type), desc_type not in self.FORMAT.values()]):
             raise ATSValueError('check device file format')
         self._desc_path: str | None = desc_path
-        self._desc_type: Any = desc_type
-        self._desc_file: TextIOWrapper | None = None
+        self._desc_type: str | List[str | int] = desc_type
+        self._desc_file: IO[Any] | None = None
 
-    def __enter__(self) -> None:
+    def __enter__(self) -> IO[Any] | None:
         '''
             Opens descriptor file.
 
             :return: File IO stream | None
-            :rtype: <TextIOWrapper> | <NoneType>
+            :rtype: <IO[Any]> | <NoneType>
             :exceptions: None
         '''
-        if isinstance(self._desc_type, str):
-            self._desc_file = open(
-                self._desc_path, self._desc_type, encoding='utf-8'
-            )
-        elif isinstance(self._desc_type, list):
-            if len(self._desc_type) == 2:
-                if all([
-                    isinstance(self._desc_type[0], str),
-                    isinstance(self._desc_type[1], int),
-                    self._desc_type[1] == 0
-                ]):
-                    self._desc_file = open(
-                        self._desc_path,
-                        self._desc_type[0],
-                        self._desc_type[1],
-                        encoding='utf-8'
-                    )
+        if bool(self._desc_path) and bool(self._desc_type):
+            if isinstance(self._desc_type, str):
+                self._desc_file = open(
+                    self._desc_path, self._desc_type, encoding='utf-8'
+                )
+            else:
+                if isinstance(self._desc_type[0], str):
+                    if isinstance(self._desc_type[1], int):
+                        if self._desc_type[1] == 0:
+                            self._desc_file = open(
+                                self._desc_path,
+                                self._desc_type[0],
+                                self._desc_type[1],
+                                encoding='utf-8'
+                            )
         return self._desc_file
 
-    def __exit__(self, *args) -> None:
+    def __exit__(self, *args: Any) -> None:
         '''
             Closes descriptor file.
 
             :exceptions: None
         '''
-        if not self._desc_file.closed:
-            self._desc_file.close()
+        if bool(self._desc_file):
+            if not self._desc_file.closed:
+                self._desc_file.close()
