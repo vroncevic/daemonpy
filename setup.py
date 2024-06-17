@@ -29,12 +29,12 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.3'
+__version__ = '2.0.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
-THIS_DIR = abspath(dirname(__file__))
+THIS_DIR: str = abspath(dirname(__file__))
 long_description: str | None = None
 with open(join(THIS_DIR, 'README.md'), encoding='utf-8') as readme:
     long_description = readme.read()
@@ -57,7 +57,7 @@ APPROVED_LICENSES: List[str] = [
 PYP_CLASSIFIERS: List[str] = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='daemonpy',
-    version='2.0.3',
+    version='2.0.4',
     description='Creating Daemon process',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -69,5 +69,10 @@ setup(
     platforms='any',
     classifiers=PYP_CLASSIFIERS,
     packages=['daemonpy'],
-    install_requires=['ats-utilities',]
+    install_requires=['ats-utilities'],
+    package_data={
+        'daemonpy': [
+            'py.typed'
+        ]
+    }
 )

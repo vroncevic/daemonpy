@@ -39,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.3'
+__version__ = '2.0.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -99,7 +99,7 @@ class DaemonTestCase(unittest.TestCase):
         '''Test daemon usage with None.'''
         my_daemon: MyDaemon = MyDaemon('/tmp/daemon-example.pid')
         with self.assertRaises(ATSTypeError):
-            my_daemon.usage(None)
+            my_daemon.usage(None)  # type: ignore
 
     def test_run_usage_with_empty(self) -> None:
         '''Test daemon usage with empty.'''

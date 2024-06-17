@@ -45,7 +45,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.3'
+__version__ = '2.0.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -61,7 +61,7 @@ class Daemon(UnixOperations):
             :attributes:
                 | _PKG_VERBOSE - Console text indicator for process-phase.
                 | _daemon_usage - Daemon usage.
-                | _pid_path - PID file path.
+                | _pid - PID file path.
             :methods:
                 | __init__ - Initials Daemon constructor.
                 | daemonize - Creates daemon process.
@@ -72,14 +72,14 @@ class Daemon(UnixOperations):
                 | run - Runs daemon process (abstract method).
     '''
 
-    _PKG_VERBOSE: str = 'DAEMONPY'
+    _P_VERBOSE: str = 'DAEMONPY'
 
-    def __init__(self, pid_path: str, verbose: bool = False) -> None:
+    def __init__(self, pid: str, verbose: bool = False) -> None:
         '''
             Initials Daemon constructor.
 
-            :param pid_path: PID file path
-            :type pid_path: <str>
+            :param pid: PID file path
+            :type pid: <str>
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
             :exceptions: ATSTypeError | ATSValueError
@@ -88,19 +88,17 @@ class Daemon(UnixOperations):
         error_msg: str | None = None
         error_id: int | None = None
         checker: ATSChecker = ATSChecker()
-        error_msg, error_id = checker.check_params([
-            ('str:pid_path', pid_path)
-        ])
+        error_msg, error_id = checker.check_params([('str:pid', pid)])
         if error_id == checker.TYPE_ERROR:
             raise ATSTypeError(error_msg)
-        if not bool(pid_path):
+        if not bool(pid):
             raise ATSValueError('missing PID file')
-        verbose_message(verbose, [f'{self._PKG_VERBOSE} init daemon process'])
+        verbose_message(verbose, [f'{self._P_VERBOSE} init daemon'])
         self._daemon_usage: DaemonUsage | None = None
-        self._pid_path: str | None = None
+        self._pid: str | None = None
         if self.unix_status:
             self._daemon_usage = DaemonUsage()
-            self._pid_path = pid_path
+            self._pid = pid
 
     def usage(self, operation: str, verbose: bool = False) -> None:
         '''
@@ -121,11 +119,9 @@ class Daemon(UnixOperations):
         if error_id == checker.TYPE_ERROR:
             raise ATSTypeError(error_msg)
         if not bool(operation):
-            raise ATSValueError('missing operation')
-        verbose_message(
-            verbose, [f'{self._PKG_VERBOSE} daemon operation', operation]
-        )
-        if self.unix_status:
+            raise ATSValueError('missing daemon operation')
+        verbose_message(verbose, [f'{self._P_VERBOSE} daemon', operation])
+        if self.unix_status and bool(self._daemon_usage):
             self._daemon_usage.check(operation, verbose)
             if self._daemon_usage.usage_status == 127:
                 sys.exit(127)
@@ -136,7 +132,7 @@ class Daemon(UnixOperations):
             elif self._daemon_usage.usage_status == 2:
                 self.restart(verbose)
             else:
-                error_message([f'{self._PKG_VERBOSE} wrong option code'])
+                error_message([f'{self._P_VERBOSE} wrong option code'])
                 sys.exit(128)
 
     def daemonize(self, verbose: bool = False) -> None:
@@ -148,9 +144,7 @@ class Daemon(UnixOperations):
             :exceptions: None
         '''
         null: str = '/dev/null'
-        verbose_message(
-            verbose, [f'{self._PKG_VERBOSE} create daemon process']
-        )
+        verbose_message(verbose, [f'{self._P_VERBOSE} create daemon'])
         if self.unix_status:
             try:
                 self.first_fork()
@@ -166,14 +160,18 @@ class Daemon(UnixOperations):
             sys.stdout.flush()
             sys.stderr.flush()
             with FileDescriptor(null, FileDescriptor.STDIN) as in_file:
-                dup2(in_file.fileno(), sys.stdin.fileno())
+                if bool(in_file):
+                    dup2(in_file.fileno(), sys.stdin.fileno())
             with FileDescriptor(null, FileDescriptor.STDOUT) as out_file:
-                dup2(out_file.fileno(), sys.stdout.fileno())
+                if bool(out_file):
+                    dup2(out_file.fileno(), sys.stdout.fileno())
             with FileDescriptor(null, FileDescriptor.STDERR) as err_file:
-                dup2(err_file.fileno(), sys.stderr.fileno())
+                if bool(err_file):
+                    dup2(err_file.fileno(), sys.stderr.fileno())
             register(self.exit_handler)
-            with FileProcessId(self._pid_path, 'w+') as pid_path:
-                pid_path.write(f'{str(getpid())}\n')
+            with FileProcessId(self._pid, 'w+') as pid:
+                if bool(pid):
+                    pid.write(f'{str(getpid())}\n')
 
     def start(self, verbose: bool = False) -> bool:
         '''
@@ -186,21 +184,20 @@ class Daemon(UnixOperations):
             :exceptions: None
         '''
         status: bool = False
-        verbose_message(
-            verbose, [f'{self._PKG_VERBOSE} start daemon process']
-        )
+        verbose_message(verbose, [f'{self._P_VERBOSE} start daemon'])
         if self.unix_status:
-            with FileProcessId(self._pid_path, 'w+') as pid_path:
-                if bool(pid_path.read().strip()):
-                    error_message([
-                        f'{self._PKG_VERBOSE} file',
-                        self._pid_path,
-                        'already exist daemon already running?'
-                    ])
-                else:
-                    self.daemonize(verbose)
-                    self.run()
-                    status = True
+            with FileProcessId(self._pid, 'w+') as pid:
+                if bool(pid):
+                    pid_content: str = pid.read().strip()
+                    if bool(pid_content):
+                        error_message([
+                            f'{self._P_VERBOSE} file', self._pid,
+                            'already exists, daemon already running?'
+                        ])
+                    else:
+                        self.daemonize(verbose)
+                        self.run()
+                        status = True
         return status
 
     def stop(self, verbose: bool = False) -> bool:
@@ -214,18 +211,15 @@ class Daemon(UnixOperations):
             :exceptions: None
         '''
         status: bool = False
-        verbose_message(
-            verbose, [f'{self._PKG_VERBOSE} stop daemon process']
-        )
+        verbose_message(verbose, [f'{self._P_VERBOSE} stop daemon'])
         if self.unix_status:
-            with FileProcessId(self._pid_path, 'r') as pid_path:
-                pid: int = int(pid_path.read().strip())
-                if not pid:
-                    error_message(
-                        [f'{self._PKG_VERBOSE} daemon process running?']
-                    )
-                else:
-                    status = self.unix_kill(pid, self._pid_path)
+            with FileProcessId(self._pid, 'r') as pid:
+                if bool(pid) and bool(self._pid):
+                    pid_content: str = pid.read().strip()
+                    if not bool(pid_content):
+                        error_message([f'{self._P_VERBOSE} daemon running?'])
+                    else:
+                        status = self.unix_kill(int(pid_content), self._pid)
         return status
 
     def restart(self, verbose: bool = False) -> bool:
@@ -239,20 +233,14 @@ class Daemon(UnixOperations):
             :exceptions: None
         '''
         status: bool = False
-        verbose_message(
-            verbose, [f'{self._PKG_VERBOSE} restart daemon process']
-        )
+        verbose_message(verbose, [f'{self._P_VERBOSE} restart daemon'])
         if self.unix_status:
             if all([self.stop(verbose), self.start(verbose)]):
                 status = True
             else:
-                error_message(
-                    [f'{self._PKG_VERBOSE} faled to restart daemon process']
-                )
+                error_message([f'{self._P_VERBOSE} faled to restart daemon'])
         else:
-            error_message(
-                [f'{self._PKG_VERBOSE} daemon process is active?']
-            )
+            error_message([f'{self._P_VERBOSE} daemon is active?'])
         return status
 
     def exit_handler(self, verbose: bool = False) -> None:
@@ -264,24 +252,19 @@ class Daemon(UnixOperations):
             :exceptions: None
         '''
         if self.unix_status:
-            if exists(self._pid_path):
-                verbose_message(
-                    verbose, [
-                        f'{self._PKG_VERBOSE} removing pid file',
-                        self._pid_path
-                    ]
-                )
-                remove(self._pid_path)
+            if not bool(self._pid):
+                error_message([f'{self._P_VERBOSE} check PID', self._pid])
             else:
-                error_message(
-                    [
-                        f'{self._PKG_VERBOSE} check PID file',
-                        self._pid_path
-                    ]
-                )
+                if exists(self._pid):
+                    verbose_message(
+                        verbose, [f'{self._P_VERBOSE} removing PID', self._pid]
+                    )
+                    remove(self._pid)
+                else:
+                    error_message([f'{self._P_VERBOSE} check PID', self._pid])
 
     @abstractmethod
-    def run(self):
+    def run(self) -> None:
         '''
             Run daemon process.
             Override this method when subclass self.

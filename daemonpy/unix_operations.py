@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.3'
+__version__ = '2.0.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -67,7 +67,7 @@ class UnixOperations:
                 | unix_kill - Kills unix like OS process.
     '''
 
-    _PKG_VERBOSE: str = 'DAEMONPY::UNIX_OPERATIONS'
+    _P_VERBOSE: str = 'DAEMONPY::UNIX_OPERATIONS'
     _OS_TARGET: List[str] = ['linux', 'linux2']
     _NO_PROCESS: str = 'No such process'
     _SLEEP: float = 0.1
@@ -81,7 +81,7 @@ class UnixOperations:
             :exceptions: None
         '''
         verbose_message(
-            verbose, [f'{self._PKG_VERBOSE} init daemon operations']
+            verbose, [f'{self._P_VERBOSE} init daemon operations']
         )
         self._unix_status: bool = any(
             sys.platform == os_target for os_target in self._OS_TARGET
@@ -120,7 +120,7 @@ class UnixOperations:
         '''
         if self._unix_status:
             if fork() > 0:
-                verbose_message(verbose, f'{self._PKG_VERBOSE} first fork')
+                verbose_message(verbose, [f'{self._P_VERBOSE} first fork'])
                 sys.exit(0)
 
     def second_fork(self, verbose: bool = False) -> None:
@@ -134,7 +134,7 @@ class UnixOperations:
         '''
         if self._unix_status:
             if fork() > 0:
-                verbose_message(verbose, [f'{self._PKG_VERBOSE} second fork'])
+                verbose_message(verbose, [f'{self._P_VERBOSE} second fork'])
                 sys.exit(0)
 
     def unix_kill(
@@ -169,7 +169,7 @@ class UnixOperations:
         if self._unix_status:
             try:
                 verbose_message(
-                    verbose, [f'{self._PKG_VERBOSE} kill process {pid}']
+                    verbose, [f'{self._P_VERBOSE} kill process {pid}']
                 )
                 while True:
                     kill(pid, SIGTERM)
@@ -182,7 +182,7 @@ class UnixOperations:
                         verbose_message(
                             verbose,
                             [
-                                f'{self._PKG_VERBOSE}',
+                                f'{self._P_VERBOSE}',
                                 f'{self._NO_PROCESS}',
                                 f'with PID: {pid},',
                                 f'removing pid file {pid_path}'
@@ -191,5 +191,5 @@ class UnixOperations:
                         remove(pid_path)
                         status = True
                 else:
-                    error_message([f'{self._PKG_VERBOSE} {os_error}'])
+                    error_message([f'{self._P_VERBOSE} {os_error}'])
         return status

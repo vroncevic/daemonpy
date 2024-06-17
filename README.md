@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/daemonpy_logo.png" width="25%">
-
 # Creating Daemon process
+
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/daemonpy/dev/docs/daemonpy_logo.png" width="25%">
 
 **daemonpy** is package for creating Daemon processes.
 
@@ -91,6 +91,7 @@ You can use Dockerfile to create image/container.
 ### Usage
 
 Create short example
+
 ```python
 #!/usr/bin/env python
 

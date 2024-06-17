@@ -1,5 +1,5 @@
 Creating Daemon process
------------------------
+------------------------
 
 **daemonpy** is package for creating Daemon processes.
 

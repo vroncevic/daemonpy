@@ -37,7 +37,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.3'
+__version__ = '2.0.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -60,7 +60,7 @@ class DaemonUsage:
                 | check - Checks usage for daemon process.
     '''
 
-    _PKG_VERBOSE: str = 'DAEMONPY::DAEMON_USAGE'
+    _P_VERBOSE: str = 'DAEMONPY::DAEMON_USAGE'
     DAEMON_OPERATIONS: List[str] = ['start', 'stop', 'restart']
 
     def __init__(self, verbose: bool = False) -> None:
@@ -71,7 +71,7 @@ class DaemonUsage:
             :type verbose: <bool>
             :exceptions: None
         '''
-        verbose_message(verbose, [f'{self._PKG_VERBOSE} init usage'])
+        verbose_message(verbose, [f'{self._P_VERBOSE} init usage'])
         self._usage_status: int = 0
 
     @property
@@ -96,7 +96,7 @@ class DaemonUsage:
         '''
         self._usage_status = usage_status
 
-    def check(self, daemon_operation: str, verbose: bool = False):
+    def check(self, daemon_operation: str, verbose: bool = False) -> None:
         '''
             Checks usage of Daemon process.
 
@@ -116,17 +116,16 @@ class DaemonUsage:
             raise ATSTypeError(error_msg)
         if not bool(daemon_operation):
             raise ATSValueError('missing daemon operation')
-        verbose_message(verbose, [f'{self._PKG_VERBOSE} checking usage'])
+        verbose_message(verbose, [f'{self._P_VERBOSE} checking usage'])
         for index, option in enumerate(self.DAEMON_OPERATIONS):
             if option == daemon_operation:
                 self._usage_status = index
         if daemon_operation not in self.DAEMON_OPERATIONS:
             self._usage_status = 127
             error_message([
-                f'{self._PKG_VERBOSE} usage: {0}',
+                f'{self._P_VERBOSE} usage: {0}',
                 '|'.join(self.DAEMON_OPERATIONS)
             ])
         verbose_message(
-            verbose,
-            [f'{self._PKG_VERBOSE} usage status', self._usage_status]
+            verbose, [f'{self._P_VERBOSE} usage status', self._usage_status]
         )

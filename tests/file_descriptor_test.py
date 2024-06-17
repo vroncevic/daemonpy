@@ -38,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.3'
+__version__ = '2.0.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -81,7 +81,8 @@ class FileDescriptorTestCase(unittest.TestCase):
         '''Test creation None path.'''
         with self.assertRaises(ATSTypeError):
             with FileDescriptor(
-                None, FileDescriptor.FORMAT[FileDescriptor.STDIN]
+                None,  # type: ignore
+                FileDescriptor.FORMAT[FileDescriptor.STDIN]
             ):
                 print('Not reachable')
 
