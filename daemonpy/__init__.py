@@ -21,7 +21,7 @@ Info
 '''
 
 import sys
-from typing import List
+from typing import List, Optional
 from atexit import register
 from os.path import exists
 from os import chdir, setsid, umask, dup2, getpid, remove
@@ -45,7 +45,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.4'
+__version__ = '2.0.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -85,8 +85,8 @@ class Daemon(UnixOperations):
             :exceptions: ATSTypeError | ATSValueError
         '''
         super().__init__()
-        error_msg: str | None = None
-        error_id: int | None = None
+        error_msg: Optional[str] = None
+        error_id: Optional[int] = None
         checker: ATSChecker = ATSChecker()
         error_msg, error_id = checker.check_params([('str:pid', pid)])
         if error_id == checker.TYPE_ERROR:
@@ -94,8 +94,8 @@ class Daemon(UnixOperations):
         if not bool(pid):
             raise ATSValueError('missing PID file')
         verbose_message(verbose, [f'{self._P_VERBOSE} init daemon'])
-        self._daemon_usage: DaemonUsage | None = None
-        self._pid: str | None = None
+        self._daemon_usage: Optional[DaemonUsage] = None
+        self._pid: Optional[str] = None
         if self.unix_status:
             self._daemon_usage = DaemonUsage()
             self._pid = pid
@@ -110,8 +110,8 @@ class Daemon(UnixOperations):
             :type verbose: <bool>
             :exceptions: ATSTypeError | ATSValueError
         '''
-        error_msg: str | None = None
-        error_id: int | None = None
+        error_msg: Optional[str] = None
+        error_id: Optional[int] = None
         checker: ATSChecker = ATSChecker()
         error_msg, error_id = checker.check_params([
             ('str:operation', operation)

@@ -21,7 +21,7 @@ Info
 '''
 
 import sys
-from typing import Any, List, Dict, IO
+from typing import Any, List, Dict, IO, Optional
 
 try:
     from ats_utilities.checker import ATSChecker
@@ -81,8 +81,8 @@ class FileDescriptor:
             :type desc_type: <int>
             :exceptions: ATSTypeError | ATSValueError
         '''
-        error_msg: str | None = None
-        error_id: int | None = None
+        error_msg: Optional[str] = None
+        error_id: Optional[int] = None
         checker: ATSChecker = ATSChecker()
         error_msg, error_id = checker.check_params([
             ('str:desc_path', desc_path)
@@ -93,9 +93,9 @@ class FileDescriptor:
             raise ATSValueError('missing device path file')
         if any([not bool(desc_type), desc_type not in self.FORMAT.values()]):
             raise ATSValueError('check device file format')
-        self._desc_path: str | None = desc_path
+        self._desc_path: Optional[str] = desc_path
         self._desc_type: str | List[str | int] = desc_type
-        self._desc_file: IO[Any] | None = None
+        self._desc_file: Optional[IO[Any]] = None
 
     def __enter__(self) -> IO[Any] | None:
         '''
