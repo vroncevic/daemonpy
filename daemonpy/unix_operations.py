@@ -21,7 +21,7 @@ Info
 '''
 
 import sys
-from typing import List
+from typing import List, Optional
 from os import fork, kill, remove
 from os.path import exists
 from signal import SIGTERM
@@ -41,7 +41,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.4'
+__version__ = '2.0.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -153,8 +153,8 @@ class UnixOperations:
             :rtype: <bool>
             :exceptions: ATSTypeError | ATSValueError
         '''
-        error_msg: str | None = None
-        error_id: int | None = None
+        error_msg: Optional[str] = None
+        error_id: Optional[int] = None
         checker: ATSChecker = ATSChecker()
         error_msg, error_id = checker.check_params([
             ('int:pid', pid), ('str:pid_path', pid_path)

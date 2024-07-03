@@ -60,7 +60,7 @@
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">IO</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">IO</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.checker</span> <span class="kn">import</span> <span class="n">ATSChecker</span>
@@ -122,8 +122,8 @@
 <span class="sd">            :type desc_type: &lt;int&gt;</span>
 <span class="sd">            :exceptions: ATSTypeError | ATSValueError</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="n">error_msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">error_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">error_msg</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">error_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">checker</span><span class="p">:</span> <span class="n">ATSChecker</span> <span class="o">=</span> <span class="n">ATSChecker</span><span class="p">()</span>
         <span class="n">error_msg</span><span class="p">,</span> <span class="n">error_id</span> <span class="o">=</span> <span class="n">checker</span><span class="o">.</span><span class="n">check_params</span><span class="p">([</span>
             <span class="p">(</span><span class="s1">&#39;str:desc_path&#39;</span><span class="p">,</span> <span class="n">desc_path</span><span class="p">)</span>
@@ -134,9 +134,9 @@
             <span class="k">raise</span> <span class="n">ATSValueError</span><span class="p">(</span><span class="s1">&#39;missing device path file&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="n">desc_type</span><span class="p">),</span> <span class="n">desc_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">FORMAT</span><span class="o">.</span><span class="n">values</span><span class="p">()]):</span>
             <span class="k">raise</span> <span class="n">ATSValueError</span><span class="p">(</span><span class="s1">&#39;check device file format&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_desc_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">desc_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_desc_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">desc_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_desc_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">desc_type</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_desc_file</span><span class="p">:</span> <span class="n">IO</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_desc_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IO</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IO</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>

@@ -155,11 +155,14 @@ Package structure
 .. code-block:: bash
 
     daemonpy/
-        ├── daemon_usage.py
-        ├── file_descriptor.py
-        ├── file_process_id.py
-        ├── __init__.py
-        └── unix_operations.py
+       ├── daemon_usage.py
+       ├── file_descriptor.py
+       ├── file_process_id.py
+       ├── __init__.py
+       ├── py.typed
+       └── unix_operations.py
+    
+    1 directory, 6 files
 
 Copyright and licence
 ----------------------

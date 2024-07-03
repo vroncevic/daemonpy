@@ -21,7 +21,7 @@ Info
 '''
 
 import sys
-from typing import List, Any, IO
+from typing import Any, List, IO, Optional
 
 try:
     from ats_utilities.checker import ATSChecker
@@ -35,7 +35,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.4'
+__version__ = '2.0.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -63,18 +63,20 @@ class FileProcessId:
     _P_VERBOSE: str = 'DAEMONPY::FILE_PROCESS_ID'
     _MODE: List[str] = ['w+', 'r']
 
-    def __init__(self, pid_path: str | None, pid_mode: str | None) -> None:
+    def __init__(
+        self, pid_path: Optional[str], pid_mode: Optional[str]
+    ) -> None:
         '''
             Initials FileProcessId constructor.
 
             :param pid_path: file process id path | None
-            :type pid_path: <str> | <NoneType>
+            :type pid_path: <Optional[str]>
             :param pid_mode: file process id mode | None
-            :type pid_mode: <str> | <NoneType>
+            :type pid_mode: <Optional[str]>
             :exceptions: ATSTypeError | ATSValueError
         '''
-        error_msg: str | None = None
-        error_id: int | None = None
+        error_msg: Optional[str] = None
+        error_id: Optional[int] = None
         checker: ATSChecker = ATSChecker()
         error_msg, error_id = checker.check_params([
             ('str:pid_path', pid_path), ('str:pid_mode', pid_mode)
@@ -85,16 +87,16 @@ class FileProcessId:
             raise ATSValueError('missing PID path file')
         if any([not bool(pid_mode), pid_mode not in self._MODE]):
             raise ATSValueError('check PID mode file')
-        self._pid_path: str | None = pid_path
-        self._pid_mode: str | None = pid_mode
-        self._pid: IO[Any] | None = None
+        self._pid_path: Optional[str] = pid_path
+        self._pid_mode: Optional[str] = pid_mode
+        self._pid: Optional[IO[Any]] = None
 
-    def __enter__(self) -> IO[Any] | None:
+    def __enter__(self) -> Optional[IO[Any]]:
         '''
             Opens PID file.
 
             :return: File IO stream | None
-            :rtype: <TextIOWrapper> | <NoneType>
+            :rtype: <Optional[IO[Any]]>
             :exceptions: None
         '''
         if bool(self._pid_path) and bool(self._pid_mode):

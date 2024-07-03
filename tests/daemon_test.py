@@ -39,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.4'
+__version__ = '2.0.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -58,7 +58,7 @@ class MyDaemon(Daemon):
                 | run - Runs Daemon process (defined method).
     '''
 
-    def run(self):
+    def run(self) -> None:
         '''
             Runs Daemon process with time sleep example.
 
