@@ -7,5 +7,11 @@
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 
+rm -rf htmlcov daemonpy_coverage.xml daemonpy_coverage.json .coverage
 python3 -m coverage run -m --source=../daemonpy unittest discover -s ./ -p '*_test.py' -vvv
-python3 -m coverage html
+python3 -m coverage html -d htmlcov
+python3 -m coverage xml -o daemonpy_coverage.xml 
+python3 -m coverage json -o daemonpy_coverage.json
+python3 -m coverage report --format=markdown -m
+python3 ats_coverage.py -n daemonpy
+echo "Done"

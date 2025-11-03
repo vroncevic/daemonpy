@@ -24,6 +24,7 @@ other information that should be provided before the modules are installed.
 - [Usage](#usage)
 - [Dependencies](#dependencies)
 - [Package structure](#package-structure)
+- [Code coverage](#code-coverage)
 - [Docs](#docs)
 - [Copyright and Licence](#copyright-and-licence)
 
@@ -99,7 +100,7 @@ Create short example
  Module
      mydaemon.py
  Copyright
-     Copyright (C) 2020 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+     Copyright (C) 2020 - 2025 Vladimir Roncevic <elektron.ronca@gmail.com>
      mydaemon is free software: you can redistribute it and/or modify it
      under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
@@ -173,6 +174,17 @@ Package structure
     
     1 directory, 6 files
 ```
+
+### Code coverage
+
+| Name | Stmts | Miss | Cover |
+|------|-------|------|-------|
+| `daemonpy/__init__.py` | 135 | 79 | 41%|
+| `daemonpy/daemon_usage.py` | 45 | 2 | 96%|
+| `daemonpy/file_descriptor.py` | 47 | 4 | 91%|
+| `daemonpy/file_process_id.py` | 39 | 0 | 100%|
+| `daemonpy/unix_operations.py` | 72 | 35 | 51%|
+| **Total** | 338 | 120 | 64% |
 
 ### Docs
 
