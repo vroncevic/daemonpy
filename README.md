@@ -203,7 +203,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2020 - 2024 by [vroncevic.github.io/daemonpy](https://vroncevic.github.io/daemonpy/)
+Copyright (C) 2020 - 2025 by [vroncevic.github.io/daemonpy](https://vroncevic.github.io/daemonpy/)
 
 **daemonpy** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 2.x/3.x or,
