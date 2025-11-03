@@ -5,7 +5,7 @@
 Module
     setup.py
 Copyright
-    Copyright (C) 2020 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+    Copyright (C) 2020 - 2025 Vladimir Roncevic <elektron.ronca@gmail.com>
     daemonpy is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
     Free Software Foundation, either version 3 of the License, or
@@ -25,44 +25,37 @@ from typing import List, Optional
 from os.path import abspath, dirname, join
 from setuptools import setup
 
-__author__ = 'Vladimir Roncevic'
-__copyright__ = '(C) 2024, https://vroncevic.github.io/daemonpy'
+__author__: str = 'Vladimir Roncevic'
+__copyright__: str = '(C) 2025, https://vroncevic.github.io/daemonpy'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
-__license__ = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
-__version__ = '2.0.5'
-__maintainer__ = 'Vladimir Roncevic'
-__email__ = 'elektron.ronca@gmail.com'
-__status__ = 'Updated'
+__license__: str = 'https://github.com/vroncevic/daemonpy/blob/dev/LICENSE'
+__version__: str = '2.0.6'
+__maintainer__: str = 'Vladimir Roncevic'
+__email__: str = 'elektron.ronca@gmail.com'
+__status__: str = 'Updated'
 
 THIS_DIR: str = abspath(dirname(__file__))
 long_description: Optional[str] = None
 with open(join(THIS_DIR, 'README.md'), encoding='utf-8') as readme:
     long_description = readme.read()
 PROGRAMMING_LANG: str = 'Programming Language :: Python ::'
-VERSIONS: List[str] = ['3.10', '3.11']
+VERSIONS: List[str] = ['3.10', '3.11', '3.12']
 SUPPORTED_PY_VERSIONS: List[str] = [
     f'{PROGRAMMING_LANG} {VERSION}' for VERSION in VERSIONS
 ]
 LICENSE_PREFIX: str = 'License :: OSI Approved ::'
 LICENSES: List[str] = [
-    'GNU Lesser General Public License v2 (LGPLv2)',
-    'GNU Lesser General Public License v2 or later (LGPLv2+)',
-    'GNU Lesser General Public License v3 (LGPLv3)',
-    'GNU Lesser General Public License v3 or later (LGPLv3+)',
-    'GNU Library or Lesser General Public License (LGPL)'
+    'GNU Lesser General Public License v3 or later (LGPLv3+)'
 ]
-APPROVED_LICENSES: List[str] = [
-    f'{LICENSE_PREFIX} {LICENSE}' for LICENSE in LICENSES
-]
-PYP_CLASSIFIERS: List[str] = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
+PYP_CLASSIFIERS: List[str] = SUPPORTED_PY_VERSIONS
 setup(
     name='daemonpy',
-    version='2.0.5',
+    version='2.0.6',
     description='Creating Daemon process',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
     url='https://vroncevic.github.io/daemonpy/',
-    license='GPL 2024 Free software to use and distributed it.',
+    license='GPL-3.0-or-later',
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords='Unix, Linux, Daemon, Process',
