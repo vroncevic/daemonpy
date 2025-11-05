@@ -1,4 +1,4 @@
-# Copyright 2020 - 2024 Vladimir Roncevic <elektron.ronca@gmail.com>
+# Copyright 2020 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ RUN python3 -m pip install --upgrade build
 RUN python3 -m venv env
 RUN mkdir /daemonpy/
 COPY daemonpy /daemonpy/
-COPY setup.cfg /
 COPY pyproject.toml /
 COPY MANIFEST.in /
 COPY setup.py /
@@ -49,7 +48,6 @@ RUN python3 -m build
 RUN pip3 install /dist/daemonpy-*-py3-none-any.whl
 RUN rm -rf /daemonpy*
 RUN rm -rf dist/ tests/
-RUN rm -f setup.cfg
 RUN rm -f pyproject.toml
 RUN rm -f MANIFEST.in
 RUN rm -f setup.py

@@ -100,7 +100,7 @@ Create short example
  Module
      mydaemon.py
  Copyright
-     Copyright (C) 2020 - 2025 Vladimir Roncevic <elektron.ronca@gmail.com>
+     Copyright (C) 2020 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
      mydaemon is free software: you can redistribute it and/or modify it
      under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
@@ -203,7 +203,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2020 - 2025 by [vroncevic.github.io/daemonpy](https://vroncevic.github.io/daemonpy/)
+Copyright (C) 2020 - 2026 by [vroncevic.github.io/daemonpy](https://vroncevic.github.io/daemonpy/)
 
 **daemonpy** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 2.x/3.x or,
